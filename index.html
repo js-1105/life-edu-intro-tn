@@ -66,11 +66,17 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.4re
 .section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:32em}
 /* 封面 */
 .slide.cover{background:var(--grad-royal);color:#fff;text-align:center;align-items:center;overflow:hidden}
-.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 480px at 50% 12%,rgba(212,175,55,.22),transparent 62%);z-index:0}
+.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(760px 520px at 50% 12%,rgba(212,175,55,.24),transparent 64%),radial-gradient(520px 420px at 12% 85%,rgba(255,255,255,.08),transparent 60%);z-index:0}
 .slide.cover h1{color:#fff;font-size:clamp(3rem,7vw,6rem)} .slide.cover .lead{color:rgba(255,255,255,.88)}
 .slide.cover .stage{color:var(--color-accent-soft);letter-spacing:.35em;font-weight:700}
 .slide.cover .ornament{width:90px;height:4px;background:var(--grad-accent);margin:1.2em auto;border-radius:2px}
 .slide.cover .meta{margin-top:2.2em;font-size:1rem;color:rgba(255,255,255,.72);letter-spacing:.08em}
+.life-map-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.9}
+.life-map-art .route{fill:none;stroke:url(#coverGold);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:10 13;opacity:.72}
+.life-map-art .thin{fill:none;stroke:rgba(255,255,255,.22);stroke-width:1.2}
+.life-map-art .node{fill:#fff7df;stroke:#D4AF37;stroke-width:3;filter:drop-shadow(0 0 12px rgba(212,175,55,.55))}
+.life-map-art .node.dim{fill:rgba(255,255,255,.32);stroke:rgba(232,208,128,.75);filter:none}
+.cover .stage,.cover h1,.cover .ornament,.cover .lead,.cover .cover-cta,.cover .meta{z-index:2}
 /* 卡片/格 */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:center;flex:1;width:100%}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;width:100%}
@@ -110,15 +116,40 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .art-slot svg{position:absolute;inset:0;width:100%;height:100%}
 .art-slot .badge{position:absolute;bottom:.6em;right:.7em;font-size:.7rem;color:#7a6240;background:rgba(255,255,255,.78);padding:.12em .7em;border-radius:999px;letter-spacing:.05em;z-index:2}
 .art-slot .cap{position:relative;z-index:2;font-family:var(--font-serif);color:#6b5635;font-size:1.05rem;font-weight:600;text-align:center;padding:0 1em;opacity:.8}
+.visual-card{position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#fffaf0,#ead8bb);box-shadow:var(--shadow-strong);border:1px solid rgba(134,38,51,.08);min-height:46vh}
+.visual-card svg{position:absolute;inset:0;width:100%;height:100%}
+.visual-card .vc-label{position:absolute;left:1.2em;bottom:1em;color:#6a502b;background:rgba(255,255,255,.74);padding:.25em .9em;border-radius:999px;font-size:.86rem;font-weight:700;letter-spacing:.04em}
+.desk-card{background:linear-gradient(145deg,#fff9ec,#e7d0a9)}
+.sticky-board{background:linear-gradient(145deg,#fff7e7,#ead8b6)}
+.human-lost-art{min-height:25vh;margin-bottom:.8em;background:linear-gradient(150deg,#f6f0e6,#d8d2c8)}
+.life-desk{min-height:42vh;background:linear-gradient(145deg,#fbf5e8,#dec39a)}
+.nav-route{margin-top:.8em;padding:1em 1.1em;border-radius:16px;background:rgba(255,255,255,.76);box-shadow:var(--shadow-soft);border:1px solid rgba(212,175,55,.35)}
+.nav-route svg{width:100%;height:auto;display:block}
 /* 文字雲 */
 .wordcloud{display:flex;flex-wrap:wrap;gap:.2em .7em;align-items:baseline;justify-content:center;max-width:46em;margin:.5em auto;line-height:1.4}
 .wordcloud span{font-family:var(--font-serif);color:var(--color-primary);font-weight:600}
 .wordcloud .w1{font-size:2.6rem;color:var(--color-primary)} .wordcloud .w2{font-size:1.9rem;color:#a23a48}
 .wordcloud .w3{font-size:1.4rem;color:#b8860b} .wordcloud .w4{font-size:1.1rem;color:var(--color-muted)}
+.wordcloud.sky{position:relative;max-width:54em;padding:1.4em 1.8em;border-radius:24px;background:
+  radial-gradient(circle at 18% 22%,rgba(255,255,255,.95),transparent 16%),
+  radial-gradient(circle at 76% 20%,rgba(232,208,128,.30),transparent 22%),
+  radial-gradient(circle at 50% 84%,rgba(134,38,51,.10),transparent 30%),
+  linear-gradient(145deg,#f8f2e8,#efe5d4);box-shadow:var(--shadow-strong);overflow:hidden}
+.wordcloud.sky::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(134,38,51,.28) 1px,transparent 1.5px);background-size:42px 36px;opacity:.32}
+.wordcloud.sky span{position:relative;text-shadow:0 1px 0 rgba(255,255,255,.8)}
 /* SVG 五素養圖 */
 .map-wrap{display:flex;justify-content:center;align-items:center;flex:1}
 svg .blank circle{fill:#ECE6DB;stroke:#cbb89a}
 svg .blank text{fill:#b3a584}
+.core-map .map-link{stroke-dasharray:70;stroke-dashoffset:70}
+.core-map .map-node,.core-map .map-hub{opacity:.18;transform-box:fill-box;transform-origin:center}
+.slide.active .core-map .map-link{animation:drawLine .72s ease forwards}
+.slide.active .core-map .map-node{animation:popNode .55s ease forwards}
+.slide.active .core-map .map-hub{animation:popHub .75s ease forwards}
+.core-map .d1{animation-delay:.15s}.core-map .d2{animation-delay:.35s}.core-map .d3{animation-delay:.55s}.core-map .d4{animation-delay:.75s}.core-map .d5{animation-delay:.98s}.core-map .d6{animation-delay:1.18s}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+@keyframes popNode{0%{opacity:.18;transform:scale(.82)}70%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+@keyframes popHub{0%{opacity:.2;transform:scale(.78)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 /* 主題曲 */
 .lyrics{font-family:var(--font-serif);font-size:clamp(.95rem,1.45vw,1.18rem);line-height:1.85;color:#4a3b1e;column-count:2;column-gap:3em;max-width:58em}
 .lyrics p{break-inside:avoid;margin-bottom:.7em;max-width:none}
@@ -147,6 +178,21 @@ body.no-clickzones .click-zones{display:none}
 
 <!-- 1 封面 -->
 <section class="slide cover active">
+  <svg class="life-map-art" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="coverGold" x1="120" y1="570" x2="1060" y2="145" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#A8782E"/><stop offset=".48" stop-color="#D4AF37"/><stop offset="1" stop-color="#FFF1A8"/>
+      </linearGradient>
+    </defs>
+    <path class="thin" d="M95 590 C235 510 315 565 450 465 S690 275 820 300 1010 230 1110 130"/>
+    <path class="thin" d="M155 635 C310 410 420 360 560 390 S800 510 1030 300"/>
+    <path class="route" d="M135 575 C260 518 335 530 430 455 S615 300 735 310 925 250 1065 148"/>
+    <circle class="node dim" cx="135" cy="575" r="12"/>
+    <circle class="node dim" cx="420" cy="460" r="13"/>
+    <circle class="node" cx="612" cy="330" r="17"/>
+    <circle class="node dim" cx="810" cy="292" r="13"/>
+    <circle class="node" cx="1065" cy="148" r="19"/>
+  </svg>
   <div class="stage">單元一</div>
   <h1>生命的學問導論</h1>
   <div class="ornament"></div>
@@ -159,15 +205,27 @@ body.no-clickzones .click-zones{display:none}
 <section class="slide roomy">
   <h2>這一週，不是又一門課</h2>
   <div class="grid2">
-    <div class="art-slot" data-art="mood_newweek">
-      <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice">
-        <rect x="150" y="70" width="150" height="220" rx="6" fill="#fff" opacity=".5"/>
-        <rect x="150" y="70" width="150" height="220" rx="6" fill="none" stroke="#8a6d44" stroke-width="2" opacity=".4"/>
-        <circle cx="160" cy="320" r="120" fill="#c9ad84" opacity=".3"/>
-        <circle cx="305" cy="80" r="40" fill="#fff" opacity=".4"/>
+    <div class="visual-card desk-card">
+      <svg viewBox="0 0 520 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="deskLight" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7e6"/><stop offset="1" stop-color="#d7ad70"/></linearGradient>
+          <filter id="paperShadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#862633" flood-opacity=".17"/></filter>
+        </defs>
+        <rect width="520" height="380" fill="url(#deskLight)"/>
+        <circle cx="440" cy="68" r="72" fill="#fff7df" opacity=".55"/>
+        <path d="M20 310 C120 230 180 260 255 210 S390 120 492 160" fill="none" stroke="#a8782e" stroke-width="2.5" stroke-dasharray="8 9" opacity=".55"/>
+        <g filter="url(#paperShadow)" font-family="var(--font-serif)" font-size="15" font-weight="700" text-anchor="middle">
+          <g transform="translate(92 105) rotate(-9)"><rect x="-54" y="-36" width="108" height="72" rx="8" fill="#fffdf5"/><text y="5" fill="#862633">終極關懷</text></g>
+          <g transform="translate(232 82) rotate(7)"><rect x="-54" y="-36" width="108" height="72" rx="8" fill="#fff7de"/><text y="5" fill="#862633">價值思辨</text></g>
+          <g transform="translate(370 118) rotate(-4)"><rect x="-54" y="-36" width="108" height="72" rx="8" fill="#f7efe4"/><text y="5" fill="#862633">靈性修養</text></g>
+          <g transform="translate(150 230) rotate(5)"><rect x="-54" y="-36" width="108" height="72" rx="8" fill="#fffaf0"/><text y="5" fill="#862633">人學探索</text></g>
+          <g transform="translate(315 252) rotate(-7)"><rect x="-54" y="-36" width="108" height="72" rx="8" fill="#f5ead6"/><text y="5" fill="#862633">哲學思考</text></g>
+        </g>
+        <path d="M118 140 C162 172 199 178 235 119 M280 124 C306 168 330 191 370 154 M197 237 C247 220 278 225 314 240" fill="none" stroke="#d4af37" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+        <circle cx="255" cy="188" r="28" fill="#862633" opacity=".12"/>
+        <circle cx="255" cy="188" r="7" fill="#D4AF37"/>
       </svg>
-      <span class="cap">一扇門，通往更遼闊的內在風景</span>
-      <span class="badge">插圖待換 · mood_newweek</span>
+      <span class="vc-label">五塊磚，等著被織成一張網</span>
     </div>
     <div>
       <p class="lead">各位已修畢三學期五個分科：終極關懷、價值思辨、靈性修養、人學探索、哲學思考。</p>
@@ -270,6 +328,26 @@ body.no-clickzones .click-zones{display:none}
       <p class="muted">小組各說一句：此刻我最想重新探問的一個問題。</p>
     </div>
     <div>
+      <div class="visual-card human-lost-art">
+        <svg viewBox="0 0 520 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <radialGradient id="paleDot" cx="78%" cy="26%" r="42%"><stop offset="0" stop-color="#fff7df"/><stop offset=".35" stop-color="#d4af37" stop-opacity=".44"/><stop offset="1" stop-color="#2e5c8a" stop-opacity=".05"/></radialGradient>
+          </defs>
+          <rect width="520" height="250" fill="url(#paleDot)"/>
+          <path d="M0 214 C90 186 180 207 270 180 S430 164 520 132 L520 250 L0 250 Z" fill="#6b5b52" opacity=".20"/>
+          <g opacity=".55" stroke="#5c1a23" stroke-width="3" fill="none">
+            <path d="M128 154 q20 -48 40 0 v55 h-40z"/>
+            <circle cx="148" cy="111" r="22" fill="#5c1a23" opacity=".18"/>
+            <path d="M318 158 q24 -58 48 0 v62 h-48z"/>
+            <circle cx="342" cy="105" r="25" fill="#5c1a23" opacity=".16"/>
+          </g>
+          <rect x="220" y="126" width="86" height="54" rx="10" fill="#fff" opacity=".72"/>
+          <path d="M231 144 h44 M231 158 h61 M231 172 h34" stroke="#2e5c8a" stroke-width="4" stroke-linecap="round" opacity=".36"/>
+          <circle cx="408" cy="68" r="5" fill="#2E5C8A"/>
+          <text x="32" y="48" font-family="var(--font-serif)" font-size="23" font-weight="700" fill="#862633" opacity=".72">人，還在畫面中央嗎？</text>
+        </svg>
+        <span class="vc-label">從小藍點看回人本身</span>
+      </div>
       <p class="muted" style="margin-bottom:.3em">收束·情感提升（宇宙視角拉回「為何而活、彼此珍惜」）：</p>
       <div class="localvid"><span class="ico">🎬</span><div><div class="t">小藍點 / Pale Blue Dot　<span class="dur">3:20</span></div><div class="p">影音資料/終極關懷/Carl Sagan's Pale Blue Dot OFFICIAL.mp4</div></div></div>
       <p class="src">【影A0b】本機影音庫·終極關懷。Carl Sagan 以「太空中一粒塵埃」的視角，把「為何而活」拉回生命本身。</p>
@@ -297,20 +375,33 @@ body.no-clickzones .click-zones{display:none}
       </ul>
       <div class="practice"><span class="label">60 秒報告</span><p>每組上台只講 60 秒：一句認識＋一個困惑。老師<b>先不解答</b>，把「困惑」便利貼貼到右邊這張<b>空白的地圖</b>上。</p></div>
     </div>
-    <div class="map-wrap">
-      <svg viewBox="0 0 420 360" width="100%" style="max-width:440px">
-        <g stroke="#cbb89a" stroke-width="2" fill="none" opacity=".7">
-          <line x1="210" y1="70" x2="210" y2="150"/><line x1="210" y1="210" x2="210" y2="290"/>
-          <line x1="120" y1="180" x2="170" y2="180"/><line x1="250" y1="180" x2="300" y2="180"/>
+    <div class="visual-card sticky-board">
+      <svg viewBox="0 0 520 390" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <filter id="stickyShadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#5c1a23" flood-opacity=".15"/></filter>
+        </defs>
+        <rect width="520" height="390" fill="#fbf0da"/>
+        <path d="M92 95 C162 168 252 142 302 190 S376 263 448 216" fill="none" stroke="#cbb89a" stroke-width="3" stroke-linecap="round" stroke-dasharray="9 10" opacity=".75"/>
+        <g font-family="var(--font-serif)" font-size="15" font-weight="700" text-anchor="middle" filter="url(#stickyShadow)">
+          <g transform="translate(116 92) rotate(-7)"><rect x="-56" y="-36" width="112" height="72" rx="7" fill="#fffdf4"/><text y="-4" fill="#862633">認識</text><text y="18" fill="#a8782e" font-size="12">這素養在問？</text></g>
+          <g transform="translate(263 130) rotate(5)"><rect x="-56" y="-36" width="112" height="72" rx="7" fill="#fff6cf"/><text y="-4" fill="#862633">困惑</text><text y="18" fill="#a8782e" font-size="12">和誰接不起？</text></g>
+          <g transform="translate(396 88) rotate(-4)"><rect x="-56" y="-36" width="112" height="72" rx="7" fill="#fffaf0"/><text y="-4" fill="#862633">暫不解答</text><text y="18" fill="#a8782e" font-size="12">先貼上地圖</text></g>
         </g>
-        <g class="blank" text-anchor="middle" font-family="var(--font-serif)" font-size="15" font-weight="700">
-          <g><circle cx="210" cy="50" r="42"/><text x="210" y="55">？</text></g>
-          <g><circle cx="80" cy="180" r="42"/><text x="80" y="185">？</text></g>
-          <g><circle cx="210" cy="180" r="48"/><text x="210" y="185">？</text></g>
-          <g><circle cx="340" cy="180" r="42"/><text x="340" y="185">？</text></g>
-          <g><circle cx="210" cy="310" r="42"/><text x="210" y="315">？</text></g>
+        <g transform="translate(260 260)">
+          <g stroke="#cbb89a" stroke-width="2" fill="none" opacity=".7">
+            <line x1="0" y1="-82" x2="0" y2="-36"/><line x1="0" y1="36" x2="0" y2="82"/>
+            <line x1="-82" y1="0" x2="-36" y2="0"/><line x1="36" y1="0" x2="82" y2="0"/>
+          </g>
+          <g class="blank" text-anchor="middle" font-family="var(--font-serif)" font-size="16" font-weight="700">
+            <g><circle cx="0" cy="-108" r="36"/><text y="-103">？</text></g>
+            <g><circle cx="-118" cy="0" r="36"/><text x="-118" y="5">？</text></g>
+            <g><circle cx="0" cy="0" r="42"/><text y="5">？</text></g>
+            <g><circle cx="118" cy="0" r="36"/><text x="118" y="5">？</text></g>
+            <g><circle cx="0" cy="108" r="36"/><text y="113">？</text></g>
+          </g>
         </g>
       </svg>
+      <span class="vc-label">碎片先攤開，地圖暫時留白</span>
     </div>
   </div>
   <p class="src">教師收束：「五塊磚都在，但牆跟牆之間是空的。今天下午，我們一起把這張圖補起來。」</p>
@@ -336,7 +427,31 @@ body.no-clickzones .click-zones{display:none}
         <li>試著把它們收斂成幾個<b>大問題</b></li>
       </ul>
     </div>
-    <div class="card"><h3>留在小組內</h3><p class="muted">15 件事屬於個人隱私，<b>只在小組內討論</b>，不上全班；接下來上傳文字雲的，只有你<b>提煉後的「人生 X 問」</b>。</p></div>
+    <div>
+      <div class="visual-card life-desk">
+        <svg viewBox="0 0 520 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <filter id="noteShadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#5c1a23" flood-opacity=".14"/></filter>
+          </defs>
+          <rect width="520" height="380" fill="#f7ead3"/>
+          <rect x="118" y="52" width="260" height="285" rx="14" fill="#fffdf7" filter="url(#noteShadow)"/>
+          <path d="M158 108 h180 M158 147 h180 M158 186 h180 M158 225 h180 M158 264 h180" stroke="#d8c8aa" stroke-width="3" stroke-linecap="round"/>
+          <g fill="#862633" opacity=".75" font-family="var(--font-serif)" font-size="18" font-weight="700">
+            <text x="152" y="92">人生最重要的 15 件事</text>
+            <text x="164" y="135">1</text><text x="164" y="174">2</text><text x="164" y="213">3</text><text x="164" y="252">...</text>
+          </g>
+          <g transform="translate(342 93)" filter="url(#noteShadow)">
+            <rect x="0" y="0" width="118" height="92" rx="12" fill="#fff3cc"/>
+            <path d="M24 33 h70 M24 53 h53 M24 72 h77" stroke="#a8782e" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+            <circle cx="21" cy="22" r="7" fill="#D4AF37"/>
+          </g>
+          <path d="M382 200 C420 229 428 275 394 306" fill="none" stroke="#862633" stroke-width="5" stroke-linecap="round" opacity=".28"/>
+          <text x="378" y="328" font-family="var(--font-serif)" font-size="26" font-weight="900" fill="#862633" opacity=".72">X 問</text>
+        </svg>
+        <span class="vc-label">15 件事留在小組，提煉後才上雲端</span>
+      </div>
+      <p class="src" style="max-width:none">15 件事屬於個人隱私，只在小組內討論；接下來上傳文字雲的，只有提煉後的「人生 X 問」。</p>
+    </div>
   </div>
   <p class="src">依《翻轉教室作業設計規劃》單元一課前作業。</p>
 </section>
@@ -345,7 +460,7 @@ body.no-clickzones .click-zones{display:none}
 <section class="slide roomy">
   <h2>全班的提問，匯成一片問題雲</h2>
   <p class="muted" style="text-align:center;max-width:none">（示範；課堂用 Slido／Mentimeter 即時生成。只收<b>提煉後的人生 X 問</b>，不收原始 15 件事。）</p>
-  <div class="wordcloud">
+  <div class="wordcloud sky">
     <span class="w1">我為什麼而活？</span><span class="w2">怎樣才算活得好？</span><span class="w3">死亡是什麼？</span>
     <span class="w2">我是誰？</span><span class="w4">什麼是真正的愛？</span><span class="w1">人生的意義在哪裡？</span>
     <span class="w3">我該怎麼選擇？</span><span class="w4">如何面對失去？</span><span class="w2">我留下什麼？</span>
@@ -508,6 +623,19 @@ body.no-clickzones .click-zones{display:none}
 <section class="slide">
   <h2>台灣人生三問：以工作專案類比</h2>
   <p class="lead" style="margin-bottom:.5em">任何專案都要回答三個問題——目標、方法、資源與執行力。人生亦然。</p>
+  <div class="nav-route">
+    <svg viewBox="0 0 880 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="routeGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A8782E"/><stop offset=".5" stop-color="#D4AF37"/><stop offset="1" stop-color="#862633"/></linearGradient>
+      </defs>
+      <path d="M65 52 H330 Q365 52 390 32 Q420 8 454 32 Q480 52 515 52 H800" fill="none" stroke="url(#routeGold)" stroke-width="7" stroke-linecap="round"/>
+      <g font-family="var(--font-serif)" font-weight="700" text-anchor="middle">
+        <circle cx="80" cy="52" r="18" fill="#fff7df" stroke="#D4AF37" stroke-width="4"/><text x="80" y="89" font-size="17" fill="#862633">目的地</text>
+        <circle cx="440" cy="24" r="18" fill="#fff7df" stroke="#D4AF37" stroke-width="4"/><text x="440" y="89" font-size="17" fill="#862633">路線</text>
+        <circle cx="800" cy="52" r="18" fill="#fff7df" stroke="#D4AF37" stroke-width="4"/><text x="800" y="89" font-size="17" fill="#862633">活出</text>
+      </g>
+    </svg>
+  </div>
   <div class="grid3">
     <div class="card"><span class="tag">目標是什麼</span><h3>人應為何而活？</h3><p class="muted">→ <b>終極關懷</b>（ultimate concern）<br>要去哪裡</p></div>
     <div class="card"><span class="tag">方法策略</span><h3>人應如何生活？</h3><p class="muted">→ <b>價值思辨</b>（value deliberation）<br>走哪條路</p></div>
@@ -538,7 +666,7 @@ body.no-clickzones .click-zones{display:none}
 <section class="slide">
   <h2>五大核心素養關係圖</h2>
   <div class="map-wrap">
-    <svg viewBox="0 0 520 440" width="100%" style="max-width:620px" font-family="var(--font-serif)">
+    <svg class="core-map" viewBox="0 0 520 440" width="100%" style="max-width:620px" font-family="var(--font-serif)">
       <defs>
         <radialGradient id="hub" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#fff7df"/><stop offset="100%" stop-color="#f0d488"/></radialGradient>
         <linearGradient id="node" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="100%" stop-color="#fbf3e3"/></linearGradient>
@@ -550,29 +678,29 @@ body.no-clickzones .click-zones{display:none}
       <circle cx="260" cy="222" r="158" fill="none" stroke="#d9c08f" stroke-width="1.4" stroke-dasharray="3 8" opacity=".55"/>
       <!-- 連線（樞紐滲透四素養） -->
       <g stroke="url(#link)" stroke-width="3.4" stroke-linecap="round" opacity=".9">
-        <line x1="260" y1="120" x2="260" y2="168"/>
-        <line x1="260" y1="276" x2="260" y2="324"/>
-        <line x1="160" y1="222" x2="202" y2="222"/>
-        <line x1="318" y1="222" x2="360" y2="222"/>
+        <line class="map-link d1" x1="260" y1="120" x2="260" y2="168"/>
+        <line class="map-link d5" x1="260" y1="276" x2="260" y2="324"/>
+        <line class="map-link d2" x1="160" y1="222" x2="202" y2="222"/>
+        <line class="map-link d3" x1="318" y1="222" x2="360" y2="222"/>
       </g>
       <!-- 中央光暈 -->
       <circle cx="260" cy="222" r="92" fill="url(#hub)" opacity=".30"/>
       <g text-anchor="middle">
         <!-- 上 哲學思考 -->
-        <circle cx="260" cy="80" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
-        <text x="260" y="76" font-size="17" font-weight="700" fill="#862633">哲學思考</text><text x="260" y="97" font-size="12" fill="#a8895f">方法</text>
+        <g class="map-node d1"><circle cx="260" cy="80" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="260" y="76" font-size="17" font-weight="700" fill="#862633">哲學思考</text><text x="260" y="97" font-size="12" fill="#a8895f">方法</text></g>
         <!-- 左 終極關懷 -->
-        <circle cx="108" cy="222" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
-        <text x="108" y="218" font-size="17" font-weight="700" fill="#862633">終極關懷</text><text x="108" y="239" font-size="12" fill="#a8895f">為何而活</text>
+        <g class="map-node d2"><circle cx="108" cy="222" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="108" y="218" font-size="17" font-weight="700" fill="#862633">終極關懷</text><text x="108" y="239" font-size="12" fill="#a8895f">為何而活</text></g>
         <!-- 右 價值思辨 -->
-        <circle cx="412" cy="222" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
-        <text x="412" y="218" font-size="17" font-weight="700" fill="#862633">價值思辨</text><text x="412" y="239" font-size="12" fill="#a8895f">怎麼活</text>
+        <g class="map-node d3"><circle cx="412" cy="222" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="412" y="218" font-size="17" font-weight="700" fill="#862633">價值思辨</text><text x="412" y="239" font-size="12" fill="#a8895f">怎麼活</text></g>
         <!-- 下 人學探索 -->
-        <circle cx="260" cy="364" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
-        <text x="260" y="360" font-size="17" font-weight="700" fill="#862633">人學探索</text><text x="260" y="381" font-size="12" fill="#a8895f">基礎·人是什麼</text>
+        <g class="map-node d5"><circle cx="260" cy="364" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="260" y="360" font-size="17" font-weight="700" fill="#862633">人學探索</text><text x="260" y="381" font-size="12" fill="#a8895f">基礎·人是什麼</text></g>
         <!-- 中 靈性修養（樞紐） -->
-        <circle cx="260" cy="222" r="58" fill="url(#hub)" stroke="#D4AF37" stroke-width="4" filter="url(#glow)"/>
-        <text x="260" y="216" font-size="18" font-weight="700" fill="#862633">靈性修養</text><text x="260" y="239" font-size="12.5" fill="#a8782e" font-weight="700">樞紐·如何活出</text>
+        <g class="map-hub d6"><circle cx="260" cy="222" r="58" fill="url(#hub)" stroke="#D4AF37" stroke-width="4" filter="url(#glow)"/>
+        <text x="260" y="216" font-size="18" font-weight="700" fill="#862633">靈性修養</text><text x="260" y="239" font-size="12.5" fill="#a8782e" font-weight="700">樞紐·如何活出</text></g>
       </g>
     </svg>
   </div>
@@ -647,6 +775,18 @@ body.no-clickzones .click-zones{display:none}
 
 <!-- 35 結語 -->
 <section class="slide closing">
+  <svg class="life-map-art" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="coverGoldEnd" x1="130" y1="560" x2="1050" y2="145" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#A8782E"/><stop offset=".48" stop-color="#D4AF37"/><stop offset="1" stop-color="#FFF1A8"/>
+      </linearGradient>
+    </defs>
+    <path d="M130 570 C260 520 340 530 430 455 S615 300 735 310 925 250 1065 148" fill="none" stroke="url(#coverGoldEnd)" stroke-width="5" stroke-linecap="round" opacity=".78"/>
+    <path d="M130 570 C318 410 430 366 560 390 S808 512 1030 304" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+    <g fill="#fff7df" stroke="#D4AF37" stroke-width="3.2" filter="drop-shadow(0 0 14px rgba(212,175,55,.52))">
+      <circle cx="130" cy="570" r="13"/><circle cx="430" cy="455" r="13"/><circle cx="615" cy="330" r="17"/><circle cx="735" cy="310" r="13"/><circle cx="1065" cy="148" r="19"/>
+    </g>
+  </svg>
   <h2>今天，我們打開了一張地圖</h2>
   <blockquote style="color:#fff;border-color:var(--color-accent);background:rgba(255,255,255,.08)">這一週，不是讓你又學會什麼，<br>而是讓你重新有了探索生命的熱情，<br>並看見：你一直在問的問題，其實彼此相連。</blockquote>
   <p class="signature">——生命的學問，從這裡開始</p>
