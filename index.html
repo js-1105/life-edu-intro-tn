@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>單元一　生命的學問導論 | 簡報</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-primary:#862633; --color-primary-dark:#5C1A23;
+  --color-accent:#D4AF37; --color-accent-deep:#A8782E; --color-accent-soft:#E8D080;
+  --color-bg:#FAF7F2; --color-text:#1A1A1A; --color-muted:#6B6B6B; --color-line:#E5DDD0;
+  --grad-accent:linear-gradient(90deg,var(--color-accent-deep),var(--color-accent) 45%,var(--color-accent-soft));
+  --grad-royal:linear-gradient(135deg,#8E2A38 0%,var(--color-primary-dark) 55%,#3d1016 100%);
+  --shadow-soft:0 4px 20px rgba(134,38,51,.08); --shadow-strong:0 12px 40px rgba(134,38,51,.18);
+  --font-sans:"Noto Sans TC","Microsoft JhengHei","微軟正黑體","PingFang TC",sans-serif;
+  --font-serif:"Noto Serif TC","Songti TC","PingFang TC",serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--font-sans);font-size:20px;line-height:1.78;color:var(--color-text);background:var(--color-bg);overflow:hidden}
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{position:absolute;inset:0;width:100%;height:100%;padding:5vh 6vw;opacity:0;visibility:hidden;transform:translateX(40px);transition:opacity .5s ease,transform .5s ease,visibility 0s linear .5s;display:flex;flex-direction:column;justify-content:center;
+  background:var(--color-bg) radial-gradient(circle at 1px 1px,rgba(134,38,51,.05) 1px,transparent 0) 0 0/22px 22px;}
+.slide.active{opacity:1;visibility:visible;transform:translateX(0);transition:opacity .5s ease,transform .5s ease,visibility 0s}
+.slide.prev{transform:translateX(-40px)}
+.slide.roomy{gap:.55em}
+.slide>*{position:relative;z-index:1}
+.slide.roomy h1{font-size:clamp(3rem,6.2vw,5.6rem)}
+.slide.roomy h2{font-size:clamp(2.3rem,4.4vw,3.7rem)}
+.slide.roomy p,.slide.roomy .lead{font-size:clamp(1.55rem,2.4vw,2.15rem)}
+.slide.roomy blockquote{font-size:clamp(1.7rem,2.8vw,2.4rem)}
+.slide.roomy ul.fl li{font-size:clamp(1.5rem,2.3vw,2rem)}
+.slide.roomy .big-q{font-size:clamp(2rem,4vw,3.2rem)}
+h1{font-family:var(--font-serif);font-size:clamp(2.6rem,5.2vw,4.8rem);font-weight:900;letter-spacing:.02em;line-height:1.3;color:var(--color-primary);margin-bottom:.4em}
+h2{font-family:var(--font-serif);font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;line-height:1.4;color:var(--color-primary);margin-bottom:.7em;padding-bottom:.35em;border-bottom:3px solid var(--color-accent);display:inline-block}
+h3{font-size:clamp(1.4rem,2.4vw,1.95rem);font-weight:600;color:var(--color-text);margin:.8em 0 .4em}
+p{font-size:clamp(1.22rem,1.75vw,1.6rem);margin-bottom:.7em;max-width:36em}
+.lead{font-size:clamp(1.45rem,2.3vw,1.95rem);color:var(--color-muted);font-weight:300}
+.muted{color:var(--color-muted)} .accent{color:var(--color-primary);font-weight:700}
+.src{font-size:.95rem;color:var(--color-muted);font-style:italic;margin-top:.4em;max-width:46em}
+blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.4rem,2.1vw,1.85rem);border-left:4px solid var(--color-accent);padding:.5em 1.2em;margin:.8em 0;color:#4a3b1e;background:rgba(212,175,55,.08);max-width:34em}
+/* 分章節底色 + 細紋 + 金書脊 + 節次浮水印（由 JS 加 .sec-tint .sec-N） */
+.slide.sec-tint{background-color:var(--color-bg);
+  background-image:
+    radial-gradient(circle at 1px 1px,rgba(134,38,51,.05) 1px,transparent 1.5px),
+    radial-gradient(940px 620px at 95% 0%,rgba(212,175,55,.10),transparent 60%),
+    linear-gradient(155deg,var(--sec-a,#FAF7F2) 0%,var(--sec-b,#EFE7D9) 118%);
+  background-size:24px 24px,100% 100%,100% 100%;}
+.slide.sec-1{--sec-a:#FCF5F3;--sec-b:#EFDCD9} /* 壹 暖玫瑰·時代挑戰 */
+.slide.sec-2{--sec-a:#FCF7EA;--sec-b:#F0E2C5} /* 貳 暖金·攤碎片 */
+.slide.sec-3{--sec-a:#EFF6F1;--sec-b:#D6E6DC} /* 參 沉靜綠·自己的提問 */
+.slide.sec-4{--sec-a:#F6F1F8;--sec-b:#E2D6EA} /* 肆 雅紫·古今X問 */
+.slide.sec-5{--sec-a:#EFF3F8;--sec-b:#D8E2EE} /* 伍 霧藍·台灣三問 */
+.slide.sec-6{--sec-a:#FBF1EA;--sec-b:#F0DDCB} /* 陸 暖赭·五大素養 */
+.slide.sec-tint::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--grad-accent);opacity:.6;z-index:0}
+.slide.sec-tint::after{content:attr(data-chap);position:absolute;top:-.14em;right:.06em;font-family:var(--font-serif);font-weight:900;line-height:1;font-size:46vh;color:var(--color-primary);opacity:.05;z-index:0;pointer-events:none;user-select:none}
+/* 章節頁 */
+.section-divider{align-items:flex-start;background:var(--grad-royal);color:#fff;overflow:hidden}
+.section-divider::before{content:"";position:absolute;inset:0;background:radial-gradient(620px 620px at 70% 40%,rgba(212,175,55,.18),transparent 60%),radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);background-size:auto,28px 28px;z-index:0}
+.section-divider .stage{font-size:clamp(1.1rem,2vw,1.5rem);color:var(--color-accent-soft);font-weight:700;letter-spacing:.3em;margin-bottom:.1em}
+.section-divider .num{font-family:var(--font-serif);font-size:clamp(4rem,13vw,10rem);font-weight:900;line-height:1;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 4px 30px rgba(212,175,55,.3)}
+.section-divider h1{margin-top:.05em;color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.25)}
+.section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:32em}
+/* 封面 */
+.slide.cover{background:var(--grad-royal);color:#fff;text-align:center;align-items:center;overflow:hidden}
+.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 480px at 50% 12%,rgba(212,175,55,.22),transparent 62%);z-index:0}
+.slide.cover h1{color:#fff;font-size:clamp(3rem,7vw,6rem)} .slide.cover .lead{color:rgba(255,255,255,.88)}
+.slide.cover .stage{color:var(--color-accent-soft);letter-spacing:.35em;font-weight:700}
+.slide.cover .ornament{width:90px;height:4px;background:var(--grad-accent);margin:1.2em auto;border-radius:2px}
+.slide.cover .meta{margin-top:2.2em;font-size:1rem;color:rgba(255,255,255,.72);letter-spacing:.08em}
+/* 卡片/格 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:center;flex:1;width:100%}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;width:100%}
+.card{background:#fff;padding:1.3em 1.4em;border-radius:14px;box-shadow:var(--shadow-soft);border-top:4px solid var(--color-accent)}
+.card h3{margin-top:0;color:var(--color-primary)}
+.card.compact p{font-size:1.2rem;margin-bottom:.3em}
+.tag{display:inline-block;background:var(--color-primary);color:#fff;padding:.25em .9em;border-radius:999px;font-size:.85rem;font-weight:600;letter-spacing:.08em;margin-bottom:.6em}
+ul.fl{list-style:none} ul.fl li{position:relative;padding:.5em 0 .5em 1.6em;font-size:clamp(1.25rem,1.9vw,1.7rem);border-bottom:1px dashed var(--color-line)}
+ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;height:.7em;background:var(--color-accent);border-radius:50%}
+.practice{background:linear-gradient(135deg,rgba(212,175,55,.13),rgba(212,175,55,.03));border:2px dashed var(--color-accent);padding:1.2em 1.5em;border-radius:16px;margin-top:.5em}
+.practice .label{display:inline-block;background:var(--color-primary);color:#fff;padding:.25em .9em;border-radius:999px;font-size:.85rem;font-weight:600;margin-bottom:.5em;letter-spacing:.1em}
+.big-q{font-family:var(--font-serif);font-size:clamp(1.5rem,3.2vw,2.6rem);font-weight:700;color:var(--color-primary);line-height:1.5}
+.closing{text-align:center;background:var(--grad-royal);color:#fff;align-items:center;overflow:hidden}
+.closing::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 480px at 50% 30%,rgba(212,175,55,.18),transparent 62%);z-index:0}
+.closing h2{color:#fff;border-color:var(--color-accent)} .closing .signature{margin-top:1.5em;font-size:1rem;letter-spacing:.15em;opacity:.85}
+.references{font-size:.92rem;line-height:1.5;color:var(--color-text);max-width:62em}
+.references li{margin-bottom:.45em;margin-left:1.2em}
+/* 人物油畫圖文版 */
+.figure{display:grid;grid-template-columns:.82fr 1.18fr;gap:2.8vw;align-items:center;flex:1;width:100%}
+.figure.rev{grid-template-columns:1.18fr .82fr}
+.portrait-wrap{display:flex;flex-direction:column;align-items:center;gap:.45em;max-height:74vh}
+.portrait{width:auto;max-width:100%;max-height:60vh;object-fit:contain;border-radius:14px;box-shadow:var(--shadow-strong);border:5px solid #fff}
+.portrait.wide{max-height:40vh;width:100%;object-fit:cover}
+.namecard{text-align:center}
+.namecard .nm{font-family:var(--font-serif);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:700;color:var(--color-primary)}
+.namecard .life{font-size:.92rem;letter-spacing:.12em;color:var(--color-accent-deep);font-weight:700}
+/* 影片 */
+.video-wrap{position:relative;z-index:60;width:100%;max-width:560px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-strong);margin:.3em 0}
+.video-wrap iframe{width:100%;height:100%;border:0}
+.localvid{display:flex;gap:.7em;align-items:center;background:#fff;border:1px solid var(--color-line);border-left:4px solid var(--color-accent);border-radius:12px;padding:.7em .95em;box-shadow:var(--shadow-soft);margin:.35em 0;max-width:34em}
+.localvid .ico{font-size:1.5rem;flex-shrink:0}
+.localvid .t{font-weight:700;color:var(--color-primary);font-size:1.02rem}
+.localvid .dur{color:var(--color-accent-deep);font-weight:700;font-size:.85rem}
+.localvid .p{font-size:.78rem;color:var(--color-muted);font-family:ui-monospace,monospace;word-break:break-all}
+/* 插圖占位（待 Codex 水彩圖替換） */
+.art-slot{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#efe6d6,#ddc8a8);box-shadow:var(--shadow-soft);min-height:46vh;display:flex;align-items:center;justify-content:center}
+.art-slot svg{position:absolute;inset:0;width:100%;height:100%}
+.art-slot .badge{position:absolute;bottom:.6em;right:.7em;font-size:.7rem;color:#7a6240;background:rgba(255,255,255,.78);padding:.12em .7em;border-radius:999px;letter-spacing:.05em;z-index:2}
+.art-slot .cap{position:relative;z-index:2;font-family:var(--font-serif);color:#6b5635;font-size:1.05rem;font-weight:600;text-align:center;padding:0 1em;opacity:.8}
+/* 文字雲 */
+.wordcloud{display:flex;flex-wrap:wrap;gap:.2em .7em;align-items:baseline;justify-content:center;max-width:46em;margin:.5em auto;line-height:1.4}
+.wordcloud span{font-family:var(--font-serif);color:var(--color-primary);font-weight:600}
+.wordcloud .w1{font-size:2.6rem;color:var(--color-primary)} .wordcloud .w2{font-size:1.9rem;color:#a23a48}
+.wordcloud .w3{font-size:1.4rem;color:#b8860b} .wordcloud .w4{font-size:1.1rem;color:var(--color-muted)}
+/* SVG 五素養圖 */
+.map-wrap{display:flex;justify-content:center;align-items:center;flex:1}
+svg .blank circle{fill:#ECE6DB;stroke:#cbb89a}
+svg .blank text{fill:#b3a584}
+/* 主題曲 */
+.lyrics{font-family:var(--font-serif);font-size:clamp(.95rem,1.45vw,1.18rem);line-height:1.85;color:#4a3b1e;column-count:2;column-gap:3em;max-width:58em}
+.lyrics p{break-inside:avoid;margin-bottom:.7em;max-width:none}
+.lyrics .h{color:var(--color-primary);font-weight:700;font-style:normal;letter-spacing:.05em}
+/* 導覽 */
+.progress-bar{position:fixed;bottom:0;left:0;height:4px;background:var(--color-accent);width:0;transition:width .4s;z-index:100}
+.page-indicator{position:fixed;bottom:1.4em;right:2em;font-size:.85rem;color:var(--color-muted);font-variant-numeric:tabular-nums;z-index:100;background:rgba(255,255,255,.8);padding:.25em .8em;border-radius:999px;backdrop-filter:blur(8px)}
+.nav-arrows{position:fixed;bottom:1.4em;left:2em;display:flex;gap:.5em;z-index:100}
+.nav-arrows button,.fs-toggle{width:2.3em;height:2.3em;border:none;background:rgba(134,38,51,.1);color:var(--color-primary);border-radius:50%;cursor:pointer;font-size:1.15rem;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit}
+.nav-arrows button:hover,.fs-toggle:hover{background:var(--color-primary);color:#fff;transform:scale(1.1)}
+.fs-toggle{position:fixed;bottom:1.4em;right:5.5em;z-index:100}
+.click-zones{position:fixed;inset:0;display:flex;pointer-events:none;z-index:50}
+.click-zone{flex:1;pointer-events:auto;cursor:pointer}
+body.no-clickzones .click-zones{display:none}
+.cover-cta{position:relative;z-index:60;margin-top:2em;background:var(--color-accent);color:var(--color-primary-dark);border:none;padding:1em 2.4em;font-size:1.05rem;font-weight:700;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.1em;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .2s}
+.cover-cta:hover{transform:translateY(-2px)}
+.back-home-btn{position:relative;z-index:60;margin-top:1.8em;background:transparent;color:var(--color-accent);border:2px solid var(--color-accent);padding:.7em 1.8em;font-size:.95rem;font-weight:600;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.1em;transition:all .2s}
+.back-home-btn:hover{background:var(--color-accent);color:var(--color-primary-dark);transform:translateY(-2px)}
+.toast{position:fixed;top:1.5em;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:.6em 1.4em;border-radius:999px;font-size:.9rem;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+@media(max-width:768px){.grid2,.grid3,.figure,.figure.rev{grid-template-columns:1fr}.lyrics{column-count:1}}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 1 封面 -->
+<section class="slide cover active">
+  <div class="stage">單元一</div>
+  <h1>生命的學問導論</h1>
+  <div class="ornament"></div>
+  <p class="lead">破題日：從時代挑戰，到人生三問與五大核心素養</p>
+  <button class="cover-cta" onclick="startPresentation()">進入全螢幕．開始上課</button>
+  <div class="meta">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台北班　Day 1</div>
+</section>
+
+<!-- 2 這是一門什麼課 -->
+<section class="slide roomy">
+  <h2>這一週，不是又一門課</h2>
+  <div class="grid2">
+    <div class="art-slot" data-art="mood_newweek">
+      <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice">
+        <rect x="150" y="70" width="150" height="220" rx="6" fill="#fff" opacity=".5"/>
+        <rect x="150" y="70" width="150" height="220" rx="6" fill="none" stroke="#8a6d44" stroke-width="2" opacity=".4"/>
+        <circle cx="160" cy="320" r="120" fill="#c9ad84" opacity=".3"/>
+        <circle cx="305" cy="80" r="40" fill="#fff" opacity=".4"/>
+      </svg>
+      <span class="cap">一扇門，通往更遼闊的內在風景</span>
+      <span class="badge">插圖待換 · mood_newweek</span>
+    </div>
+    <div>
+      <p class="lead">各位已修畢三學期五個分科：終極關懷、價值思辨、靈性修養、人學探索、哲學思考。</p>
+      <blockquote>每一塊磚都打磨過了，但拼起來，是一座什麼樣的建築？</blockquote>
+      <p>本課不是「初次認識五素養」，而是<span class="accent">把已學的碎片，整合成一張網</span>——一場總驗收，也是體系的建構。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 三個關鍵任務 -->
+<section class="slide">
+  <h2>今天的三個關鍵任務</h2>
+  <div class="grid3">
+    <div class="card"><span class="tag">觸動</span><h3>點燃探問的熱情</h3><p class="muted">重新被生命中最根本、最重要的問題點燃——不只是「我為何而活」，而是對整個生命學問的探索熱情。</p></div>
+    <div class="card"><span class="tag">織網</span><h3>建立五素養地圖</h3><p class="muted">看見五個素養彼此的位置與連結，從碎片走向系統。</p></div>
+    <div class="card"><span class="tag">總驗收</span><h3>整理三學期所學</h3><p class="muted">說出你對每個素養的「認識」，並誠實面對「接不起來」的地方。</p></div>
+  </div>
+  <p class="src" style="margin-top:1em">敘事弧：起（觸動）→ 攤碎片 → 自己的提問 → 思想家 X 問 → 收網（台灣三問與五大素養）。地圖最後才完成，且用「學員自己產生的線」織成。</p>
+</section>
+
+<!-- 4 六堂地圖 -->
+<section class="slide">
+  <h2>六堂課的地圖</h2>
+  <ul class="fl">
+    <li><b>第一堂｜起</b>　從時代挑戰看：人，為何而活？（09:10–10:00）</li>
+    <li><b>第二堂｜攤碎片</b>　三學期我學到什麼——與「接不起來」的困惑（10:10–11:00）</li>
+    <li><b>第三堂｜自己的提問</b>　人生 15 件事與人生 X 問·文字雲（11:10–12:00）</li>
+    <li><b>第四堂｜橋</b>　古今中外的人生 X 問（13:00–13:50）</li>
+    <li><b>第五堂｜收網①</b>　台灣人生三問——接起你們的困惑（14:00–14:50）</li>
+    <li><b>第六堂｜收網②</b>　擴為五大核心素養·彩蛋〈三問〉（15:00–15:50）</li>
+  </ul>
+</section>
+
+<!-- 5 壹 章節 -->
+<section class="slide section-divider">
+  <div class="stage">第一堂　起</div>
+  <div class="num">壹</div>
+  <h1>從時代挑戰看：人，為何而活？</h1>
+  <p class="when">先把你當「一個人」打動，再回到生命最根本的提問</p>
+</section>
+
+<!-- 6 開場影片 -->
+<section class="slide">
+  <h2>開場：被一個生命點亮</h2>
+  <div class="grid2">
+    <div>
+      <p>在談任何理論之前，先看一個真實的故事——一位老師，如何成為一個少年生命的轉折。</p>
+      <blockquote>教育的起點，從來不是「教會什麼」，而是「相信一個人」。</blockquote>
+      <p class="muted">看完請放在心裡：這一週，我想邀請你重新被這樣的問題點燃。</p>
+    </div>
+    <div>
+      <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/izi_0Q5qrSg" title="人生的可能性" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <p class="src">【影A0】國泰人壽〈人生的可能性〉教師節謝師影片（改編自傅威勝老師真實故事），與下一頁「王金平／尹衍樑」呼應。備選：bun coffee〈人的一生〉。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 AI 時代 -->
+<section class="slide roomy">
+  <h2>AI 時代：什麼不可被取代？</h2>
+  <div class="grid2">
+    <div>
+      <p>黃仁勳、Andrej Karpathy 都指出：AI 可以外包「思考」，卻不能外包<span class="accent">理解、品味、好奇心</span>。</p>
+      <blockquote>一個學生——一個人——真正不可被取代的，是什麼？</blockquote>
+    </div>
+    <div class="card"><h3>AI 時代稀缺的三項資產</h3><ul class="fl"><li>理解力——把握本質</li><li>品味——判斷好壞</li><li>好奇心——持續探問</li></ul></div>
+  </div>
+  <p class="src">出處：孫效智〈臺灣生命教育的理論基礎與發展歷程〉簡報「壹·時代挑戰」（黃仁勳／Karpathy 引述，出處待確認）。</p>
+</section>
+
+<!-- 8 兩則新聞 -->
+<section class="slide roomy">
+  <h2>兩則新聞，六十年</h2>
+  <div class="grid2">
+    <div class="card"><span class="tag">1966</span><h3>一位老師的無條件相信</h3><p class="muted">王金平老師無條件相信、教導感化院少年尹衍樑——日後成為千億企業家。</p></div>
+    <div class="card" style="border-top-color:#7a2630"><span class="tag" style="background:#7a2630">2026</span><h3>一位老師的悲劇</h3><p class="muted">高雄資深自然科老師遭學生言語霸凌與誣告而走向悲劇；學生間甚至流傳陷害老師的「教戰守則」。</p></div>
+  </div>
+  <p class="big-q" style="margin-top:.5em">六十年間，教育把人愈帶愈完整，還是愈帶愈碎？</p>
+  <p class="src">出處：簡報「壹·時代挑戰」所引兩則新聞（新聞連結待孫教授確認後補上）。</p>
+</section>
+
+<!-- 9 三個數字 -->
+<section class="slide roomy">
+  <h2>三個數字警鐘</h2>
+  <div class="grid3">
+    <div class="card"><h1 style="font-size:3rem;margin:.1em 0">274</h1><p class="muted">某年 15–24 歲青少年自殺身亡人數（近年新高）。</p></div>
+    <div class="card"><h1 style="font-size:3rem;margin:.1em 0">約 1/5</h1><p class="muted">曾有自殺意念；青少女中重度憂鬱比例達 23.4%。</p></div>
+    <div class="card"><h1 style="font-size:3rem;margin:.1em 0">46.5%</h1><p class="muted">遇心理困擾時，優先求助 AI 而非專業或師長。</p></div>
+  </div>
+  <p class="src">⚠️ 數據出自簡報「壹·時代挑戰」；正式授課前由孫教授提供／確認各數字的原始報告與年份（占位待補）。</p>
+</section>
+
+<!-- 10 人不見了 -->
+<section class="slide roomy">
+  <h2>「人，不見了」</h2>
+  <div class="grid2">
+    <div>
+      <p>早在 1970 年代，UNESCO《學習生存》(<i>Learning to Be</i>) 即指出現代教育的「去人化」；學者林治平也沉痛呼籲「人不見了」。</p>
+      <blockquote>我們每天教學生「怎麼變得有用」，卻很少停下來問生命中最根本、最重要的問題。<br>這一週，我想邀請你重新被這些問題<b>點燃</b>。</blockquote>
+      <p class="muted">小組各說一句：此刻我最想重新探問的一個問題。</p>
+    </div>
+    <div>
+      <p class="muted" style="margin-bottom:.3em">收束·情感提升（宇宙視角拉回「為何而活、彼此珍惜」）：</p>
+      <div class="localvid"><span class="ico">🎬</span><div><div class="t">小藍點 / Pale Blue Dot　<span class="dur">3:20</span></div><div class="p">影音資料/終極關懷/Carl Sagan's Pale Blue Dot OFFICIAL.mp4</div></div></div>
+      <p class="src">【影A0b】本機影音庫·終極關懷。Carl Sagan 以「太空中一粒塵埃」的視角，把「為何而活」拉回生命本身。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 貳 章節 -->
+<section class="slide section-divider">
+  <div class="stage">第二堂　攤碎片</div>
+  <div class="num">貳</div>
+  <h1>三學期，我學到什麼？</h1>
+  <p class="when">攤出碎片，並當場撞見「接不起來」的困惑</p>
+</section>
+
+<!-- 12 攤碎片活動 + 空白圖 -->
+<section class="slide">
+  <h2>分組任務：一句「認識」＋一個「困惑」</h2>
+  <div class="grid2">
+    <div>
+      <p>五組各認領一個素養。</p>
+      <ul class="fl">
+        <li><b>(a) 認識：</b>這個素養<b>到底在問什麼、核心是什麼</b>？（不只是「我學到什麼」）</li>
+        <li><b>(b) 困惑：</b>它和其他四個素養怎麼連？寫下一個你們「<b>接不太起來</b>」的困惑（任一連結皆可）。</li>
+      </ul>
+      <div class="practice"><span class="label">60 秒報告</span><p>每組上台只講 60 秒：一句認識＋一個困惑。老師<b>先不解答</b>，把「困惑」便利貼貼到右邊這張<b>空白的地圖</b>上。</p></div>
+    </div>
+    <div class="map-wrap">
+      <svg viewBox="0 0 420 360" width="100%" style="max-width:440px">
+        <g stroke="#cbb89a" stroke-width="2" fill="none" opacity=".7">
+          <line x1="210" y1="70" x2="210" y2="150"/><line x1="210" y1="210" x2="210" y2="290"/>
+          <line x1="120" y1="180" x2="170" y2="180"/><line x1="250" y1="180" x2="300" y2="180"/>
+        </g>
+        <g class="blank" text-anchor="middle" font-family="var(--font-serif)" font-size="15" font-weight="700">
+          <g><circle cx="210" cy="50" r="42"/><text x="210" y="55">？</text></g>
+          <g><circle cx="80" cy="180" r="42"/><text x="80" y="185">？</text></g>
+          <g><circle cx="210" cy="180" r="48"/><text x="210" y="185">？</text></g>
+          <g><circle cx="340" cy="180" r="42"/><text x="340" y="185">？</text></g>
+          <g><circle cx="210" cy="310" r="42"/><text x="210" y="315">？</text></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <p class="src">教師收束：「五塊磚都在，但牆跟牆之間是空的。今天下午，我們一起把這張圖補起來。」</p>
+</section>
+
+<!-- 13 參 章節 -->
+<section class="slide section-divider">
+  <div class="stage">第三堂　自己的提問</div>
+  <div class="num">參</div>
+  <h1>我的人生 X 問</h1>
+  <p class="when">15 件事在小組裡討論；提煉出的「X 問」匯成全班的文字雲</p>
+</section>
+
+<!-- 14 小組分享 -->
+<section class="slide roomy">
+  <h2>小組分享：人生最重要的 15 件事</h2>
+  <div class="grid2">
+    <div>
+      <p>課前你已寫下人生最重要的 15 件事，並與 AI 對話產生新版。</p>
+      <ul class="fl">
+        <li>4–5 人一組，分享各自的 15 件事與怎麼分類</li>
+        <li>組員互相追問：<b>「為什麼這對你重要？」</b></li>
+        <li>試著把它們收斂成幾個<b>大問題</b></li>
+      </ul>
+    </div>
+    <div class="card"><h3>留在小組內</h3><p class="muted">15 件事屬於個人隱私，<b>只在小組內討論</b>，不上全班；接下來上傳文字雲的，只有你<b>提煉後的「人生 X 問」</b>。</p></div>
+  </div>
+  <p class="src">依《翻轉教室作業設計規劃》單元一課前作業。</p>
+</section>
+
+<!-- 15 文字雲 -->
+<section class="slide roomy">
+  <h2>全班的提問，匯成一片問題雲</h2>
+  <p class="muted" style="text-align:center;max-width:none">（示範；課堂用 Slido／Mentimeter 即時生成。只收<b>提煉後的人生 X 問</b>，不收原始 15 件事。）</p>
+  <div class="wordcloud">
+    <span class="w1">我為什麼而活？</span><span class="w2">怎樣才算活得好？</span><span class="w3">死亡是什麼？</span>
+    <span class="w2">我是誰？</span><span class="w4">什麼是真正的愛？</span><span class="w1">人生的意義在哪裡？</span>
+    <span class="w3">我該怎麼選擇？</span><span class="w4">如何面對失去？</span><span class="w2">我留下什麼？</span>
+    <span class="w4">怎樣才不算白活？</span><span class="w3">什麼值得我堅持？</span><span class="w4">我能知道什麼？</span>
+  </div>
+  <p class="big-q" style="text-align:center;margin-top:.4em">看——我們全班一直在問的，其實就是這幾類問題。</p>
+</section>
+
+<!-- 16 守住終極指向 -->
+<section class="slide roomy">
+  <h2>守住「終極指向」</h2>
+  <div class="grid2">
+    <div class="card"><h3>自我期許</h3><p class="muted">「我想成為什麼樣的人／怎麼更成功」——這是<b>對自己的期待</b>。</p></div>
+    <div class="card" style="border-top-color:var(--color-primary)"><h3>終極意義</h3><p class="muted">「人究竟<b>為何而活</b>」——這才是<b>終極的意義</b>提問。</p></div>
+  </div>
+  <p class="big-q" style="margin-top:.4em">兩者別混為一談——把問題拉回終極層次。</p>
+  <p class="src">朱家安〈為生命的意義苦惱嗎？或許你搞混了自我期許和生命意義〉，Readmoo 閱讀最前線。（已入第二大腦）</p>
+</section>
+
+<!-- 17 肆 章節 -->
+<section class="slide section-divider">
+  <div class="stage">第四堂　橋</div>
+  <div class="num">肆</div>
+  <h1>古今中外的人生 X 問</h1>
+  <p class="when">把你的提問，對照人類思想史上的經典版本（互動比較，不是記憶）</p>
+</section>
+
+<!-- 18 卡繆·人生一問 -->
+<section class="slide">
+  <h2>卡繆·人生一問</h2>
+  <div class="figure">
+    <div class="portrait-wrap">
+      <img class="portrait" src="images/camus_wc.jpg" alt="卡繆 水彩肖像">
+      <div class="namecard"><div class="nm">Albert Camus</div><div class="life">1913 – 1960</div></div>
+    </div>
+    <div>
+      <blockquote>真正嚴肅的哲學問題只有一個：那就是自殺。</blockquote>
+      <p>《薛西弗斯的神話》：若一切終歸虛無，人為什麼<b>不</b>自殺？——他預設了什麼？這個預設站得住嗎？</p>
+      <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/1SnNoGtb8zQ" title="薛西弗斯與荒謬" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <p class="src">【影A1】主選 TED-Ed〈人生無意義嗎？及其他荒謬問題〉(ted.com·繁中字幕)；此處嵌備選〈皮毛小知識·薛西弗斯〉。各組一句：「他的預設站得住嗎？」</p>
+    </div>
+  </div>
+</section>
+
+<!-- 19 遺願清單·人生二問 -->
+<section class="slide">
+  <h2>《遺願清單》·人生二問</h2>
+  <p class="lead" style="max-width:none">電影《一路玩到掛 The Bucket List》中，進天堂的兩個問題——你這一生<b>是否快樂</b>？是否<b>帶給身邊的人快樂</b>？</p>
+  <div class="grid2" style="align-items:center">
+    <div>
+      <img class="portrait wide" src="images/bucket_list.jpg" alt="一路玩到掛 劇照" style="max-height:50vh;width:100%">
+      <div class="namecard" style="margin-top:.4em"><div class="nm">The Bucket List · 一路玩到掛</div><div class="life">2007</div></div>
+    </div>
+    <div>
+      <div class="video-wrap" style="max-width:100%;width:100%"><iframe src="https://www.youtube-nocookie.com/embed/IPiAKsw9Z6M" title="一路玩到掛 兩個問題" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <blockquote>快樂就夠了嗎？快樂，但沒有意義呢？</blockquote>
+    </div>
+  </div>
+  <p class="src">【影A2】FUNDAY《一路玩到掛》片段（中英字幕，須確認含「兩個問題」橋段）；備選橙排排國語解說。</p>
+</section>
+
+<!-- 20 康德·人生三問 -->
+<section class="slide">
+  <h2>康德·人生三問</h2>
+  <div class="figure">
+    <div class="portrait-wrap">
+      <img class="portrait" src="images/kant_wc.jpg" alt="康德 水彩肖像">
+      <div class="namecard"><div class="nm">Immanuel Kant</div><div class="life">1724 – 1804</div></div>
+    </div>
+    <div>
+      <ul class="fl">
+        <li>我<b>能知道</b>什麼？（純粹理性批判）</li>
+        <li>我<b>應該做</b>什麼？（實踐理性批判）</li>
+        <li>我<b>可以期待</b>什麼？（判斷力批判）</li>
+      </ul>
+      <p class="big-q">三問最終歸結為一問——<span class="accent">「人是什麼？」</span></p>
+      <blockquote>位我上者，燦爛星空；道德律令，在我心中。</blockquote>
+      <p class="src">康德《實踐理性批判》結語。人生三問的西方源頭之一——也預示了五大素養的「人學探索」基礎。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 21 托爾斯泰·三個問題 -->
+<section class="slide">
+  <h2>托爾斯泰《三個問題》</h2>
+  <div class="figure rev">
+    <div>
+      <p>晚年陷入深刻精神危機的托爾斯泰，借一位國王尋找三個問題的答案：</p>
+      <ul class="fl">
+        <li>最重要的<b>時間</b>＝<b>現在</b></li>
+        <li>最重要的<b>人</b>＝<b>眼前的人</b></li>
+        <li>最重要的<b>事</b>＝<b>對他做有益的事</b></li>
+      </ul>
+      <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/5CBUQ1OejY0" title="尼可萊的三個問題" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <p class="src">【影A3】〈尼可萊的三個問題〉繪本動畫旁白（tyc plant）。托爾斯泰把「意義」落回此刻、眼前、利他。</p>
+    </div>
+    <div class="portrait-wrap">
+      <img class="portrait" src="images/tolstoy_wc.jpg" alt="托爾斯泰 水彩肖像">
+      <div class="namecard"><div class="nm">Leo Tolstoy</div><div class="life">1828 – 1910</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 高更·人生三問 -->
+<section class="slide">
+  <h2>高更·人生三問</h2>
+  <div class="figure">
+    <div class="portrait-wrap">
+      <img class="portrait" src="images/gauguin_wc.jpg" alt="高更 水彩肖像">
+      <div class="namecard"><div class="nm">Paul Gauguin</div><div class="life">1848 – 1903</div></div>
+    </div>
+    <div>
+      <blockquote style="margin-top:0">我們從何處來？我們是誰？我們往何處去？</blockquote>
+      <img class="portrait wide" src="images/gauguin_painting.jpg" alt="高更油畫《我們從何處來》" style="margin:.3em 0">
+      <p class="muted">高更在喪女、貧病交迫、計畫服毒之際，完成近四公尺巨畫，把三問刻在左上角：<br>右＝沉睡嬰兒（誕生）／中＝採果男子（壯年）／左＝枯槁老婦（衰老）。</p>
+      <p class="src">人生最重要的問題，往往不是在書桌上想出來的，而是在生命的極限處被逼出來的。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 23 小結 -->
+<section class="slide roomy">
+  <h2>各版本，殊途同歸</h2>
+  <div class="grid3">
+    <div class="card compact"><h3 style="margin:.1em 0">卡繆 · 一問</h3><p class="muted">為何不結束？——逼出「活著的理由」，但<b>缺終極意義的正面回答</b>。</p></div>
+    <div class="card compact"><h3 style="margin:.1em 0">遺願清單 · 二問</h3><p class="muted">快樂與利他——溫暖，但<b>停在感受，缺意義的縱深</b>。</p></div>
+    <div class="card compact"><h3 style="margin:.1em 0">康德／托爾斯泰／高更</h3><p class="muted">指向「人是什麼」「此刻利他」「從何處來往何處去」——深刻，但<b>各缺知行合一</b>。</p></div>
+  </div>
+  <p class="big-q" style="margin-top:.5em">各組一句點評：哪個最打動你？最不足？——你們收斂的大問題，比較像哪一位？</p>
+</section>
+
+<!-- 24 伍 章節 -->
+<section class="slide section-divider">
+  <div class="stage">第五堂　收網①</div>
+  <div class="num">伍</div>
+  <h1>台灣人生三問</h1>
+  <p class="when">不是新講一套，而是用你們自己的困惑與提問，一條一條接起來</p>
+</section>
+
+<!-- 25 以終為始（比照參考站 #24） -->
+<section class="slide">
+  <h2>以終為始：先確立終極目標</h2>
+  <div class="grid2" style="align-items:start">
+    <div style="text-align:center">
+      <img class="portrait" src="images/daxue.jpg" alt="《大學》古籍" style="max-height:40vh;margin:0 auto .5em">
+      <blockquote style="text-align:left">大學之道，在明明德，在親民，在止於至善。知止而後有定。<br><span class="muted" style="font-style:normal;font-size:.8em">——《大學》（《禮記》）</span></blockquote>
+      <p class="muted" style="text-align:left">以「止於至善」為終極目標——<b>知道要止於何處</b>（終極關懷），心才能定、靜、安、慮、得。</p>
+    </div>
+    <div style="text-align:center">
+      <img class="portrait" src="images/covey_wc.jpg" alt="柯維 水彩肖像" style="max-height:40vh;margin:0 auto .35em">
+      <div class="namecard" style="margin-bottom:.6em"><div class="nm">Stephen Covey</div><div class="life">1932 – 2012</div></div>
+      <p style="text-align:left"><b>以終為始（Begin with the End in Mind）</b>——先在心中描繪最終目標，再據以規劃。柯維《與成功有約》第二習慣。</p>
+      <p class="big-q" style="text-align:left">開車先輸入目的地，導航才算得出路線——我們有沒有為人生，輸入過一個目的地？</p>
+    </div>
+  </div>
+  <p class="src">【影A4】本機短片接力：〈方向比速度重要〉0:22（跑錯方向）＋〈聚焦目標就是武器〉1:04（巴菲特只聚焦前 5 目標）。</p>
+</section>
+
+<!-- 26 台灣三問·工作專案類比（比照參考站 #25） -->
+<section class="slide">
+  <h2>台灣人生三問：以工作專案類比</h2>
+  <p class="lead" style="margin-bottom:.5em">任何專案都要回答三個問題——目標、方法、資源與執行力。人生亦然。</p>
+  <div class="grid3">
+    <div class="card"><span class="tag">目標是什麼</span><h3>人應為何而活？</h3><p class="muted">→ <b>終極關懷</b>（ultimate concern）<br>要去哪裡</p></div>
+    <div class="card"><span class="tag">方法策略</span><h3>人應如何生活？</h3><p class="muted">→ <b>價值思辨</b>（value deliberation）<br>走哪條路</p></div>
+    <div class="card"><span class="tag">資源執行力</span><h3>如何活出該活的生命？</h3><p class="muted">→ <b>靈性修養</b>（spiritual cultivation）<br>車有沒有油、你會不會開</p></div>
+  </div>
+  <p class="src">邊織邊接困惑：把第二堂貼上的困惑、第三堂收斂的大問題，一條一條接到三問上——隨機點 2–3 位複述「為什麼這三問接得起來」。</p>
+</section>
+
+<!-- 27 陸 章節 -->
+<section class="slide section-divider">
+  <div class="stage">第六堂　收網②·高潮</div>
+  <div class="num">陸</div>
+  <h1>三問，擴為五大核心素養</h1>
+  <p class="when">空白地圖，在你們眼前一格一格被填滿</p>
+</section>
+
+<!-- 28 為何擴為五素養 -->
+<section class="slide roomy">
+  <h2>為什麼，要擴成五個？</h2>
+  <div class="grid2">
+    <div class="card"><span class="tag">基礎</span><h3>人學探索</h3><p class="muted">要回答三問，得先回答<b>「人是什麼」</b>——這是一切的基礎。</p></div>
+    <div class="card"><span class="tag">方法</span><h3>哲學思考</h3><p class="muted">用什麼<b>方法</b>想這些問題？批判、論證、後設思考。</p></div>
+  </div>
+  <p class="big-q" style="margin-top:.4em">三問（終極關懷·價值思辨·靈性修養）＋ 基礎（人學探索）＋ 方法（哲學思考）＝ 五大核心素養</p>
+</section>
+
+<!-- 29 五素養關係圖 -->
+<section class="slide">
+  <h2>五大核心素養關係圖</h2>
+  <div class="map-wrap">
+    <svg viewBox="0 0 520 440" width="100%" style="max-width:620px" font-family="var(--font-serif)">
+      <defs>
+        <radialGradient id="hub" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#fff7df"/><stop offset="100%" stop-color="#f0d488"/></radialGradient>
+        <linearGradient id="node" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="100%" stop-color="#fbf3e3"/></linearGradient>
+        <linearGradient id="link" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6c558"/><stop offset="1" stop-color="#b8860b"/></linearGradient>
+        <filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#862633" flood-opacity="0.16"/></filter>
+        <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#D4AF37" flood-opacity="0.5"/></filter>
+      </defs>
+      <!-- 外圍裝飾環 -->
+      <circle cx="260" cy="222" r="158" fill="none" stroke="#d9c08f" stroke-width="1.4" stroke-dasharray="3 8" opacity=".55"/>
+      <!-- 連線（樞紐滲透四素養） -->
+      <g stroke="url(#link)" stroke-width="3.4" stroke-linecap="round" opacity=".9">
+        <line x1="260" y1="120" x2="260" y2="168"/>
+        <line x1="260" y1="276" x2="260" y2="324"/>
+        <line x1="160" y1="222" x2="202" y2="222"/>
+        <line x1="318" y1="222" x2="360" y2="222"/>
+      </g>
+      <!-- 中央光暈 -->
+      <circle cx="260" cy="222" r="92" fill="url(#hub)" opacity=".30"/>
+      <g text-anchor="middle">
+        <!-- 上 哲學思考 -->
+        <circle cx="260" cy="80" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="260" y="76" font-size="17" font-weight="700" fill="#862633">哲學思考</text><text x="260" y="97" font-size="12" fill="#a8895f">方法</text>
+        <!-- 左 終極關懷 -->
+        <circle cx="108" cy="222" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="108" y="218" font-size="17" font-weight="700" fill="#862633">終極關懷</text><text x="108" y="239" font-size="12" fill="#a8895f">為何而活</text>
+        <!-- 右 價值思辨 -->
+        <circle cx="412" cy="222" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="412" y="218" font-size="17" font-weight="700" fill="#862633">價值思辨</text><text x="412" y="239" font-size="12" fill="#a8895f">怎麼活</text>
+        <!-- 下 人學探索 -->
+        <circle cx="260" cy="364" r="48" fill="url(#node)" stroke="#862633" stroke-width="2.5" filter="url(#sh)"/>
+        <text x="260" y="360" font-size="17" font-weight="700" fill="#862633">人學探索</text><text x="260" y="381" font-size="12" fill="#a8895f">基礎·人是什麼</text>
+        <!-- 中 靈性修養（樞紐） -->
+        <circle cx="260" cy="222" r="58" fill="url(#hub)" stroke="#D4AF37" stroke-width="4" filter="url(#glow)"/>
+        <text x="260" y="216" font-size="18" font-weight="700" fill="#862633">靈性修養</text><text x="260" y="239" font-size="12.5" fill="#a8782e" font-weight="700">樞紐·如何活出</text>
+      </g>
+    </svg>
+  </div>
+  <p class="src">人學探索＝<b>基礎</b>；哲學思考＝<b>方法</b>；靈性修養＝<b>樞紐</b>，滲透並支撐其他四素養。困惑回看：「現在，接得起來了嗎？」由學員回答。</p>
+</section>
+
+<!-- 30 五素養代表片 -->
+<section class="slide roomy">
+  <h2>讓每個素養「被看見」</h2>
+  <p class="muted" style="max-width:none">第六堂收網時，各素養各放一支本機代表短片：</p>
+  <div class="grid3" style="gap:1vw 1.6vw">
+    <div class="localvid"><span class="ico">🎬</span><div><div class="t">終極關懷　<span class="dur">7:20</span></div><div class="p">最後的編織（向死而生）</div></div></div>
+    <div class="localvid"><span class="ico">🎬</span><div><div class="t">價值思辨　<span class="dur">3:10</span></div><div class="p">鈔票實驗（誠實與貪婪）</div></div></div>
+    <div class="localvid"><span class="ico">🎬</span><div><div class="t">靈性修養　<span class="dur">2:57</span></div><div class="p">曼德拉·寬恕的力量</div></div></div>
+    <div class="localvid"><span class="ico">🎬</span><div><div class="t">人學探索　<span class="dur">2:23</span></div><div class="p">人是什麼（紀錄片 HUMAN）</div></div></div>
+    <div class="localvid"><span class="ico">🎬</span><div><div class="t">哲學思考　<span class="dur">3:34</span></div><div class="p">12 怒漢·彈簧刀（一個反例）</div></div></div>
+  </div>
+  <p class="src">皆為本機影音庫·各素養夾。備援 TED：Sam Berns（終極）、忒修斯之船（人學）、Sam Gregory〈AI 偽造真實〉（哲思）。</p>
+</section>
+
+<!-- 31 困惑回看 -->
+<section class="slide roomy">
+  <h2>困惑，現在接得起來了嗎？</h2>
+  <blockquote>第二堂你們貼上的每一張「接不起來」的困惑——<br>此刻，回到那張地圖前，由你們自己回答。</blockquote>
+  <p>空白圖此刻已被<span class="accent">你們與老師共同填滿</span>。這既是今天的高潮，也是檢核。</p>
+  <p class="muted">教師總整，預告後續單元：明日起，從「終極關懷」逐一深化人生三問。</p>
+</section>
+
+<!-- 32 彩蛋·主題曲 -->
+<section class="slide">
+  <h2>彩蛋·主題曲〈三問〉</h2>
+  <div class="lyrics">
+    <p><span class="h">〔主歌一〕</span><br>天還沒亮　我就開始往前走<br>從沒問過　這條路通向哪個盡頭<br>有人問我　你要去哪裡<br>我才驚覺　我從沒問過　為什麼</p>
+    <p><span class="h">〔導歌〕</span><br>高更在大溪地的畫布角落　顫抖地寫下<br>我們從何處來　我們是誰　又將往哪裡去<br>卡繆站在荒謬的懸崖邊　輕聲地問<br>若一切終將歸於塵土　你為何還緊握著手不肯走<br>有人說　以終為始——先看見遠方那盞燈<br>就像《大學》說的　止於至善　心才定得下來<br>於是我學著　把終點　放進每一個起點</p>
+    <p><span class="h">〔副歌〕</span><br>為何而活　為何而活<br>在每個天微亮的清晨　輕輕問自己<br>該怎麼活　該怎麼活<br>在每個十字路口　誠實地選一條路<br>如何活出　如何活出<br>讓我說過的話　和我走過的路　慢慢合而為一<br>這一生　我要把這三個問題　問到底</p>
+    <p><span class="h">〔主歌二〕</span><br>托爾斯泰說　最重要的時間就是此刻<br>最重要的人　就是此刻在你眼前的誰<br>康德抬頭　望著滿天的星<br>又低下頭　問心裡那一道光</p>
+    <p><span class="h">〔橋段〕</span><br>不是為了找到　一個標準的答案<br>是讓問題　把我打磨得更深<br>當我老去　有人為我送行<br>願我能說：我問過　我愛過　我活過</p>
+    <p><span class="h">〔尾聲｜漸弱〕</span><br>為何活……該怎麼活……如何活出……<br>這，就是我的人生三問</p>
+  </div>
+  <p class="src">《生命的學問》概念專輯開場曲（史詩民謠）。整週最後一節再現，首尾呼應。Suno：epic folk ballad, acoustic guitar + strings, male-female call and response, Mandarin, contemplative then soaring chorus。</p>
+</section>
+
+<!-- 33 課後作業 -->
+<section class="slide roomy">
+  <h2>課後作業（為單元二·終極關懷預習）</h2>
+  <div class="practice">
+    <span class="label">於單元二上課前繳交</span>
+    <ul class="fl">
+      <li>電影《一路玩到掛》觀後＋與 AI 對話：什麼是美好人生？夢想清單會改變嗎？美好人生是否如夢幻泡影？</li>
+      <li>「正義與母親之間，卡繆會怎麼選？」——敘述卡繆的存在虛無主義與荒謬哲學，並<b>提出你自己的主張</b>。</li>
+    </ul>
+    <p class="muted" style="margin-top:.5em">AI 對話一律附：你的 prompt 與理由／AI 回應重點／你同意或不同意及為何／最終立場。</p>
+  </div>
+  <p class="src">依《翻轉教室作業設計規劃》單元二。</p>
+</section>
+
+<!-- 34 引用來源 -->
+<section class="slide" style="justify-content:flex-start">
+  <h2>引用來源</h2>
+  <ol class="references">
+    <li>孫效智（2026）。〈臺灣生命教育的理論基礎與發展歷程〉（1150529 版）。＝本單元理論骨幹（推動背景、人生 X 問、台灣三問、五大核心素養）。</li>
+    <li>孫效智。〈臺灣生命教育的理論基礎與發展歷程〉簡報。https://js-1105.github.io/life-edu-philosophy/ ＝時代挑戰、人生 X 問（含人物油畫與高更畫作）、五大核心素養圖。</li>
+    <li>孫效智。《論生命教育的五大核心素養》《生命教育的哲學基礎》。</li>
+    <li>朱家安。〈為生命的意義苦惱嗎？或許你搞混了自我期許和生命意義〉。Readmoo 閱讀最前線。</li>
+    <li>《大學》（《禮記》）；柯維（S. Covey），《與成功有約》第二習慣「以終為始」。</li>
+    <li>影片：國泰人壽〈人生的可能性〉；TED-Ed〈人生無意義嗎？〉(zh-tw)／皮毛小知識〈薛西弗斯〉；《一路玩到掛》(FUNDAY)；〈尼可萊的三個問題〉；本機影音庫〈小藍點〉〈方向比速度重要〉〈聚焦目標就是武器〉及五素養代表片。</li>
+    <li>⚠️ 起段「兩則新聞」與「三個數字」（青少年自殺 274、約 1/5 自殺意念、46.5% 求助 AI）出自上述簡報「壹·時代挑戰」；<b>原始報告名稱與年份待孫教授確認後補正</b>。</li>
+    <li>UNESCO（1972）。<i>Learning to Be</i>（《學習生存》）；林治平「人不見了」全人教育論述。</li>
+    <li>人物油畫：卡繆／康德／托爾斯泰／高更／柯維 水彩肖像，沿用 life-edu-philosophy 簡報素材。</li>
+  </ol>
+</section>
+
+<!-- 35 結語 -->
+<section class="slide closing">
+  <h2>今天，我們打開了一張地圖</h2>
+  <blockquote style="color:#fff;border-color:var(--color-accent);background:rgba(255,255,255,.08)">這一週，不是讓你又學會什麼，<br>而是讓你重新有了探索生命的熱情，<br>並看見：你一直在問的問題，其實彼此相連。</blockquote>
+  <p class="signature">——生命的學問，從這裡開始</p>
+  <button class="back-home-btn" onclick="goToSlide(1)">↑　回到首頁</button>
+</section>
+
+</div>
+
+<div class="click-zones" id="clickZones">
+  <div class="click-zone" onclick="prevSlide()" title="前一頁"></div>
+  <div class="click-zone" onclick="nextSlide()" title="下一頁"></div>
+</div>
+<div class="progress-bar" id="progress"></div>
+<div class="page-indicator"><span id="curr">1</span> / <span id="total">1</span></div>
+<div class="nav-arrows"><button onclick="prevSlide()" aria-label="上一頁">‹</button><button onclick="nextSlide()" aria-label="下一頁">›</button></div>
+<button class="fs-toggle" onclick="toggleFullscreen()" title="全螢幕（F）">⛶</button>
+<div class="toast" id="toast"></div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+let current=1;const total=slides.length;
+document.getElementById('total').textContent=total;
+// 分章節底色：依 section-divider 計章節，內容頁加 .sec-tint .sec-N＋節次浮水印
+(function assignSectionTints(){
+  const numerals=['壹','貳','參','肆','伍','陸'];
+  let chap=0;
+  slides.forEach(s=>{
+    if(s.classList.contains('section-divider')){chap++;return;}
+    if(s.classList.contains('cover')||s.classList.contains('closing'))return;
+    if(chap<1)return; // 章節前的前置頁維持中性米底
+    const sec=Math.min(chap,6);
+    s.classList.add('sec-tint','sec-'+sec);
+    s.dataset.chap=numerals[sec-1];
+  });
+})();
+// 含 iframe／封面 CTA 的頁停用點擊區
+const noClickZoneSlides=[];
+slides.forEach((s,i)=>{if(s.classList.contains('cover')||s.querySelector('iframe,.cover-cta,.back-home-btn'))noClickZoneSlides.push(i+1);});
+function showSlide(n){
+  if(n<1)n=1;if(n>total)n=total;
+  slides.forEach((s,i)=>{s.classList.remove('active','prev');if(i+1===n)s.classList.add('active');else if(i+1<n)s.classList.add('prev');});
+  current=n;
+  document.getElementById('curr').textContent=current;
+  document.getElementById('progress').style.width=(current/total*100)+'%';
+  history.replaceState(null,'','#'+current);
+  document.body.classList.toggle('no-clickzones',noClickZoneSlides.includes(n));
+}
+function nextSlide(){showSlide(current+1)}function prevSlide(){showSlide(current-1)}function goToSlide(n){showSlide(n)}
+function getFsReq(el){return el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||null}
+function getFsExit(){return document.exitFullscreen||document.webkitExitFullscreen||document.mozCancelFullScreen||document.msExitFullscreen||null}
+function isFs(){return document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||document.msFullscreenElement}
+function enterFs(el){const r=getFsReq(el);if(!r){showToast('此瀏覽器不支援全螢幕，請按 F11',4000);return Promise.reject()}let p;try{p=r.call(el)}catch(e){return Promise.reject(e)}return(p&&p.then)?p:Promise.resolve()}
+function toggleFullscreen(){if(isFs()){const x=getFsExit();if(x)x.call(document);return}enterFs(document.documentElement).catch(()=>{showToast(window.self!==window.top?'預覽面板內無法全螢幕，請在新分頁開啟':'無法進入全螢幕，請按 F11',4500)})}
+function startPresentation(){enterFs(document.documentElement).catch(()=>{showToast('預覽面板內無法全螢幕，請在新分頁開啟，或按 F11',6000)}).finally(()=>nextSlide())}
+function showToast(m,ms=2500){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms)}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextSlide()}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide()}
+  if(e.key==='f'||e.key==='F'){e.preventDefault();toggleFullscreen()}
+  if(e.key==='Escape'&&isFs())(getFsExit()||(()=>{})).call(document);
+  if(e.key==='Home')goToSlide(1);if(e.key==='End')goToSlide(total);
+});
+if(location.hash){const n=parseInt(location.hash.slice(1));if(!isNaN(n))showSlide(n);}
+else{document.body.classList.toggle('no-clickzones',noClickZoneSlides.includes(1));}
+</script>
+</body>
+</html>
