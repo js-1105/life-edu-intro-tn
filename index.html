@@ -26,8 +26,10 @@ body{font-family:var(--font-sans);font-size:20px;line-height:1.78;color:var(--co
   background:var(--color-bg) radial-gradient(circle at 1px 1px,rgba(134,38,51,.05) 1px,transparent 0) 0 0/22px 22px;}
 .slide.active{opacity:1;visibility:visible;transform:translateX(0);transition:opacity .5s ease,transform .5s ease,visibility 0s}
 .slide.prev{transform:translateX(-40px)}
-.slide.roomy{gap:.55em}
+.slide.roomy{--gap:.55em}
 .slide>*{position:relative;z-index:1}
+/* 自動縮放保底層：每頁內容包進 .fitwrap，溢出時整體等比縮小，任何螢幕比例都不裁切 */
+.fitwrap{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;justify-content:var(--jc,center);align-items:var(--ai,stretch);gap:var(--gap,0);transform-origin:center center}
 .slide.roomy h1{font-size:clamp(3rem,6.2vw,5.6rem)}
 .slide.roomy h2{font-size:clamp(2.3rem,4.4vw,3.7rem)}
 .slide.roomy p,.slide.roomy .lead{font-size:clamp(1.55rem,2.4vw,2.15rem)}
@@ -58,14 +60,14 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 .slide.sec-tint::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--grad-accent);opacity:.6;z-index:0}
 .slide.sec-tint::after{content:attr(data-chap);position:absolute;top:-.14em;right:.06em;font-family:var(--font-serif);font-weight:900;line-height:1;font-size:46vh;color:var(--color-primary);opacity:.05;z-index:0;pointer-events:none;user-select:none}
 /* 章節頁 */
-.section-divider{align-items:flex-start;background:var(--grad-royal);color:#fff;overflow:hidden}
+.section-divider{--ai:flex-start;background:var(--grad-royal);color:#fff;overflow:hidden}
 .section-divider::before{content:"";position:absolute;inset:0;background:radial-gradient(620px 620px at 70% 40%,rgba(212,175,55,.18),transparent 60%),radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);background-size:auto,28px 28px;z-index:0}
 .section-divider .stage{font-size:clamp(1.1rem,2vw,1.5rem);color:var(--color-accent-soft);font-weight:700;letter-spacing:.3em;margin-bottom:.1em}
 .section-divider .num{font-family:var(--font-serif);font-size:clamp(4rem,13vw,10rem);font-weight:900;line-height:1;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 4px 30px rgba(212,175,55,.3)}
 .section-divider h1{margin-top:.05em;color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.25)}
 .section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:32em}
 /* 封面 */
-.slide.cover{background:var(--grad-royal);color:#fff;text-align:center;align-items:center;overflow:hidden}
+.slide.cover{background:var(--grad-royal);color:#fff;text-align:center;--ai:center;overflow:hidden}
 .slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(720px 460px at 50% 20%,rgba(212,175,55,.12),transparent 68%),linear-gradient(180deg,rgba(40,8,13,.04),rgba(40,8,13,.2));z-index:1}
 .slide.cover h1{color:#fff;font-size:clamp(3rem,7vw,6rem)} .slide.cover .lead{color:rgba(255,255,255,.88)}
 .slide.cover .stage{color:var(--color-accent-soft);letter-spacing:.35em;font-weight:700}
@@ -94,7 +96,7 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .practice{background:linear-gradient(135deg,rgba(212,175,55,.13),rgba(212,175,55,.03));border:2px dashed var(--color-accent);padding:1.2em 1.5em;border-radius:16px;margin-top:.5em}
 .practice .label{display:inline-block;background:var(--color-primary);color:#fff;padding:.25em .9em;border-radius:999px;font-size:.85rem;font-weight:600;margin-bottom:.5em;letter-spacing:.1em}
 .big-q{font-family:var(--font-serif);font-size:clamp(1.5rem,3.2vw,2.6rem);font-weight:700;color:var(--color-primary);line-height:1.5}
-.closing{text-align:center;background:var(--grad-royal);color:#fff;align-items:center;overflow:hidden}
+.closing{text-align:center;background:var(--grad-royal);color:#fff;--ai:center;overflow:hidden}
 .closing::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 480px at 50% 30%,rgba(212,175,55,.18),transparent 62%);z-index:0}
 .closing h2{color:#fff;border-color:var(--color-accent)} .closing .signature{margin-top:1.5em;font-size:1rem;letter-spacing:.15em;opacity:.85}
 .references{font-size:.92rem;line-height:1.5;color:var(--color-text);max-width:62em}
@@ -220,6 +222,19 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .dense-news .rumor-text{font-size:clamp(.84rem,1.05vw,.98rem);line-height:1.45}
 .dense-news .rumor-src{font-size:clamp(.66rem,.8vw,.76rem)}
 .dense-news>blockquote{font-size:.9rem;margin-top:.4em;padding:.45em 1.1em;line-height:1.45}
+/* 三個數字，三記警鐘 */
+.stats-slide{justify-content:flex-start;padding-top:4.5vh}
+.stats-slide h2{margin-bottom:.25em}
+.stats-slide .lead{margin-bottom:.4em;max-width:none}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;width:100%;margin-top:1em}
+.stat-card{position:relative;min-height:38vh;padding:1.35em 1.3em 1.2em;border-radius:18px;background:rgba(255,255,255,.9);border-top:7px solid var(--color-accent);box-shadow:var(--shadow-strong);overflow:hidden}
+.stat-card::after{content:attr(data-rank);position:absolute;right:.12em;bottom:-.28em;font-family:var(--font-serif);font-size:9rem;font-weight:900;color:var(--color-primary);opacity:.035}
+.stat-number{font-family:var(--font-serif);font-size:clamp(3.3rem,6.5vw,6rem);font-weight:900;line-height:1;color:var(--color-primary);letter-spacing:-.04em;margin-bottom:.35em}
+.stat-number .unit{font-family:var(--font-sans);font-size:.3em;font-weight:700;letter-spacing:.02em;color:var(--color-accent-deep);margin-left:.12em}
+.stat-card h3{font-size:clamp(1.25rem,1.7vw,1.55rem);line-height:1.42;color:var(--color-text);margin:.1em 0 .45em}
+.stat-card p{font-size:clamp(.92rem,1.16vw,1.08rem);line-height:1.55;color:var(--color-muted);margin:0}
+.stat-source{display:block;margin-top:.8em;padding-top:.65em;border-top:1px dashed var(--color-line);font-size:.7rem;color:var(--color-muted);line-height:1.45}
+.stats-slide blockquote{margin:.8em auto 0;max-width:52em;text-align:center;font-size:clamp(1.05rem,1.45vw,1.3rem);background:rgba(255,255,255,.62)}
 /* Karpathy：沿用章節底色、金書脊與浮水印的人物引言頁 */
 .karpathy-slide{justify-content:flex-start;padding:4.5vh 5.4vw;overflow:hidden;gap:1.2vh}
 .kp-head{display:grid;grid-template-columns:1.48fr 1fr;gap:2.6vw;align-items:start;width:100%}
@@ -422,6 +437,32 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <p class="src" style="text-align:center;max-width:none">校園失序、教師求助無門，劇中政府設「教權保護局」以非常手段整頓——爆紅之餘，照見的是真實的教師困境。</p>
     </div>
   </div>
+</section>
+
+<section class="slide stats-slide">
+  <h2>三個數字，三記警鐘</h2>
+  <p class="lead">三組數字，讓我們看見當下青年世代正在面對的處境。</p>
+  <div class="stats-grid">
+    <div class="stat-card" data-rank="01">
+      <div class="stat-number">274<span class="unit">人</span></div>
+      <h3>2024 年 15–24 歲青少年自殺身亡</h3>
+      <p>創近年新高，是該年齡層第 2 大死因。</p>
+      <span class="stat-source">衛福部「2024 年國人死因統計」</span>
+    </div>
+    <div class="stat-card" data-rank="02">
+      <div class="stat-number">1<span class="unit">／</span>5</div>
+      <h3>青少年曾有自殺意念</h3>
+      <p>青少女中度以上達 23.4%；男生為 7.5%。</p>
+      <span class="stat-source">兒福聯盟「2025 青少年心理健康調查」；n＝7,007</span>
+    </div>
+    <div class="stat-card" data-rank="03">
+      <div class="stat-number">46.5<span class="unit">％</span></div>
+      <h3>遇心理困擾時，優先向 AI 求助</h3>
+      <p>而非老師、家長或專業人員。</p>
+      <span class="stat-source">兒福聯盟「2025 青少年心理健康調查」</span>
+    </div>
+  </div>
+  <blockquote>這些數字不是抽象統計，而是一群正在尋找理解、陪伴與生命方向的年輕人。</blockquote>
 </section>
 
 <section class="slide">
