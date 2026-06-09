@@ -183,6 +183,7 @@ body.no-clickzones .click-zones{display:none}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:center;flex:1}
 .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vw}
 .four-col .card{padding:1.2em 1.2em;border-radius:16px;min-height:17vh;display:flex;flex-direction:column;justify-content:center;border-top-width:6px}
+.four-col.fc-top .card{justify-content:flex-start}
 .four-col .card h3{font-size:clamp(1.3rem,1.8vw,1.75rem);margin:0 0 .5em;line-height:1.3;color:var(--color-primary)}
 .four-col .card p{font-size:clamp(1.05rem,1.35vw,1.3rem);color:var(--color-muted);margin:0;line-height:1.55}
 ul.feature-list{list-style:none;counter-reset:li-counter}
@@ -570,7 +571,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <g fill="none" stroke="#A8782E"><line x1="50" y1="18" x2="50" y2="82" stroke-width="2.5" opacity=".55"/><line x1="18" y1="50" x2="82" y2="50" stroke-width="2.5" opacity=".55"/><circle cx="50" cy="50" r="34" stroke-width="6"/><line x1="75" y1="75" x2="104" y2="104" stroke-width="9" stroke-linecap="round"/></g>
   </svg>
   <h2>四個討論面向</h2>
-  <div class="four-col" style="margin-top:.4em">
+  <div class="four-col fc-top" style="margin-top:.4em">
     <div class="card" style="border-top-color:#862633"><h3>① 學了什麼</h3><p>這三學期，圍繞這個素養，你們修過哪些課、學到了哪些內容？</p></div>
     <div class="card" style="border-top-color:#A8782E"><h3>② 理解了什麼意涵</h3><p>這些所學，如何幫助你們把握<b>所負責的這個核心素養</b>真正的意涵？收斂成一段你們對它的「理解」。</p></div>
     <div class="card" style="border-top-color:#A23A48"><h3>③ 哪裡還不懂</h3><p>關於這個素養，你們覺得自己<b>哪些地方還理解得不夠</b>？</p></div>
