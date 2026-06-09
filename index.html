@@ -628,7 +628,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div class="qr-card c-mid" style="--c:#A23A48"><div class="qr-box" data-g="3"></div><div class="qr-cap">第3組<small>靈性修養</small></div></div>
     <div class="qr-card c-bl" style="--c:#6B5635"><div class="qr-box" data-g="4"></div><div class="qr-cap">第4組<small>人學探索</small></div></div>
     <div class="qr-card c-br" style="--c:#5C1A23"><div class="qr-box" data-g="5"></div><div class="qr-cap">第5組<small>哲學思考</small></div></div>
-    <div class="qr-note qr-note-bot"><p class="src">無法掃描？手機開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span>　·　清空某欄：到各組頁、滑鼠移到該欄按 <b>Shift＋C</b></p></div>
+    <div class="qr-note qr-note-bot"><p class="src">無法掃描？手機開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span>　·　清空某欄：滑鼠移到該欄按 <b>Shift＋C</b>　·　課後存檔並清空全場：<b>Shift＋E</b></p></div>
   </div>
 </section>
 
@@ -1263,11 +1263,36 @@ window.U1=(function(){
     else{DATA[g][type]=[];saveLocal();renderAll();}
   }
   window.U1clear=clearHovered;
+  function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
+  function nowStamp(){var d=new Date(),p=function(n){return(n<10?'0':'')+n;};return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes());}
+  function emptyData(){return {1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};}
+  function downloadCSV(stamp){
+    var room=window.FB_ROOM||'default';
+    var rows=[['房號','組別','素養','類型','內容']];
+    GROUPS.forEach(function(g){['lijie','kunhuo'].forEach(function(type){(DATA[g.id][type]||[]).forEach(function(txt){rows.push([room,'第'+g.id+'組',g.n,type==='lijie'?'理解':'還不懂/接不起來',txt]);});});});
+    var csv=rows.map(function(r){return r.map(csvCell).join(',');}).join('\r\n');
+    var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+    var url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='單元一第二堂_'+room+'_'+stamp+'.csv';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  }
+  function exportAndClear(){
+    var stamp=nowStamp(),room=window.FB_ROOM||'default';
+    downloadCSV(stamp);
+    if(!confirm('五組資料已下載成 CSV（存在這台電腦的「下載」資料夾，可用 Excel／Numbers 開啟做分析評量）。要現在把本場全部清空、房間掃乾淨嗎？')){if(typeof showToast==='function')showToast('已下載備份，未清空',2500);return;}
+    if(DB){
+      DB.once('value').then(function(snap){
+        var val=snap.val(),fin=function(){DB.remove();if(typeof showToast==='function')showToast('已下載 CSV＋雲端封存，並清空本場',3000);};
+        if(val){firebase.database().ref('rooms/_archives/'+room+'__'+stamp).set(val).then(fin,fin);}else fin();
+      });
+    }else{DATA=emptyData();saveLocal();renderAll();if(typeof showToast==='function')showToast('已下載 CSV 並清空本場（本機）',3000);}
+  }
+  window.U1export=exportAndClear;
   function initAll(){
     document.querySelectorAll('.daiuda select').forEach(s=>{if(!s.options.length)s.innerHTML='<option value="lijie">理解</option><option value="kunhuo">困惑</option>';});
     document.querySelectorAll('.daiuda input').forEach(inp=>inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')submitDai(inp.closest('.daiuda'));}));
     document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
-    document.addEventListener('keydown',e=>{if(e.shiftKey&&(e.key==='C'||e.key==='c')){e.preventDefault();clearHovered();}});
+    document.addEventListener('keydown',e=>{if(!e.shiftKey)return;if(e.key==='C'||e.key==='c'){e.preventDefault();clearHovered();}else if(e.key==='E'||e.key==='e'){e.preventDefault();exportAndClear();}});
     if(!initFB())loadLocal();
     renderAll(); makeQRs(); setStatus();
     try{document.querySelectorAll('.slide').forEach((s,i)=>{if((s.querySelector('.daiuda')||s.querySelector('.qr-grid'))&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
