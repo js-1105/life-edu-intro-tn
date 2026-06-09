@@ -292,9 +292,20 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .blankmap .mnote{background:#fff3b8;font-size:.8rem;line-height:1.4;padding:.25em .6em;border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.12);max-width:13em;transform:rotate(-1.5deg)}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
-.qr-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1vw;width:100%;margin-top:.5em}
-.qr-card{background:#fff;border-radius:16px;border-top:6px solid var(--c,#862633);box-shadow:var(--shadow-soft);padding:.9em .7em 1em;display:flex;flex-direction:column;align-items:center;gap:.6em}
-.qr-box{width:clamp(110px,10.5vw,165px);height:clamp(110px,10.5vw,165px);background:#fff;display:flex;align-items:center;justify-content:center}
+.qr-stage{position:relative;flex:1;width:100%;min-height:0;margin-top:.3em}
+.qr-stage .qr-card{position:absolute}
+.qr-stage .c-tl{top:0;left:2%}
+.qr-stage .c-tr{top:0;right:2%}
+.qr-stage .c-bl{bottom:0;left:2%}
+.qr-stage .c-br{bottom:0;right:2%}
+.qr-stage .c-mid{top:50%;left:50%;transform:translate(-50%,-50%)}
+.qr-note{position:absolute;left:50%;transform:translateX(-50%);text-align:center;width:min(40vw,560px)}
+.qr-note-top{top:4%}
+.qr-note-top .lead{margin:0;max-width:none}
+.qr-note-bot{bottom:2%}
+.qr-note-bot .src{margin:0;max-width:none;display:block}
+.qr-card{background:#fff;border-radius:16px;border-top:6px solid var(--c,#862633);box-shadow:var(--shadow-strong);padding:.8em .8em .9em;display:flex;flex-direction:column;align-items:center;gap:.5em}
+.qr-box{width:clamp(130px,12vw,190px);height:clamp(130px,12vw,190px);background:#fff;display:flex;align-items:center;justify-content:center}
 .qr-box img,.qr-box canvas{width:100%!important;height:100%!important;display:block}
 .qr-cap{font-family:var(--font-serif);font-weight:700;color:var(--c,#862633);font-size:clamp(1rem,1.2vw,1.25rem);text-align:center;line-height:1.25}
 .qr-cap small{display:block;font-family:var(--font-sans);font-weight:600;color:var(--color-muted);font-size:.72em;letter-spacing:.02em}
@@ -606,18 +617,18 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 30 分鐘</span><p>分工討論四面向，推一位代表準備上台。重點放在：<b>②</b> 對所負責核心素養的理解、<b>③</b> 還有哪些地方不太懂、<b>④</b> 能否掌握「所負責的核心素養與其他核心素養之間的關係」。</p></div>
 </section>
 
-<!-- S18 五組 QR：手機投稿入口 -->
+<!-- S18 五組 QR：手機投稿入口（四角＋中央梅花佈局，避免掃錯組） -->
 <section class="slide">
   <h2>掃你那一組的 QR，把討論打在手機上</h2>
-  <p class="lead">五組各掃自己的碼 → 在手機上<b>充分</b>寫下「理解」與「還不懂／接不起來」（字數不限）→ 投影幕上你們這一組的頁面會即時更新。</p>
-  <div class="qr-grid">
-    <div class="qr-card" style="--c:#862633"><div class="qr-box" data-g="1"></div><div class="qr-cap">第1組<small>終極關懷</small></div></div>
-    <div class="qr-card" style="--c:#A8782E"><div class="qr-box" data-g="2"></div><div class="qr-cap">第2組<small>價值思辨</small></div></div>
-    <div class="qr-card" style="--c:#A23A48"><div class="qr-box" data-g="3"></div><div class="qr-cap">第3組<small>靈性修養</small></div></div>
-    <div class="qr-card" style="--c:#6B5635"><div class="qr-box" data-g="4"></div><div class="qr-cap">第4組<small>人學探索</small></div></div>
-    <div class="qr-card" style="--c:#5C1A23"><div class="qr-box" data-g="5"></div><div class="qr-cap">第5組<small>哲學思考</small></div></div>
+  <div class="qr-stage">
+    <div class="qr-card c-tl" style="--c:#862633"><div class="qr-box" data-g="1"></div><div class="qr-cap">第1組<small>終極關懷</small></div></div>
+    <div class="qr-card c-tr" style="--c:#A8782E"><div class="qr-box" data-g="2"></div><div class="qr-cap">第2組<small>價值思辨</small></div></div>
+    <div class="qr-card c-mid" style="--c:#A23A48"><div class="qr-box" data-g="3"></div><div class="qr-cap">第3組<small>靈性修養</small></div></div>
+    <div class="qr-card c-bl" style="--c:#6B5635"><div class="qr-box" data-g="4"></div><div class="qr-cap">第4組<small>人學探索</small></div></div>
+    <div class="qr-card c-br" style="--c:#5C1A23"><div class="qr-box" data-g="5"></div><div class="qr-cap">第5組<small>哲學思考</small></div></div>
+    <div class="qr-note qr-note-top"><p class="lead">五組各掃<b>自己角落</b>那個碼 → 在手機上充分寫下「理解」與「還不懂／接不起來」（字數不限）→ 投影幕上你們這組的頁面即時更新。</p></div>
+    <div class="qr-note qr-note-bot"><p class="src">無法掃描？手機開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span>　·　清空本場：<b>Shift＋C</b></p></div>
   </div>
-  <p class="src">無法掃描？手機瀏覽器開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span></p>
 </section>
 
 <!-- S19 第1組 終極關懷 -->
@@ -1239,9 +1250,16 @@ window.U1=(function(){
   function setStatus(){const el=document.getElementById('fbStatus'); if(!el)return; el.textContent=DB?(online?'● 線上（手機投稿即時更新）':'● 連線中…'):'○ 單機代打模式（未連網）';}
   function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
   window.U1submitDai=submitDai;
+  function clearRoom(){
+    if(!confirm('確定清空本場全部五組的內容？（房號 '+(window.FB_ROOM||'default')+'）此動作無法復原，建議每屆上課前按一次。'))return;
+    if(DB){DB.remove();}
+    else{DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};saveLocal();renderAll();}
+  }
+  window.U1clear=clearRoom;
   function initAll(){
     document.querySelectorAll('.daiuda select').forEach(s=>{if(!s.options.length)s.innerHTML='<option value="lijie">理解</option><option value="kunhuo">困惑</option>';});
     document.querySelectorAll('.daiuda input').forEach(inp=>inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')submitDai(inp.closest('.daiuda'));}));
+    document.addEventListener('keydown',e=>{if(e.shiftKey&&(e.key==='C'||e.key==='c')){e.preventDefault();clearRoom();}});
     if(!initFB())loadLocal();
     renderAll(); makeQRs(); setStatus();
     try{document.querySelectorAll('.slide').forEach((s,i)=>{if((s.querySelector('.daiuda')||s.querySelector('.qr-grid'))&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
