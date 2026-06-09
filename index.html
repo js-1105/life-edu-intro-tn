@@ -323,7 +323,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2 style="margin-bottom:.2em">換一個尺度：宇宙中的小藍點</h2>
   <p class="lead" style="margin-bottom:.45em;max-width:none">把鏡頭拉到 60 億公里外回望地球——我們所爭奪的一切，只發生在一粒懸浮於陽光中的塵埃上。</p>
-  <div class="video-wrap" style="width:min(86vw,112vh);max-width:none;margin:.2em auto"><iframe id="ytPaleBlueDot" src="https://www.youtube-nocookie.com/embed/GO5FwsblpT8?enablejsapi=1&rel=0&modestbranding=1&cc_load_policy=1&cc_lang_pref=zh-Hant&hl=zh-Hant" title="Carl Sagan's Pale Blue Dot OFFICIAL（中文字幕）" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  <div class="video-wrap" style="width:min(86vw,112vh);max-width:none;margin:.2em auto"><iframe src="https://www.youtube-nocookie.com/embed/IBEjTawbeYw?rel=0&modestbranding=1" title="蒼白的小藍點 Pale Blue Dot（中文字幕燒錄版）" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
   <p class="src" style="text-align:center;max-width:none">Carl Sagan〈小藍點 Pale Blue Dot〉——把「為何而活、彼此珍惜」，拉回生命本身。</p>
 </section>
 
@@ -868,28 +868,6 @@ document.addEventListener('keydown',e=>{
 });
 if(location.hash){const n=parseInt(location.hash.slice(1));if(!isNaN(n))showSlide(n);}
 else{document.body.classList.toggle('no-clickzones',noClickZoneSlides.includes(1));}
-</script>
-<!-- 小藍點影片：用 YouTube API 自動開啟並翻譯成繁中字幕（免手動點設定） -->
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-function pbdForceZh(p){
-  try{p.loadModule('captions');}catch(e){}
-  try{p.loadModule('cc');}catch(e){}
-  var set=function(){
-    try{p.setOption('captions','reload',true);}catch(e){}
-    try{p.setOption('captions','track',{translationLanguage:{languageCode:'zh-Hant',languageName:'中文（繁體）'}});}catch(e){}
-    try{p.setOption('cc','track',{translationLanguage:{languageCode:'zh-Hant',languageName:'中文（繁體）'}});}catch(e){}
-  };
-  set(); setTimeout(set,1200); setTimeout(set,3000);
-}
-function onYouTubeIframeAPIReady(){
-  try{
-    new YT.Player('ytPaleBlueDot',{events:{
-      onReady:function(e){pbdForceZh(e.target);},
-      onStateChange:function(e){if(e.data===YT.PlayerState.PLAYING)pbdForceZh(e.target);}
-    }});
-  }catch(e){}
-}
 </script>
 </body>
 </html>
