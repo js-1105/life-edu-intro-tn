@@ -627,7 +627,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div class="qr-card c-bl" style="--c:#6B5635"><div class="qr-box" data-g="4"></div><div class="qr-cap">第4組<small>人學探索</small></div></div>
     <div class="qr-card c-br" style="--c:#5C1A23"><div class="qr-box" data-g="5"></div><div class="qr-cap">第5組<small>哲學思考</small></div></div>
     <div class="qr-note qr-note-top"><p class="lead">五組各掃<b>自己角落</b>那個碼 → 在手機上充分寫下「理解」與「還不懂／接不起來」（字數不限）→ 投影幕上你們這組的頁面即時更新。</p></div>
-    <div class="qr-note qr-note-bot"><p class="src">無法掃描？手機開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span>　·　清空本場：<b>Shift＋C</b></p></div>
+    <div class="qr-note qr-note-bot"><p class="src">無法掃描？手機開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span>　·　清空某欄：到各組頁、滑鼠移到該欄按 <b>Shift＋C</b></p></div>
   </div>
 </section>
 
@@ -1250,16 +1250,23 @@ window.U1=(function(){
   function setStatus(){const el=document.getElementById('fbStatus'); if(!el)return; el.textContent=DB?(online?'● 線上（手機投稿即時更新）':'● 連線中…'):'○ 單機代打模式（未連網）';}
   function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
   window.U1submitDai=submitDai;
-  function clearRoom(){
-    if(!confirm('確定清空本場全部五組的內容？（房號 '+(window.FB_ROOM||'default')+'）此動作無法復原，建議每屆上課前按一次。'))return;
-    if(DB){DB.remove();}
-    else{DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};saveLocal();renderAll();}
+  let mx=0,my=0;
+  function clearHovered(){
+    const el=document.elementFromPoint(mx,my);
+    const box=el&&el.closest?el.closest('.gbox'):null;
+    const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo)$/);
+    if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（某組的「理解」或「困惑」），再按 Shift＋C',3500);return;}
+    const g=m[1],type=m[2],grp=GROUPS.filter(x=>x.id==g)[0],name=grp?grp.n:('第'+g+'組');
+    if(!confirm('確定清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':'困惑')+'」這一欄？此動作無法復原。'))return;
+    if(DB){DB.child('g'+g+'/'+type).remove();}
+    else{DATA[g][type]=[];saveLocal();renderAll();}
   }
-  window.U1clear=clearRoom;
+  window.U1clear=clearHovered;
   function initAll(){
     document.querySelectorAll('.daiuda select').forEach(s=>{if(!s.options.length)s.innerHTML='<option value="lijie">理解</option><option value="kunhuo">困惑</option>';});
     document.querySelectorAll('.daiuda input').forEach(inp=>inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')submitDai(inp.closest('.daiuda'));}));
-    document.addEventListener('keydown',e=>{if(e.shiftKey&&(e.key==='C'||e.key==='c')){e.preventDefault();clearRoom();}});
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
+    document.addEventListener('keydown',e=>{if(e.shiftKey&&(e.key==='C'||e.key==='c')){e.preventDefault();clearHovered();}});
     if(!initFB())loadLocal();
     renderAll(); makeQRs(); setStatus();
     try{document.querySelectorAll('.slide').forEach((s,i)=>{if((s.querySelector('.daiuda')||s.querySelector('.qr-grid'))&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
