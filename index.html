@@ -291,7 +291,33 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .blankmap .mnotes{margin-top:.35em;display:flex;flex-direction:column;gap:.25em;align-items:center}
 .blankmap .mnote{background:#fff3b8;font-size:.8rem;line-height:1.4;padding:.25em .6em;border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.12);max-width:13em;transform:rotate(-1.5deg)}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
+/* —— 第二堂 五組QR / 即時顯示頁 —— */
+.qr-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1vw;width:100%;margin-top:.5em}
+.qr-card{background:#fff;border-radius:16px;border-top:6px solid var(--c,#862633);box-shadow:var(--shadow-soft);padding:.9em .7em 1em;display:flex;flex-direction:column;align-items:center;gap:.6em}
+.qr-box{width:clamp(110px,10.5vw,165px);height:clamp(110px,10.5vw,165px);background:#fff;display:flex;align-items:center;justify-content:center}
+.qr-box img,.qr-box canvas{width:100%!important;height:100%!important;display:block}
+.qr-cap{font-family:var(--font-serif);font-weight:700;color:var(--c,#862633);font-size:clamp(1rem,1.2vw,1.25rem);text-align:center;line-height:1.25}
+.qr-cap small{display:block;font-family:var(--font-sans);font-weight:600;color:var(--color-muted);font-size:.72em;letter-spacing:.02em}
+.gpage h2 .g-dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:middle}
+.gcols{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;width:100%;margin-top:.2em}
+.gcol{display:flex;flex-direction:column;min-height:0}
+.gcol-h{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.15rem,1.5vw,1.5rem);color:#fff;background:var(--c,#862633);padding:.38em .9em;border-radius:12px 12px 0 0}
+.gcol-h.kunhuo{background:#5C1A23}
+.gbox{flex:1;min-height:0;overflow:auto;background:rgba(255,255,255,.85);border:2px solid var(--color-line);border-top:none;border-radius:0 0 14px 14px;padding:.7em .8em;display:flex;flex-direction:column;gap:.55em}
+.gitem{background:#fff;border-left:5px solid var(--c,#862633);border-radius:8px;box-shadow:var(--shadow-soft);padding:.55em .8em;font-size:clamp(1.05rem,1.3vw,1.3rem);line-height:1.55;white-space:pre-wrap;animation:u1pop .3s ease}
+.gbox.kunhuo .gitem{background:#FFF8D8;border-left-color:#5C1A23}
+.gbox .empty-hint{margin:auto;font-size:1.05rem}
+.daiuda{display:flex;gap:.5em;align-items:center;margin-top:.6em;flex-wrap:wrap}
+.daiuda .tag{font-size:.78rem;color:var(--color-muted);background:rgba(0,0,0,.05);padding:.28em .8em;border-radius:999px;white-space:nowrap}
+.daiuda select,.daiuda input{font-family:var(--font-sans);font-size:1rem;padding:.45em .7em;border:2px solid var(--color-line);border-radius:8px;background:#fff;color:var(--color-text)}
+.daiuda input{flex:1;min-width:11em}
+.daiuda .btn{background:var(--color-primary);color:#fff;border:none;border-radius:999px;padding:.5em 1.3em;font-size:.95rem;font-weight:700;cursor:pointer}
+#fbStatus{font-weight:700}
 </style>
+<script src="fbconfig.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 <div class="deck" id="deck">
@@ -580,44 +606,78 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 30 分鐘</span><p>分工討論四面向，推一位代表準備上台。重點放在：<b>②</b> 對所負責核心素養的理解、<b>③</b> 還有哪些地方不太懂、<b>④</b> 能否掌握「所負責的核心素養與其他核心素養之間的關係」。</p></div>
 </section>
 
-<!-- S18 互動① 理解牆 -->
+<!-- S18 五組 QR：手機投稿入口 -->
 <section class="slide">
-  <h2>互動 ① 把你們的「理解」寫上來</h2>
-  <p class="lead">每組投一句：「我們對○○素養的理解是……」即時上牆。</p>
-  <div class="interact" onclick="event.stopPropagation()">
-    <div class="io">
-      <select id="lijieComp"></select>
-      <input id="lijieText" type="text" maxlength="80" placeholder="一句話：我們對這個素養的理解是…（Enter 送出）">
-      <button class="btn" onclick="U1.add('lijie')">送出上牆</button>
-      <button class="btn ghost" onclick="U1.clear('lijie')">清空</button>
-    </div>
-    <div class="lijie-wall" id="lijieWall"></div>
+  <h2>掃你那一組的 QR，把討論打在手機上</h2>
+  <p class="lead">五組各掃自己的碼 → 在手機上<b>充分</b>寫下「理解」與「還不懂／接不起來」（字數不限）→ 投影幕上你們這一組的頁面會即時更新。</p>
+  <div class="qr-grid">
+    <div class="qr-card" style="--c:#862633"><div class="qr-box" data-g="1"></div><div class="qr-cap">第1組<small>終極關懷</small></div></div>
+    <div class="qr-card" style="--c:#A8782E"><div class="qr-box" data-g="2"></div><div class="qr-cap">第2組<small>價值思辨</small></div></div>
+    <div class="qr-card" style="--c:#A23A48"><div class="qr-box" data-g="3"></div><div class="qr-cap">第3組<small>靈性修養</small></div></div>
+    <div class="qr-card" style="--c:#6B5635"><div class="qr-box" data-g="4"></div><div class="qr-cap">第4組<small>人學探索</small></div></div>
+    <div class="qr-card" style="--c:#5C1A23"><div class="qr-box" data-g="5"></div><div class="qr-cap">第5組<small>哲學思考</small></div></div>
   </div>
+  <p class="src">無法掃描？手機瀏覽器開 <b>js-1105.github.io/life-edu-intro/submit.html?g=（組別 1–5）</b>　·　狀態：<span id="fbStatus">—</span></p>
 </section>
 
-<!-- S19 互動② 困惑便利貼牆 -->
-<section class="slide">
-  <h2>互動 ② 把「還不懂／接不起來」貼上來</h2>
-  <p class="lead">每組投：還不夠懂的地方，或它和別的素養接不起來的困惑。</p>
-  <div class="interact" onclick="event.stopPropagation()">
-    <div class="io">
-      <select id="kunhuoComp"></select>
-      <input id="kunhuoText" type="text" maxlength="80" placeholder="例：價值思辨判斷對錯的根據，到底在哪？（Enter 送出）">
-      <button class="btn" onclick="U1.add('kunhuo')">貼上便利貼</button>
-      <button class="btn ghost" onclick="U1.clear('kunhuo')">清空</button>
-    </div>
-    <div class="kunhuo-board" id="kunhuoBoard"></div>
+<!-- S19 第1組 終極關懷 -->
+<section class="slide gpage" style="--c:#862633">
+  <h2><span class="g-dot"></span>第1組 · 終極關懷</h2>
+  <div class="gcols">
+    <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g1-lijie"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g1-kunhuo"></div></div>
   </div>
+  <div class="daiuda" data-g="1" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
-<!-- S20 空白五大核心素養關係圖（自動帶入 S19 困惑） -->
+<!-- S20 第2組 價值思辨 -->
+<section class="slide gpage" style="--c:#A8782E">
+  <h2><span class="g-dot"></span>第2組 · 價值思辨</h2>
+  <div class="gcols">
+    <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g2-lijie"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g2-kunhuo"></div></div>
+  </div>
+  <div class="daiuda" data-g="2" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
+</section>
+
+<!-- S21 第3組 靈性修養 -->
+<section class="slide gpage" style="--c:#A23A48">
+  <h2><span class="g-dot"></span>第3組 · 靈性修養</h2>
+  <div class="gcols">
+    <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g3-lijie"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g3-kunhuo"></div></div>
+  </div>
+  <div class="daiuda" data-g="3" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
+</section>
+
+<!-- S22 第4組 人學探索 -->
+<section class="slide gpage" style="--c:#6B5635">
+  <h2><span class="g-dot"></span>第4組 · 人學探索</h2>
+  <div class="gcols">
+    <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g4-lijie"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g4-kunhuo"></div></div>
+  </div>
+  <div class="daiuda" data-g="4" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
+</section>
+
+<!-- S23 第5組 哲學思考 -->
+<section class="slide gpage" style="--c:#5C1A23">
+  <h2><span class="g-dot"></span>第5組 · 哲學思考</h2>
+  <div class="gcols">
+    <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g5-lijie"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g5-kunhuo"></div></div>
+  </div>
+  <div class="daiuda" data-g="5" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
+</section>
+
+<!-- S24 空白五大核心素養關係圖（自動匯入五組困惑） -->
 <section class="slide">
-  <h2>空白地圖：困惑，先掛在這裡</h2>
+  <h2>空白地圖：把五組的困惑，先掛上來</h2>
   <p class="lead">五塊拼塊都在，塊與塊之間還是空的——下午第五、六堂，一格一格補回來。</p>
   <div class="blankmap" id="blankMap"></div>
 </section>
 
-<!-- S21 收束·懸念 -->
+<!-- S25 收束·懸念 -->
 <section class="slide roomy">
   <h2>五塊拼塊都在，只是還沒拼起來</h2>
   <div class="grid2" style="align-items:center">
@@ -1117,62 +1177,77 @@ function onYouTubeIframeAPIReady(){try{new YT.Player('ytPaleBlueDot',{events:{on
 </script>
 <script>
 window.U1=(function(){
-  const COMP=[
-    {n:'終極關懷',c:'#862633',x:27,y:28},
-    {n:'價值思辨',c:'#A8782E',x:50,y:19},
-    {n:'靈性修養',c:'#A23A48',x:73,y:28},
-    {n:'人學探索',c:'#6B5635',x:34,y:74},
-    {n:'哲學思考',c:'#5C1A23',x:66,y:74}
+  const GROUPS=[
+    {id:1,n:'終極關懷',c:'#862633',x:27,y:28},
+    {id:2,n:'價值思辨',c:'#A8782E',x:50,y:19},
+    {id:3,n:'靈性修養',c:'#A23A48',x:73,y:28},
+    {id:4,n:'人學探索',c:'#6B5635',x:34,y:74},
+    {id:5,n:'哲學思考',c:'#5C1A23',x:66,y:74}
   ];
-  const cmap={}; COMP.forEach(c=>cmap[c.n]=c.c);
-  const KEY={lijie:'u1_lijie',kunhuo:'u1_kunhuo'};
-  const load=t=>{try{return JSON.parse(localStorage.getItem(KEY[t]))||[]}catch(e){return[]}};
-  const save=(t,a)=>{try{localStorage.setItem(KEY[t],JSON.stringify(a))}catch(e){}};
-  const esc=s=>s.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
-  function add(t){
-    const comp=document.getElementById(t+'Comp').value;
-    const inp=document.getElementById(t+'Text');
-    const txt=(inp.value||'').trim(); if(!txt)return;
-    const a=load(t); a.push({comp,txt}); save(t,a);
-    inp.value=''; inp.focus(); render(t);
+  const esc=s=>String(s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+  const SUBMIT_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'submit.html';
+  let DB=null, online=false;
+  let DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};
+  const LKEY='u1_data_'+(window.FB_ROOM||'local');
+  const configured=()=>window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;
+  const listify=o=>o?Object.keys(o).sort((a,b)=>(o[a].t||0)-(o[b].t||0)).map(k=>o[k].txt):[];
+  function loadLocal(){try{const d=JSON.parse(localStorage.getItem(LKEY));if(d)DATA=d;}catch(e){}}
+  function saveLocal(){try{localStorage.setItem(LKEY,JSON.stringify(DATA))}catch(e){}}
+  function initFB(){
+    if(!configured()||typeof firebase==='undefined')return false;
+    try{
+      firebase.initializeApp(window.FB_CONFIG);
+      DB=firebase.database().ref('rooms/'+(window.FB_ROOM||'default'));
+      DB.on('value',snap=>{const v=snap.val()||{};GROUPS.forEach(g=>{const n=v['g'+g.id]||{};DATA[g.id]={lijie:listify(n.lijie),kunhuo:listify(n.kunhuo)};});online=true;renderAll();setStatus();});
+      return true;
+    }catch(e){return false;}
   }
-  function clear(t){ if(!confirm('確定清空這面牆？此動作無法復原。'))return; save(t,[]); render(t); }
-  function render(t){
-    const a=load(t);
-    if(t==='lijie'){
-      const w=document.getElementById('lijieWall'); if(!w)return;
-      w.innerHTML=a.length?a.map(o=>`<div class="lijie-card" style="--c:${cmap[o.comp]||'#862633'}"><span class="cc">${o.comp}</span><p>${esc(o.txt)}</p></div>`).join('')
-        :'<div class="empty-hint">各組送出後，理解會即時出現在這面牆上。</div>';
-    }else{
-      const b=document.getElementById('kunhuoBoard');
-      if(b)b.innerHTML=a.length?a.map((o,i)=>`<div class="sticky" style="--c:${cmap[o.comp]||'#862633'};--r:${(i%3-1)*2}deg"><span class="cc">${o.comp}</span>${esc(o.txt)}</div>`).join('')
-        :'<div class="empty-hint">各組把「還不懂／接不起來」送上來，會變成便利貼貼在這裡。</div>';
-      renderMap();
-    }
+  function add(g,type,txt){
+    txt=(txt||'').trim(); if(!txt)return;
+    if(DB){DB.child('g'+g+'/'+type).push({txt:txt,t:Date.now()});}
+    else{DATA[g][type].push(txt);saveLocal();renderAll();}
+  }
+  function clearGroup(g){
+    if(!confirm('確定清空第'+g+'組的內容？此動作無法復原。'))return;
+    if(DB){DB.child('g'+g).remove();}else{DATA[g]={lijie:[],kunhuo:[]};saveLocal();renderAll();}
+  }
+  function renderAll(){
+    GROUPS.forEach(g=>['lijie','kunhuo'].forEach(type=>{
+      const box=document.getElementById('g'+g.id+'-'+type); if(!box)return;
+      const a=DATA[g.id][type]||[];
+      box.innerHTML=a.length?a.map(t=>`<div class="gitem" style="--c:${g.c}">${esc(t)}</div>`).join('')
+        :('<div class="empty-hint">'+(type==='lijie'?'掃 QR 在手機寫下你們的「理解」，這裡會即時出現。':'掃 QR 寫下「還不懂／接不起來」，這裡會即時出現。')+'</div>');
+    }));
+    renderMap();
   }
   function renderMap(){
     const m=document.getElementById('blankMap'); if(!m)return;
-    const a=load('kunhuo');
-    const svg='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">'
-      +'<g stroke="#cbb89a" stroke-width=".4" stroke-dasharray="1.6 1.4" fill="none" opacity=".75">'
-      +'<line x1="27" y1="28" x2="50" y2="19"/><line x1="50" y1="19" x2="73" y2="28"/>'
-      +'<line x1="34" y1="74" x2="66" y2="74"/><line x1="50" y1="19" x2="50" y2="74"/></g></svg>';
-    const nodes=COMP.map(c=>{
-      const nn=a.filter(o=>o.comp===c.n).map(o=>`<div class="mnote">${esc(o.txt)}</div>`).join('');
-      return `<div class="node" style="left:${c.x}%;top:${c.y}%"><div class="circle" style="--c:${c.c}">${c.n}</div><div class="mnotes">${nn}</div></div>`;
+    const svg='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#cbb89a" stroke-width=".4" stroke-dasharray="1.6 1.4" fill="none" opacity=".75"><line x1="27" y1="28" x2="50" y2="19"/><line x1="50" y1="19" x2="73" y2="28"/><line x1="34" y1="74" x2="66" y2="74"/><line x1="50" y1="19" x2="50" y2="74"/></g></svg>';
+    const nodes=GROUPS.map(g=>{
+      const nn=(DATA[g.id].kunhuo||[]).map(t=>`<div class="mnote">${esc(t)}</div>`).join('');
+      return `<div class="node" style="left:${g.x}%;top:${g.y}%"><div class="circle" style="--c:${g.c}">${g.n}</div><div class="mnotes">${nn}</div></div>`;
     }).join('');
     m.innerHTML=svg+nodes;
   }
-  function initAll(){
-    ['lijieComp','kunhuoComp'].forEach(id=>{const s=document.getElementById(id);if(s)s.innerHTML=COMP.map(c=>`<option>${c.n}</option>`).join('')});
-    ['lijie','kunhuo'].forEach(t=>{try{render(t)}catch(e){}});
-    document.querySelectorAll('.interact input,.interact select').forEach(el=>{
-      el.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'){add(el.id.indexOf('kunhuo')>=0?'kunhuo':'lijie')}});
+  function makeQRs(){
+    if(typeof QRCode==='undefined')return;
+    document.querySelectorAll('.qr-box[data-g]').forEach(box=>{
+      const g=box.getAttribute('data-g'); box.innerHTML='';
+      try{new QRCode(box,{text:SUBMIT_BASE+'?g='+g,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
     });
-    try{document.querySelectorAll('.slide').forEach((s,i)=>{if(s.querySelector('.interact')&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
+  }
+  function setStatus(){const el=document.getElementById('fbStatus'); if(!el)return; el.textContent=DB?(online?'● 線上（手機投稿即時更新）':'● 連線中…'):'○ 單機代打模式（未連網）';}
+  function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
+  window.U1submitDai=submitDai;
+  function initAll(){
+    document.querySelectorAll('.daiuda select').forEach(s=>{if(!s.options.length)s.innerHTML='<option value="lijie">理解</option><option value="kunhuo">困惑</option>';});
+    document.querySelectorAll('.daiuda input').forEach(inp=>inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')submitDai(inp.closest('.daiuda'));}));
+    if(!initFB())loadLocal();
+    renderAll(); makeQRs(); setStatus();
+    try{document.querySelectorAll('.slide').forEach((s,i)=>{if((s.querySelector('.daiuda')||s.querySelector('.qr-grid'))&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
   }
   if(document.readyState!=='loading')initAll();else document.addEventListener('DOMContentLoaded',initAll);
-  return {add,clear,render};
+  return {add,clearGroup,renderAll};
 })();
 </script>
 </body>
