@@ -73,8 +73,18 @@ button.send:active{transform:translateY(1px);opacity:.9}
   function render(type,arr){
     var box=document.getElementById(type+'List');
     if(!arr||!arr.length){box.innerHTML='<div class="empty">'+(type==='lijie'?'還沒送出理解。':'還沒送出困惑。')+'</div>';return;}
-    box.innerHTML=arr.map(function(o){return '<div class="item">'+esc(o.txt)+(DB?'<button class="del" onclick="U1del(\\''+type+'\\',\\''+o.k+'\\')">刪</button>':'')+'</div>';}).join('');
+    box.innerHTML=arr.map(function(o){
+      var del=DB?'<button class="del" data-type="'+type+'" data-k="'+o.k+'">刪</button>':'';
+      return '<div class="item">'+esc(o.txt)+del+'</div>';
+    }).join('');
   }
+  ['lijieList','kunhuoList'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.addEventListener('click',function(e){
+      var b=e.target.closest&&e.target.closest('.del'); if(!b||!DB)return;
+      DB.child(b.getAttribute('data-type')+'/'+b.getAttribute('data-k')).remove();
+    });
+  });
   // 本機備援
   var LKEY='u1_data_'+(window.FB_ROOM||'local');
   function loadLocal(){try{var d=JSON.parse(localStorage.getItem(LKEY));return d||{};}catch(e){return {};}}
@@ -88,7 +98,6 @@ button.send:active{transform:translateY(1px);opacity:.9}
     else{var d=loadLocal();if(!d['g'+g])d['g'+g]={lijie:[],kunhuo:[]};d['g'+g][type].push(txt);saveLocal(d);renderLocal();}
     ta.value='';flash('已送出！');
   };
-  window.U1del=function(type,k){if(!DB)return;DB.child(type+'/'+k).remove();};
   if(configured()&&typeof firebase!=='undefined'){
     try{
       firebase.initializeApp(window.FB_CONFIG);
