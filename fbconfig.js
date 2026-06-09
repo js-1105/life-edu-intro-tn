@@ -6,10 +6,13 @@
  * 詳細步驟見：課程規劃/單元一_第二堂_Firebase設定教學.md
  */
 window.FB_CONFIG = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE.firebaseapp.com",
-  databaseURL: "https://PASTE-default-rtdb.firebaseio.com",
-  projectId: "PASTE_PROJECT_ID"
+  apiKey: "AIzaSyCFuzUM6Xs7zcP71nT2O3E4XVexofGoz0w",
+  authDomain: "life-edu-intro.firebaseapp.com",
+  databaseURL: "https://life-edu-intro-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "life-edu-intro",
+  storageBucket: "life-edu-intro.firebasestorage.app",
+  messagingSenderId: "861046300947",
+  appId: "1:861046300947:web:7b3466af9a3bc06cfb7ae6"
 };
 
 /* 每屆上課換一個房號即可「清空重來」（不同房號＝不同資料；
