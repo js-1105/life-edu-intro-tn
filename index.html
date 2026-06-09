@@ -66,7 +66,7 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.4re
 .section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:32em}
 /* 封面 */
 .slide.cover{background:var(--grad-royal);color:#fff;text-align:center;align-items:center;overflow:hidden}
-.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(760px 520px at 50% 12%,rgba(212,175,55,.24),transparent 64%),radial-gradient(520px 420px at 12% 85%,rgba(255,255,255,.08),transparent 60%);z-index:0}
+.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(720px 460px at 50% 20%,rgba(212,175,55,.12),transparent 68%),linear-gradient(180deg,rgba(40,8,13,.04),rgba(40,8,13,.2));z-index:1}
 .slide.cover h1{color:#fff;font-size:clamp(3rem,7vw,6rem)} .slide.cover .lead{color:rgba(255,255,255,.88)}
 .slide.cover .stage{color:var(--color-accent-soft);letter-spacing:.35em;font-weight:700}
 .slide.cover .ornament{width:90px;height:4px;background:var(--grad-accent);margin:1.2em auto;border-radius:2px}
@@ -76,6 +76,11 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.4re
 .life-map-art .thin{fill:none;stroke:rgba(255,255,255,.22);stroke-width:1.2}
 .life-map-art .node{fill:#fff7df;stroke:#D4AF37;stroke-width:3;filter:drop-shadow(0 0 12px rgba(212,175,55,.55))}
 .life-map-art .node.dim{fill:rgba(255,255,255,.32);stroke:rgba(232,208,128,.75);filter:none}
+.cover .life-map-art{opacity:.42}
+.cover .life-map-art .route{stroke-width:2.5;stroke-dasharray:7 16;opacity:.42}
+.cover .life-map-art .thin{opacity:.22}
+.cover .life-map-art .node{opacity:.48;filter:none}
+.cover .life-map-art .node.dim{opacity:.25}
 .cover .stage,.cover h1,.cover .ornament,.cover .lead,.cover .cover-cta,.cover .meta{z-index:2}
 /* 卡片/格 */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:center;flex:1;width:100%}
