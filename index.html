@@ -871,10 +871,10 @@ document.addEventListener('keydown',e=>{
 if(location.hash){const n=parseInt(location.hash.slice(1));if(!isNaN(n))showSlide(n);}
 else{document.body.classList.toggle('no-clickzones',noClickZoneSlides.includes(1));}
 </script>
-<!-- 小藍點(GO5)自製繁體中文字幕疊層：依播放時間同步。若整體偏早/晚，改 PBD_OFFSET 秒數即可（正數=字幕延後）。 -->
+<!-- 小藍點(GO5)自製繁體中文字幕疊層：依播放時間同步。若整體偏早/晚，改 PBD_OFFSET 秒數即可（正數＝字幕提早，數字越大越早）。 -->
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
-var PBD_OFFSET=0;
+var PBD_OFFSET=6;
 var PBD_CUES=[
  [12,"再看看那個小點吧。那就是這裡，那就是家，那就是我們。"],
  [20,"你所愛的每一個人、你認識的每一個人、你曾聽過的每一個人，古往今來的每一個人，都在那裡度過了一生。"],
