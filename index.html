@@ -200,13 +200,13 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .contrast-dark blockquote,.contrast-dark .contrast-year{color:#E8C97A}
 .contrast-dark p strong{color:#FBF3C5}
 .contrast-vs{align-self:center;font-size:1.5rem;font-weight:700;color:var(--color-primary);font-family:var(--font-serif);letter-spacing:.05em;padding:.3em .6em}
-.rumor-strip{margin:.55em 0;padding:.7em 1.1em;background:linear-gradient(90deg,#2A1418 0%,#3A1B22 100%);color:#F4E8D9;border-radius:10px;border-left:4px solid #FFD700;display:flex;flex-direction:column;gap:.25em;box-shadow:var(--shadow-soft)}
-.rumor-tag{font-size:clamp(.92rem,1.15vw,1.08rem);color:#FFD700;font-weight:700;letter-spacing:.08em}
-.rumor-text{font-size:clamp(1.05rem,1.5vw,1.38rem);line-height:1.6}
+.rumor-strip{margin:.55em 0;padding:1.1em 1.5em;background:linear-gradient(90deg,#2A1418 0%,#3A1B22 100%);color:#F4E8D9;border-radius:14px;border-left:6px solid #FFD700;display:flex;flex-direction:column;gap:.5em;box-shadow:var(--shadow-strong)}
+.rumor-tag{font-size:clamp(1.05rem,1.35vw,1.25rem);color:#FFD700;font-weight:700;letter-spacing:.08em}
+.rumor-text{font-size:clamp(1.2rem,1.75vw,1.6rem);line-height:1.6}
 .rumor-text strong{color:#FBF3C5;font-weight:700}
 .rumor-text .route{color:#FFD700;font-weight:700}
 .rumor-text .divider{color:#6B6B6B;margin:0 .4em}
-.rumor-src{font-size:clamp(.82rem,1vw,.96rem);color:#B8A89A;font-style:italic}
+.rumor-src{font-size:clamp(.92rem,1.15vw,1.1rem);color:#B8A89A;font-style:italic;line-height:1.55}
 .slide.dense-news{justify-content:flex-start;padding-top:3.4vh;padding-bottom:3vh}
 .slide.dense-news h2{margin-bottom:.4em}
 .dense-news .lead{font-size:clamp(.9rem,1.15vw,1.05rem);margin-bottom:.5em}
@@ -221,26 +221,34 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .dense-news .rumor-src{font-size:clamp(.66rem,.8vw,.76rem)}
 .dense-news>blockquote{font-size:.9rem;margin-top:.4em;padding:.45em 1.1em;line-height:1.45}
 /* Karpathy：沿用章節底色、金書脊與浮水印的人物引言頁 */
-.karpathy-slide{justify-content:flex-start;padding:4.2vh 5.4vw;overflow:hidden}
-.karpathy-photo{position:absolute;right:5.4vw;top:11vh;width:38%;height:54vh;z-index:1;padding:7px;border-radius:20px;background:#fff;box-shadow:var(--shadow-strong);transform:rotate(1deg)}
-.karpathy-photo img{width:100%;height:100%;object-fit:cover;object-position:58% center;border-radius:14px;filter:saturate(.78) contrast(1.04)}
-.karpathy-photo::after{content:"";position:absolute;inset:7px;border-radius:14px;background:linear-gradient(180deg,transparent 58%,rgba(61,16,22,.58));box-shadow:inset 0 0 0 2px rgba(212,175,55,.52)}
-.karpathy-content{position:relative;z-index:2;width:57%;display:flex;flex-direction:column;gap:.5em}
-.karpathy-kicker{display:flex;align-items:center;gap:.7em;color:var(--color-accent-deep);font-size:.8rem;font-weight:700;letter-spacing:.16em}
+.karpathy-slide{justify-content:flex-start;padding:4.5vh 5.4vw;overflow:hidden;gap:1.2vh}
+.kp-head{display:grid;grid-template-columns:1.48fr 1fr;gap:2.6vw;align-items:start;width:100%}
+.kp-text{display:flex;flex-direction:column;gap:.5em;min-width:0}
+.karpathy-kicker{display:flex;align-items:center;gap:.7em;color:var(--color-accent-deep);font-size:clamp(.85rem,1.05vw,1rem);font-weight:700;letter-spacing:.16em}
 .karpathy-kicker::before{content:"";width:48px;height:2px;background:var(--color-accent)}
-.karpathy-slide h2{margin:.05em 0 0;padding:0;border:0;color:var(--color-primary);font-size:clamp(2.35rem,3.8vw,3.65rem);line-height:1.24}
-.karpathy-quote{margin:.05em 0;padding:.55em .75em .55em .9em;max-width:15em;border-left:4px solid var(--color-accent);background:rgba(255,255,255,.68);box-shadow:var(--shadow-soft);color:#4a3b1e;font-size:clamp(1.35rem,1.9vw,1.8rem);line-height:1.5}
+.karpathy-slide h2{margin:.02em 0 0;padding:0;border:0;color:var(--color-primary);font-size:clamp(2.1rem,3.4vw,3.2rem);line-height:1.22}
+.kp-lead{margin:0;color:var(--color-muted);font-size:clamp(.98rem,1.2vw,1.15rem);line-height:1.5;max-width:none}
+.karpathy-quote{margin:.1em 0;padding:.5em .85em;border-left:5px solid var(--color-accent);background:rgba(255,255,255,.7);box-shadow:var(--shadow-soft);color:#4a3b1e;font-size:clamp(1.3rem,1.85vw,1.7rem);line-height:1.45;max-width:none}
 .karpathy-quote strong{color:var(--color-primary)}
-.karpathy-byline{display:block;margin-top:.25em;font-family:var(--font-sans);font-size:.48em;font-style:normal;font-weight:600;letter-spacing:.13em;color:var(--color-accent-deep)}
-.karpathy-thesis{margin:0;max-width:31em;color:var(--color-muted);font-size:clamp(.86rem,1.08vw,1.02rem);line-height:1.55}
-.karpathy-thesis strong{color:var(--color-primary)}
-.karpathy-assets{position:absolute;left:5.4vw;right:5.4vw;bottom:9.2vh;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:.9em}
-.karpathy-asset{min-height:82px;padding:.7em .85em;border-top:4px solid var(--color-accent);border-radius:14px;background:rgba(255,255,255,.9);box-shadow:var(--shadow-soft)}
-.karpathy-asset b{display:block;color:var(--color-primary);font-family:var(--font-serif);font-size:1.1rem;letter-spacing:.05em}
-.karpathy-asset span{display:block;margin-top:.15em;color:var(--color-muted);font-size:.7rem;line-height:1.4}
-.karpathy-foot{position:absolute;left:5.4vw;bottom:24.5vh;z-index:3;margin:0;color:var(--color-muted);font-size:.68rem;line-height:1.5;max-width:76em}
-.karpathy-foot strong{color:var(--color-primary)}
-.karpathy-credit{position:absolute;right:6vw;top:66.5vh;z-index:3;color:var(--color-muted);font-size:.58rem;letter-spacing:.04em}
+.karpathy-byline{display:block;margin-top:.2em;font-family:var(--font-sans);font-size:.5em;font-style:normal;font-weight:600;letter-spacing:.13em;color:var(--color-accent-deep)}
+.kp-body{margin:0;color:var(--color-text);font-size:clamp(1.05rem,1.35vw,1.3rem);line-height:1.55;max-width:none}
+.kp-body strong{color:var(--color-primary)}
+.kp-aside{margin:0;color:var(--color-muted);font-size:clamp(1rem,1.25vw,1.2rem);line-height:1.5;max-width:none}
+.kp-aside strong{color:var(--color-primary)}
+.kp-en{margin:0;color:var(--color-primary);font-style:italic;font-family:var(--font-serif);font-size:clamp(1rem,1.25vw,1.2rem);line-height:1.4;max-width:none}
+.kp-photo{margin:0;position:relative;padding:7px;border-radius:20px;background:#fff;box-shadow:var(--shadow-strong);transform:rotate(1deg)}
+.kp-photo img{display:block;width:100%;height:48vh;object-fit:cover;object-position:58% center;border-radius:14px;filter:saturate(.8) contrast(1.04)}
+.kp-photo::after{content:"";position:absolute;inset:7px;border-radius:14px;background:linear-gradient(180deg,transparent 58%,rgba(61,16,22,.5));pointer-events:none}
+.kp-photo figcaption{position:absolute;right:.7em;bottom:.5em;color:#fff;font-size:.62rem;letter-spacing:.03em;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.kp-bottom{width:100%;margin-top:auto}
+.kp-bottom h3{margin:.1em 0 .45em;color:var(--color-primary);font-size:clamp(1.25rem,1.65vw,1.55rem);border:0}
+.kp-assets{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin-bottom:.7em}
+.kp-asset{padding:.85em 1.05em;border-top:5px solid var(--color-accent);border-radius:14px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-soft)}
+.kp-asset b{display:block;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.2rem,1.55vw,1.5rem);letter-spacing:.05em}
+.kp-asset span{display:block;margin-top:.2em;color:var(--color-muted);font-size:clamp(.95rem,1.15vw,1.1rem);line-height:1.45}
+.kp-practice{background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.04));border:2px dashed var(--color-accent);border-radius:16px;padding:.85em 1.3em;font-size:clamp(1.02rem,1.28vw,1.22rem);line-height:1.55;color:var(--color-text)}
+.kp-practice strong{color:var(--color-primary)}
+.kp-practice .src-note{display:block;margin-top:.3em;color:var(--color-muted);font-size:.78em;font-style:italic}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 </style>
 </head>
@@ -360,7 +368,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <p class="muted">此刻，你最想重新探問的一個問題，是什麼？</p>
 </section>
 
-<section class="slide">
+<section class="slide" style="justify-content:flex-start;padding-top:6vh">
   <h2>人不見了，各種問題當然浮現</h2>
   <p class="lead">人才的厚度與溫度的缺乏</p>
   <p>當教育過度傾斜於學科競爭與人才培育，培養出來的人即使在專業上是頂尖人才，卻往往缺乏人的<strong>厚度與溫度</strong>，也沒有宏大的理想與終極關懷。他們所在乎的可能只是自身短暫的利益，為了利益甚至可以漠視他人的存在。</p>
@@ -409,7 +417,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <p class="muted" style="margin-top:.8em">當「整老師」變成可以彼此傳授的攻略，受傷的不只是老師，而是整個教育體系的崩解。</p>
     </div>
     <div style="text-align:center">
-      <img class="portrait" src="images/drama_chamgyoyuk.png" alt="韓劇《鐵拳教育》海報" style="max-height:62vh">
+      <img class="portrait" src="images/drama_chamgyoyuk_netflix.jpg" alt="Netflix 韓劇《鐵拳教育》（참교육）官方海報" style="max-height:74vh">
       <div class="namecard" style="margin-top:.4em"><div class="nm">韓劇《鐵拳教育》（참교육）</div><div class="life">Netflix · 2026</div></div>
       <p class="src" style="text-align:center;max-width:none">校園失序、教師求助無門，劇中政府設「教權保護局」以非常手段整頓——爆紅之餘，照見的是真實的教師困境。</p>
     </div>
@@ -418,26 +426,36 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <section class="slide">
   <h2>時代脈動：黃仁勳——AI 重新定義「能力」</h2>
-  <p class="lead">當執行成本趨近於零，<strong>定義問題、做出判斷、培養品味</strong>，成為人最後的競爭力。</p>
-  <div class="video-wrap" style="max-width:680px"><iframe src="https://www.youtube-nocookie.com/embed/b50C4Avf_M0?rel=0&modestbranding=1" title="黃仁勳 卡內基美隆大學畢業演說" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-  <p class="src">黃仁勳於卡內基美隆大學畢業演說（全球大視野）。</p>
+  <p class="lead" style="text-align:center;max-width:none">當執行成本趨近於零，<strong>定義問題、做出判斷、培養品味</strong>，成為人最後的競爭力。</p>
+  <div class="video-wrap" style="width:min(80vw,104vh);max-width:none;margin:.3em auto"><iframe src="https://www.youtube-nocookie.com/embed/b50C4Avf_M0?rel=0&modestbranding=1" title="黃仁勳 卡內基美隆大學畢業演說" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  <p class="src" style="text-align:center;max-width:none">黃仁勳於卡內基美隆大學畢業演說（全球大視野）。</p>
 </section>
 
 <section class="slide karpathy-slide">
-  <div class="karpathy-photo"><img src="images/karpathy.webp" alt="Andrej Karpathy 演講照片"></div>
-  <div class="karpathy-content">
-    <div class="karpathy-kicker">AI 時代的生命教育 · Andrej Karpathy</div>
-    <h2>可以外包思考，<br>但不能外包「理解」</h2>
-    <blockquote class="karpathy-quote">「你可以外包你的<strong>思考</strong>，<br>但你不能外包你的<strong>理解</strong>。」<span class="karpathy-byline">—— ANDREJ KARPATHY</span></blockquote>
-    <p class="karpathy-thesis">當 AI 讓執行與產出變得廉價，<strong>理解力的價值反而提升</strong>——因為人仍須把握本質、做出判斷，並指揮更強大的工具。</p>
+  <div class="kp-head">
+    <div class="kp-text">
+      <div class="karpathy-kicker">AI 時代的生命教育 · Andrej Karpathy</div>
+      <h2>可以外包思考，但不能外包「理解」</h2>
+      <p class="kp-lead">侯智薰／《商業周刊》（2026.05.26）轉引 OpenAI 共同創辦人 Andrej Karpathy。對生命教育的啟發——</p>
+      <blockquote class="karpathy-quote">「你可以外包你的<strong>思考</strong>，但你不能外包你的<strong>理解</strong>。」<span class="karpathy-byline">—— ANDREJ KARPATHY</span></blockquote>
+      <p class="kp-body">AI 時代的根本轉變：<strong>思考</strong>變成廉價商品（AI 執行更佳），但<strong>理解力</strong>的價值反而提升——因為人需要指揮更強大的工具。</p>
+      <p class="kp-aside">「程式設計師不會被 AI 取代，但<strong>『只會寫程式』的人</strong>會。」</p>
+      <p class="kp-en">The only problem to solve is what is the problem to solve.</p>
+    </div>
+    <figure class="kp-photo">
+      <img src="images/karpathy.webp" alt="Andrej Karpathy 演講照片">
+      <figcaption>照片：Sk aman khan／Wikimedia Commons（CC0）</figcaption>
+    </figure>
   </div>
-  <div class="karpathy-assets">
-    <div class="karpathy-asset"><b>理解力</b><span>把握本質：為什麼這樣做？</span></div>
-    <div class="karpathy-asset"><b>品味</b><span>判斷好壞：哪個版本更好？</span></div>
-    <div class="karpathy-asset"><b>好奇心</b><span>持續探問：還有別的可能嗎？</span></div>
+  <div class="kp-bottom">
+    <h3>AI 時代真正稀缺的三項資產</h3>
+    <div class="kp-assets">
+      <div class="kp-asset"><b>理解力</b><span>把握本質：「為什麼這樣做？」</span></div>
+      <div class="kp-asset"><b>品味</b><span>判斷好壞：「哪一個版本更好？」</span></div>
+      <div class="kp-asset"><b>好奇心</b><span>持續探問：「還有別的可能嗎？」</span></div>
+    </div>
+    <div class="kp-practice">寫日記、深度閱讀、跨界交流——這些<strong>看似低效率</strong>的活動，恰是 AI 時代真正的複利。<strong>這正是生命教育所關注的：「人之所以為人」的厚度。</strong></div>
   </div>
-  <div class="karpathy-foot">寫日記、深度閱讀、跨界交流——這些<strong>看似低效率</strong>的活動，恰是 AI 時代真正的複利，也是生命教育所關注的「人之所以為人」的厚度。<br>資料：侯智薰／《商業周刊》（2026.05.26）轉引。</div>
-  <div class="karpathy-credit">照片：Sk aman khan／Wikimedia Commons（CC0）</div>
 </section>
 
 <section class="slide section-divider">
