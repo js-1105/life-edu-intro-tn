@@ -338,6 +338,19 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .blankmap .circle{border:3px dashed var(--c);border-radius:50%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;color:var(--c);background:rgba(255,255,255,.66);font-size:clamp(1rem,1.5vw,1.35rem)}
 .blankmap .mnotes{margin-top:.35em;display:flex;flex-direction:column;gap:.25em;align-items:center}
 .blankmap .mnote{background:#fff3b8;font-size:.8rem;line-height:1.4;padding:.25em .6em;border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.12);max-width:13em;transform:rotate(-1.5deg)}
+/* 彩蛋·主題曲頁：獨特暖金背景＋音符美工＋移除章節浮水印 */
+.slide.eggsong{background:
+  radial-gradient(880px 600px at 84% 14%,rgba(212,175,55,.24),transparent 62%),
+  radial-gradient(720px 520px at 12% 92%,rgba(134,38,51,.10),transparent 60%),
+  radial-gradient(circle at 1px 1px,rgba(134,38,51,.05) 1px,transparent 1.5px),
+  linear-gradient(158deg,#FFF9EC 0%,#F2E0B6 120%) !important;
+  background-size:auto,auto,22px 22px,100% 100% !important;}
+.slide.eggsong::after{content:none !important}
+.eggsong h2{border-bottom-color:var(--color-accent-deep)}
+.eggsong h2,.eggsong .lyrics,.eggsong .src,.eggsong .back-home-btn{position:relative;z-index:2}
+.eggsong .egg-deco{position:absolute;z-index:0;pointer-events:none;opacity:.5}
+.eggsong .egg-deco-tr{top:8vh;right:5vw;width:clamp(95px,9vw,150px)}
+.eggsong .egg-deco-bl{bottom:10vh;left:4.5vw;width:clamp(75px,7.5vw,120px)}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
 .qr-intro{text-align:center;max-width:none;margin:.25em auto .55em;font-size:clamp(1.45rem,2vw,1.95rem);line-height:1.5;color:var(--color-text)}
@@ -1168,14 +1181,23 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <p class="signature">——生命的學問，從這裡開始</p>
 </section>
 
-<section class="slide">
+<section class="slide eggsong">
+  <svg class="egg-deco egg-deco-tr" viewBox="0 0 140 140" aria-hidden="true">
+    <g stroke="#C9A227" stroke-width="6" fill="none" stroke-linecap="round"><path d="M46 104 V40"/><path d="M104 92 V28"/></g>
+    <path d="M44 40 L106 28" stroke="#C9A227" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <ellipse cx="38" cy="106" rx="14" ry="10" fill="#C9A227" transform="rotate(-20 38 106)"/>
+    <ellipse cx="96" cy="94" rx="14" ry="10" fill="#C9A227" transform="rotate(-20 96 94)"/>
+  </svg>
+  <svg class="egg-deco egg-deco-bl" viewBox="0 0 120 140" aria-hidden="true">
+    <path d="M56 104 V36 q0 -18 24 -24" stroke="#C9A227" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="44" cy="106" rx="14" ry="10" fill="#C9A227" transform="rotate(-20 44 106)"/>
+    <circle cx="96" cy="20" r="6" fill="#D4AF37"/><circle cx="18" cy="58" r="4" fill="#D4AF37"/><circle cx="104" cy="58" r="3.5" fill="#D4AF37"/>
+  </svg>
   <h2>彩蛋·主題曲〈三問〉</h2>
   <div class="lyrics">
-    <p><span class="h">〔主歌一〕</span><br>天還沒亮　我就開始往前走<br>從沒問過　這條路通向哪個盡頭<br>有人問我　你要去哪裡<br>我才驚覺　我從沒問過　為什麼</p>
-    <p><span class="h">〔導歌〕</span><br>高更在大溪地的畫布角落　顫抖地寫下<br>我們從何處來　我們是誰　又將往哪裡去<br>卡繆站在荒謬的懸崖邊　輕聲地問<br>若一切終將歸於塵土　你為何還緊握著手不肯走<br>有人說　以終為始——先看見遠方那盞燈<br>就像《大學》說的　止於至善　心才定得下來<br>於是我學著　把終點　放進每一個起點</p>
-    <p><span class="h">〔副歌〕</span><br>為何而活　為何而活<br>在每個天微亮的清晨　輕輕問自己<br>該怎麼活　該怎麼活<br>在每個十字路口　誠實地選一條路<br>如何活出　如何活出<br>讓我說過的話　和我走過的路　慢慢合而為一<br>這一生　我要把這三個問題　問到底</p>
-    <p><span class="h">〔主歌二〕</span><br>托爾斯泰說　最重要的時間就是此刻<br>最重要的人　就是此刻在你眼前的誰<br>康德抬頭　望著滿天的星<br>又低下頭　問心裡那一道光</p>
-    <p><span class="h">〔橋段〕</span><br>不是為了找到　一個標準的答案<br>是讓問題　把我打磨得更深<br>當我老去　有人為我送行<br>願我能說：我問過　我愛過　我活過</p>
+    <p><span class="h">〔主歌〕</span><br>天還沒亮　我就開始往前走<br>從沒問過　這條路通向哪個盡頭<br>有人問我　你要去哪裡<br>我才驚覺　我從沒問過　為什麼</p>
+    <p><span class="h">〔導歌〕</span><br>高更在畫布角落　顫抖地寫下<br>我們從何處來　我們是誰　又將往哪裡去<br>有人說　以終為始——先看見遠方那盞燈<br>於是我學著　把終點　放進每一個起點</p>
+    <p><span class="h">〔副歌〕</span><br>為何而活　為何而活<br>在每個天微亮的清晨　輕輕問自己<br>該怎麼活　該怎麼活<br>在每個十字路口　誠實地選一條路<br>如何活出　如何活出<br>讓我說過的話　和我走過的路　慢慢合而為一</p>
     <p><span class="h">〔尾聲｜漸弱〕</span><br>為何活……該怎麼活……如何活出……<br>這，就是我的人生三問</p>
   </div>
   <p class="src">〈三問〉——《生命的學問》概念專輯的開場曲；整週的最後一節，它會再次響起。</p>
