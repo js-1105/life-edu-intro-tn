@@ -111,13 +111,14 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .namecard .nm{font-family:var(--font-serif);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:700;color:var(--color-primary)}
 .namecard .life{font-size:.92rem;letter-spacing:.12em;color:var(--color-accent-deep);font-weight:700}
 /* 水彩肖像框（比照 life-edu-philosophy） */
-.thinker-row{display:flex;align-items:center;gap:4.5vw;flex:1;width:calc(100% + 6vw);margin-left:-3vw}
-.thinker-row>.thinker-text{flex:1;min-width:0}
-.thinker-text p{font-size:clamp(1.4rem,1.9vw,1.95rem);max-width:none}
-.thinker-text .fl li{font-size:clamp(1.5rem,2.1vw,2rem)}
-.thinker-text blockquote{font-size:clamp(1.6rem,2.4vw,2.15rem);max-width:none}
-.thinker-text .big-q{font-size:clamp(1.7rem,2.7vw,2.4rem)}
-.thinker-text .src{font-size:clamp(.95rem,1.15vw,1.12rem);max-width:none}
+.thinker-row{display:flex;align-items:center;gap:4vw;flex:1;width:calc(100% + 7vw);margin-left:-3.5vw}
+.thinker-row>.thinker-text{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:.45em}
+.thinker-text p{font-size:clamp(1.55rem,2.05vw,2.15rem);max-width:none;margin:0}
+.thinker-text .fl{margin:0}
+.thinker-text .fl li{font-size:clamp(1.65rem,2.3vw,2.25rem);padding:.72em 0 .72em 1.8em}
+.thinker-text blockquote{font-size:clamp(1.75rem,2.55vw,2.35rem);max-width:none}
+.thinker-text .big-q{font-size:clamp(1.95rem,3vw,2.7rem)}
+.thinker-text .src{font-size:clamp(1rem,1.25vw,1.22rem);max-width:none}
 .wc-with-caption{display:flex;flex-direction:column;align-items:center;flex:none}
 .wc-frame{display:inline-block;padding:11px;border-radius:18px;background:linear-gradient(155deg,var(--wc1,#F3EFE6),var(--wc2,#E7DECB));box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.45)}
 .wc-frame img{display:block;width:100%;height:auto;border-radius:12px}
@@ -776,7 +777,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>卡繆·人生一問</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(300px,31vw,420px)">
+    <div class="wc-with-caption" style="width:clamp(330px,33vw,460px)">
       <div class="wc-frame wc-camus"><img src="images/camus_wc.jpg" alt="Albert Camus 水彩肖像"></div>
       <div class="wc-cap">Albert Camus　·　1913–1960</div>
     </div>
@@ -809,7 +810,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>康德·人生三問</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(300px,30vw,400px)">
+    <div class="wc-with-caption" style="width:clamp(330px,33vw,460px)">
       <div class="wc-frame wc-kant"><img src="images/kant_wc.jpg" alt="Immanuel Kant 水彩肖像"></div>
       <div class="wc-cap">Immanuel Kant　·　1724–1804</div>
     </div>
@@ -839,7 +840,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/5CBUQ1OejY0" title="尼可萊的三個問題" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       <p class="src">〈尼可萊的三個問題〉繪本動畫。托爾斯泰把「意義」落回此刻、眼前、利他。</p>
     </div>
-    <div class="wc-with-caption" style="width:clamp(270px,27vw,360px)">
+    <div class="wc-with-caption" style="width:clamp(290px,29vw,390px)">
       <div class="wc-frame wc-tolstoy"><img src="images/tolstoy_wc.jpg" alt="Leo Tolstoy 水彩肖像"></div>
       <div class="wc-cap">Leo Tolstoy　·　1828–1910</div>
     </div>
@@ -849,7 +850,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>高更·人生三問</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(260px,26vw,340px)">
+    <div class="wc-with-caption" style="width:clamp(280px,28vw,380px)">
       <div class="wc-frame wc-gauguin"><img src="images/gauguin_wc.jpg" alt="Paul Gauguin 水彩肖像"></div>
       <div class="wc-cap">Paul Gauguin　·　1848–1903</div>
     </div>
