@@ -362,16 +362,20 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .slide.closing .signature{color:var(--color-accent-deep);margin-top:1.2em;font-size:clamp(1rem,1.25vw,1.2rem);letter-spacing:.15em;font-weight:700}
 .closing-map{position:relative;min-height:62vh;border-radius:26px;background:rgba(255,255,255,.56);border:1px solid rgba(212,175,55,.45);box-shadow:var(--shadow-strong);overflow:hidden}
 .closing-map::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(212,175,55,.22),transparent 34%),radial-gradient(circle at 1px 1px,rgba(134,38,51,.08) 1px,transparent 1.5px);background-size:100% 100%,26px 26px}
-.closing-core{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:clamp(150px,15vw,210px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--grad-royal);color:#fff;border:6px solid #fff;box-shadow:0 12px 38px rgba(92,26,35,.28),0 0 0 3px var(--color-accent)}
-.closing-core b{font-family:var(--font-serif);font-size:clamp(1.4rem,2vw,1.9rem);line-height:1.3}
+.closing-core{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);width:clamp(118px,11vw,155px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--grad-royal);color:#fff;border:5px solid #fff;box-shadow:0 12px 38px rgba(92,26,35,.28),0 0 0 3px var(--color-accent)}
+.closing-core b{font-family:var(--font-serif);font-size:clamp(1.15rem,1.55vw,1.45rem);line-height:1.3}
 .closing-core span{margin-top:.35em;color:var(--color-accent-soft);font-size:.75rem;letter-spacing:.12em}
-.closing-question{position:absolute;width:clamp(155px,15vw,210px);padding:.8em .9em;border-radius:15px;background:#fff;border-top:5px solid var(--color-accent);box-shadow:var(--shadow-soft);text-align:left}
+.closing-question{position:absolute;width:clamp(165px,16vw,220px);padding:.68em .85em;border-radius:15px;background:#fff;border-top:5px solid var(--color-accent);box-shadow:var(--shadow-soft);text-align:left}
 .closing-question .n{display:block;color:var(--color-accent-deep);font-size:.68rem;font-weight:800;letter-spacing:.15em}
-.closing-question b{display:block;margin-top:.15em;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.15rem,1.55vw,1.45rem);line-height:1.35}
-.closing-question.q1{left:5%;top:8%;transform:rotate(-2deg)}
-.closing-question.q2{right:5%;top:13%;transform:rotate(2deg)}
-.closing-question.q3{right:8%;bottom:8%;transform:rotate(-1deg)}
-.closing-foundation{position:absolute;left:6%;bottom:10%;width:clamp(170px,17vw,235px);padding:.75em 1em;border-radius:999px;background:rgba(134,38,51,.09);border:1px solid rgba(134,38,51,.18);color:var(--color-primary);font-weight:700;font-size:clamp(.88rem,1.08vw,1.02rem);text-align:center}
+.closing-question b{display:block;margin-top:.12em;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.08rem,1.42vw,1.35rem);line-height:1.35}
+.closing-question.q1{left:50%;top:5%;transform:translateX(-50%)}
+.closing-question.q2{left:5%;top:36%;transform:rotate(-1deg)}
+.closing-question.q3{right:5%;top:36%;transform:rotate(1deg)}
+.closing-foundation{position:absolute;bottom:6%;width:clamp(180px,17vw,235px);padding:.65em .85em;border-radius:14px;background:rgba(255,255,255,.88);border-bottom:4px solid var(--c,var(--color-primary));box-shadow:var(--shadow-soft);text-align:left}
+.closing-foundation .n{display:block;color:var(--c,var(--color-primary));font-size:.68rem;font-weight:800;letter-spacing:.12em}
+.closing-foundation b{display:block;margin-top:.12em;color:var(--color-text);font-family:var(--font-serif);font-size:clamp(1.02rem,1.32vw,1.25rem)}
+.closing-foundation.f1{left:5%;--c:#6B5635}
+.closing-foundation.f2{right:5%;--c:#5C1A23}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
 .qr-intro{text-align:center;max-width:none;margin:.25em auto .55em;font-size:clamp(1.45rem,2vw,1.95rem);line-height:1.5;color:var(--color-text)}
@@ -1193,11 +1197,12 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <p class="signature">——生命的學問，從這裡開始</p>
     </div>
     <div class="closing-map">
-      <div class="closing-question q1"><span class="n">人生第一問</span><b>人為何活著？</b></div>
+      <div class="closing-question q1"><span class="n">人生第一問</span><b>人應為何而活？</b></div>
       <div class="closing-question q2"><span class="n">人生第二問</span><b>該怎樣活著？</b></div>
       <div class="closing-question q3"><span class="n">人生第三問</span><b>如何能活出？</b></div>
       <div class="closing-core"><b>生命的學問</b><span>三問 × 五大素養</span></div>
-      <div class="closing-foundation">人學為基礎・哲學為方法</div>
+      <div class="closing-foundation f1"><span class="n">基礎</span><b>人學探索</b></div>
+      <div class="closing-foundation f2"><span class="n">方法</span><b>哲學思考</b></div>
     </div>
   </div>
 </section>
