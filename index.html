@@ -125,6 +125,12 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .q-stack .card h3{margin:.05em 0 .12em;color:var(--color-primary);font-size:clamp(1.25rem,1.55vw,1.52rem)}
 .q-stack .card .q-question{margin:0 0 .28em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,1.12vw,1.1rem);color:var(--color-accent-deep);letter-spacing:.02em}
 .q-stack .card p{margin:0;font-size:clamp(1.05rem,1.28vw,1.25rem);line-height:1.5}
+.painting-clean{display:block;height:25vh;width:auto;max-width:100%;margin:.4em auto;border-radius:10px;box-shadow:var(--shadow-strong);border:2px solid var(--color-accent)}
+.three-q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw;margin-top:.5em}
+.three-q-grid .card{padding:.6em .8em}
+.three-q-grid .card h3{margin:.05em 0 .08em;color:var(--color-primary);font-size:clamp(1.02rem,1.3vw,1.25rem)}
+.three-q-grid .card .q-question{margin:0 0 .25em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.82rem,1vw,.96rem);color:var(--color-accent-deep)}
+.three-q-grid .card p{margin:0;font-size:clamp(.9rem,1.08vw,1.02rem);line-height:1.42}
 /* 遺願清單（人生二問）版型——比照參考頁 */
 .bl-grid{display:grid;grid-template-columns:6fr 5fr;gap:2.8vw;align-items:center;flex:1;min-height:0;margin-top:.3em;width:100%}
 .bl-photo{width:100%;display:block;border-radius:16px;box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.4)}
@@ -875,17 +881,21 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide">
-  <h2>高更·人生三問</h2>
+  <h2>高更的「人生三問」</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(280px,28vw,380px)">
+    <div class="wc-with-caption" style="width:clamp(240px,24vw,320px)">
       <div class="wc-frame wc-gauguin"><img src="images/gauguin_wc.jpg" alt="Paul Gauguin 水彩肖像"></div>
       <div class="wc-cap">Paul Gauguin　·　1848–1903</div>
     </div>
     <div class="thinker-text">
-      <blockquote style="margin-top:0">我們從何處來？我們是誰？我們往何處去？</blockquote>
-      <img class="portrait wide" src="images/gauguin_painting.jpg" alt="高更油畫《我們從何處來》" style="margin:.3em 0">
-      <p class="muted">高更在喪女、貧病交迫、計畫服毒之際，完成近四公尺巨畫，把三問刻在左上角：<br>右＝沉睡嬰兒（誕生）／中＝採果男子（壯年）／左＝枯槁老婦（衰老）。</p>
-      <p class="src">人生最重要的問題，往往不是在書桌上想出來的，而是在生命的極限處被逼出來的。</p>
+      <p class="lead">高更於 1897 年在大溪地完成近四公尺巨幅油畫——《<b>我們從何處來？我們是誰？我們向何處去？</b>》（D'où venons-nous? Que sommes-nous? Où allons-nous?）</p>
+      <img class="painting-clean" src="images/gauguin_painting.jpg" alt="高更《我們從何處來？我們是誰？我們向何處去？》（1897）">
+      <div class="three-q-grid">
+        <div class="card"><h3>我們從何處來？</h3><p class="q-question">D'où venons-nous?</p><p>畫作右側：沉睡的嬰兒與年輕女性，象徵<b>生命的誕生與純真</b>，引導思考生命的起源。</p></div>
+        <div class="card"><h3>我們是誰？</h3><p class="q-question">Que sommes-nous?</p><p>畫作中央：採摘果實的成年男子，象徵<b>壯年的勞動、慾望與追求</b>，促使我們反思自我。</p></div>
+        <div class="card"><h3>我們向何處去？</h3><p class="q-question">Où allons-nous?</p><p>畫作左側：形容枯槁的老婦人，象徵<b>衰老與死亡的臨近</b>，逼迫我們直面死亡。</p></div>
+      </div>
+      <p class="src" style="font-style:italic;max-width:none">高更從<b>神學人學</b>追問存在的起源、本質與歸宿，但缺乏實踐關懷，更多反映個人的絕望與困惑。</p>
     </div>
   </div>
 </section>
