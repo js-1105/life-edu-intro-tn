@@ -120,10 +120,11 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .thinker-text .big-q{font-size:clamp(1.95rem,3vw,2.7rem)}
 .thinker-text .src{font-size:clamp(1rem,1.25vw,1.22rem);max-width:none}
 .thinker-text .lead{font-size:clamp(1.4rem,1.85vw,1.78rem);color:var(--color-muted);font-weight:300;margin:0}
-.q-stack{display:flex;flex-direction:column;gap:.7em}
-.q-stack .card{padding:.85em 1.3em}
-.q-stack .card h3{margin:.05em 0 .25em;color:var(--color-primary);font-size:clamp(1.3rem,1.65vw,1.6rem)}
-.q-stack .card p{margin:0;font-size:clamp(1.1rem,1.4vw,1.4rem);line-height:1.5}
+.q-stack{display:flex;flex-direction:column;gap:.6em}
+.q-stack .card{padding:.72em 1.2em}
+.q-stack .card h3{margin:.05em 0 .12em;color:var(--color-primary);font-size:clamp(1.25rem,1.55vw,1.52rem)}
+.q-stack .card .q-question{margin:0 0 .28em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,1.12vw,1.1rem);color:var(--color-accent-deep);letter-spacing:.02em}
+.q-stack .card p{margin:0;font-size:clamp(1.05rem,1.28vw,1.25rem);line-height:1.5}
 /* 遺願清單（人生二問）版型——比照參考頁 */
 .bl-grid{display:grid;grid-template-columns:6fr 5fr;gap:2.8vw;align-items:center;flex:1;min-height:0;margin-top:.3em;width:100%}
 .bl-photo{width:100%;display:block;border-radius:16px;box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.4)}
@@ -836,21 +837,20 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide">
-  <h2>康德·人生三問</h2>
+  <h2>康德的「人生三問」</h2>
   <div class="thinker-row">
     <div class="wc-with-caption" style="width:clamp(330px,33vw,460px)">
       <div class="wc-frame wc-kant"><img src="images/kant_wc.jpg" alt="Immanuel Kant 水彩肖像"></div>
       <div class="wc-cap">Immanuel Kant　·　1724–1804</div>
     </div>
     <div class="thinker-text">
-      <ul class="fl">
-        <li>我<b>能知道</b>什麼？（純粹理性批判）</li>
-        <li>我<b>應該做</b>什麼？（實踐理性批判）</li>
-        <li>我<b>可以期待</b>什麼？（判斷力批判）</li>
-      </ul>
-      <p class="big-q">三問最終歸結為一問——<span class="accent">「人是什麼？」</span></p>
-      <blockquote>位我上者，燦爛星空；道德律令，在我心中。</blockquote>
-      <p class="src">康德《實踐理性批判》結語。人生三問的西方源頭之一——也預示了五大核心素養的「人學探索」基礎。</p>
+      <p class="lead">康德在《純粹理性批判》、《實踐理性批判》、《判斷力批判》三大批判的深奧論述背後，核心問題可歸結為三：</p>
+      <div class="q-stack">
+        <div class="card"><h3>我能知道什麼？</h3><p class="q-question">What can I know?</p><p>探討人類認識能力的界限與可能性——哪些知識客觀真實，哪些只是主觀認知的產物。<b>知識論的範疇。</b></p></div>
+        <div class="card"><h3>我應該做什麼？</h3><p class="q-question">What ought I to do?</p><p>探討人類行為的道德準則——康德強調「無上命令」，道德行為應出於對道德法則的純粹敬重。<b>倫理學的核心課題。</b></p></div>
+        <div class="card"><h3>我可以期待什麼？</h3><p class="q-question">What may I hope?</p><p>觸及宗教與信仰的層面——盡了道德義務後，可否期待超越現世的回報？為道德實踐的圓滿，必須「預設」上帝與靈魂不朽。</p></div>
+      </div>
+      <blockquote style="font-size:clamp(1.3rem,1.75vw,1.65rem);max-width:none">三問最終都歸結到一個更根本的提問——<b>「人是什麼？」（What is man?）</b>　這顯示了「人學探索」在人生根本課題中的核心地位。</blockquote>
     </div>
   </div>
 </section>
