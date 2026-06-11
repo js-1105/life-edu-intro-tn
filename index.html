@@ -119,6 +119,19 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .thinker-text blockquote{font-size:clamp(1.75rem,2.55vw,2.35rem);max-width:none}
 .thinker-text .big-q{font-size:clamp(1.95rem,3vw,2.7rem)}
 .thinker-text .src{font-size:clamp(1rem,1.25vw,1.22rem);max-width:none}
+.thinker-text .lead{font-size:clamp(1.4rem,1.85vw,1.78rem);color:var(--color-muted);font-weight:300;margin:0}
+.q-stack{display:flex;flex-direction:column;gap:.7em}
+.q-stack .card{padding:.85em 1.3em}
+.q-stack .card h3{margin:.05em 0 .25em;color:var(--color-primary);font-size:clamp(1.3rem,1.65vw,1.6rem)}
+.q-stack .card p{margin:0;font-size:clamp(1.1rem,1.4vw,1.4rem);line-height:1.5}
+/* 遺願清單（人生二問）版型——比照參考頁 */
+.bl-grid{display:grid;grid-template-columns:6fr 5fr;gap:2.8vw;align-items:center;flex:1;min-height:0;margin-top:.3em;width:100%}
+.bl-photo{width:100%;display:block;border-radius:16px;box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.4)}
+.bl-photo-cap{text-align:center;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,1.15vw,1.15rem);color:var(--color-muted);margin-top:.5em}
+.bl-cards{display:flex;flex-direction:column;gap:1.1em}
+.bl-cards .card h3{margin:.1em 0 .35em;color:var(--color-primary);font-size:clamp(1.3rem,1.7vw,1.65rem)}
+ul.plain{list-style:none;margin:0;padding:0}
+ul.plain li{font-size:clamp(1.1rem,1.4vw,1.35rem);line-height:1.65;padding:.1em 0;color:var(--color-text)}
 .wc-with-caption{display:flex;flex-direction:column;align-items:center;flex:none}
 .wc-frame{display:inline-block;padding:11px;border-radius:18px;background:linear-gradient(155deg,var(--wc1,#F3EFE6),var(--wc2,#E7DECB));box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.45)}
 .wc-frame img{display:block;width:100%;height:auto;border-radius:12px}
@@ -793,18 +806,33 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <section class="slide">
   <h2>《遺願清單》·人生二問</h2>
-  <p class="lead" style="max-width:none">電影《一路玩到掛 The Bucket List》中，進天堂的兩個問題——你這一生<b>是否快樂</b>？是否<b>帶給身邊的人快樂</b>？</p>
-  <div class="grid2" style="align-items:center">
+  <p class="lead" style="max-width:none">電影《遺願清單》中，Carter 對 Edward 提出兩個進天堂的條件。</p>
+  <div class="bl-grid">
     <div>
-      <img class="portrait wide" src="images/bucket_list.jpg" alt="一路玩到掛 劇照" style="max-height:50vh;width:100%">
-      <div class="namecard" style="margin-top:.4em"><div class="nm">The Bucket List · 一路玩到掛</div><div class="life">2007</div></div>
+      <img class="bl-photo" src="images/bucket_list.jpg" alt="電影《一路玩到掛 The Bucket List》劇照——Morgan Freeman 與 Jack Nicholson">
+      <div class="bl-photo-cap">《一路玩到掛 The Bucket List》（2007）</div>
     </div>
-    <div>
-      <div class="video-wrap" style="max-width:100%;width:100%"><iframe src="https://www.youtube-nocookie.com/embed/IPiAKsw9Z6M" title="一路玩到掛 兩個問題" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-      <blockquote>快樂就夠了嗎？快樂，但沒有意義呢？</blockquote>
+    <div class="bl-cards">
+      <div class="card">
+        <h3>一生是否都過得快樂？</h3>
+        <ul class="plain">
+          <li>快樂有表面、感官、短暫的</li>
+          <li>也有深層、精神、長期的</li>
+          <li>快樂真的那麼重要嗎？</li>
+          <li>若過得快樂卻沒有意義呢？</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>一生是否都帶給旁邊的人快樂？</h3>
+        <ul class="plain">
+          <li>要如何帶給別人快樂？</li>
+          <li>若不講究方法，會不會弄巧成拙？</li>
+          <li>反而帶給自己與他人痛苦？</li>
+        </ul>
+      </div>
     </div>
   </div>
-  <p class="src">《一路玩到掛 The Bucket List》片段（FUNDAY，中英字幕）。</p>
+  <p class="src" style="font-style:italic;max-width:none">由此可見，「人生二問」似乎仍不能涵蓋人生所有最重要的課題。</p>
 </section>
 
 <section class="slide">
@@ -828,21 +856,20 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide">
-  <h2>托爾斯泰《三個問題》</h2>
+  <h2>托爾斯泰的「人生三問」</h2>
   <div class="thinker-row">
-    <div class="thinker-text">
-      <p>晚年陷入深刻精神危機的托爾斯泰，借一位國王尋找三個問題的答案：</p>
-      <ul class="fl">
-        <li>最重要的<b>時間</b>＝<b>現在</b></li>
-        <li>最重要的<b>人</b>＝<b>眼前的人</b></li>
-        <li>最重要的<b>事</b>＝<b>對他做有益的事</b></li>
-      </ul>
-      <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/5CBUQ1OejY0" title="尼可萊的三個問題" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-      <p class="src">〈尼可萊的三個問題〉繪本動畫。托爾斯泰把「意義」落回此刻、眼前、利他。</p>
-    </div>
     <div class="wc-with-caption" style="width:clamp(290px,29vw,390px)">
       <div class="wc-frame wc-tolstoy"><img src="images/tolstoy_wc.jpg" alt="Leo Tolstoy 水彩肖像"></div>
       <div class="wc-cap">Leo Tolstoy　·　1828–1910</div>
+    </div>
+    <div class="thinker-text">
+      <p class="lead">托爾斯泰晚年經歷深刻的精神危機。在短篇小說《三個問題》中，他透過一位國王尋找人生答案的故事，提出三個關乎實踐智慧的提問：</p>
+      <div class="q-stack">
+        <div class="card"><h3>最重要的時間？</h3><p>答案：<b>「現在」</b>。只有在現在，我們才對自己擁有掌控權。</p></div>
+        <div class="card"><h3>最重要的人？</h3><p>答案：<b>「現在與你在一起的人」</b>。誰是你最需要關注的對象？</p></div>
+        <div class="card"><h3>最重要的事？</h3><p>答案：<b>「為現在與你在一起的人做好事」</b>。因為這正是人來到世界上的唯一目的。</p></div>
+      </div>
+      <p class="src" style="font-style:italic">托爾斯泰側重日常生活中的實踐與抉擇——把握當下、珍惜身邊的人；但忽略了康德的第二問（如何判斷善惡）與第三問（行善後可有的盼望）。</p>
     </div>
   </div>
 </section>
