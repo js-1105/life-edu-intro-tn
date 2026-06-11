@@ -117,6 +117,9 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .wc-frame{display:inline-block;padding:11px;border-radius:18px;background:linear-gradient(155deg,var(--wc1,#F3EFE6),var(--wc2,#E7DECB));box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.45)}
 .wc-frame img{display:block;width:100%;height:auto;border-radius:12px}
 .wc-camus{--wc1:#EEF0F5;--wc2:#D8DDEB}
+.wc-kant{--wc1:#F6EFDD;--wc2:#EBDDBE}
+.wc-tolstoy{--wc1:#EDF1E8;--wc2:#D9E4CE}
+.wc-gauguin{--wc1:#F4ECDD;--wc2:#E6D4B8}
 .wc-cap{margin-top:.6em;font-family:var(--font-serif);font-style:italic;font-size:clamp(1.1rem,1.5vw,1.5rem);color:var(--color-muted);text-align:center;letter-spacing:.03em}
 /* 影片 */
 .video-wrap{position:relative;z-index:60;width:100%;max-width:560px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-strong);margin:.3em 0}
@@ -800,12 +803,12 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <section class="slide">
   <h2>康德·人生三問</h2>
-  <div class="figure">
-    <div class="portrait-wrap">
-      <img class="portrait" src="images/kant_wc.jpg" alt="康德 水彩肖像">
-      <div class="namecard"><div class="nm">Immanuel Kant</div><div class="life">1724 – 1804</div></div>
+  <div class="thinker-row">
+    <div class="wc-with-caption" style="width:clamp(300px,30vw,400px)">
+      <div class="wc-frame wc-kant"><img src="images/kant_wc.jpg" alt="Immanuel Kant 水彩肖像"></div>
+      <div class="wc-cap">Immanuel Kant　·　1724–1804</div>
     </div>
-    <div>
+    <div class="thinker-text">
       <ul class="fl">
         <li>我<b>能知道</b>什麼？（純粹理性批判）</li>
         <li>我<b>應該做</b>什麼？（實踐理性批判）</li>
@@ -820,8 +823,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <section class="slide">
   <h2>托爾斯泰《三個問題》</h2>
-  <div class="figure rev">
-    <div>
+  <div class="thinker-row">
+    <div class="thinker-text">
       <p>晚年陷入深刻精神危機的托爾斯泰，借一位國王尋找三個問題的答案：</p>
       <ul class="fl">
         <li>最重要的<b>時間</b>＝<b>現在</b></li>
@@ -831,21 +834,21 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/5CBUQ1OejY0" title="尼可萊的三個問題" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       <p class="src">〈尼可萊的三個問題〉繪本動畫。托爾斯泰把「意義」落回此刻、眼前、利他。</p>
     </div>
-    <div class="portrait-wrap">
-      <img class="portrait" src="images/tolstoy_wc.jpg" alt="托爾斯泰 水彩肖像">
-      <div class="namecard"><div class="nm">Leo Tolstoy</div><div class="life">1828 – 1910</div></div>
+    <div class="wc-with-caption" style="width:clamp(270px,27vw,360px)">
+      <div class="wc-frame wc-tolstoy"><img src="images/tolstoy_wc.jpg" alt="Leo Tolstoy 水彩肖像"></div>
+      <div class="wc-cap">Leo Tolstoy　·　1828–1910</div>
     </div>
   </div>
 </section>
 
 <section class="slide">
   <h2>高更·人生三問</h2>
-  <div class="figure">
-    <div class="portrait-wrap">
-      <img class="portrait" src="images/gauguin_wc.jpg" alt="高更 水彩肖像">
-      <div class="namecard"><div class="nm">Paul Gauguin</div><div class="life">1848 – 1903</div></div>
+  <div class="thinker-row">
+    <div class="wc-with-caption" style="width:clamp(260px,26vw,340px)">
+      <div class="wc-frame wc-gauguin"><img src="images/gauguin_wc.jpg" alt="Paul Gauguin 水彩肖像"></div>
+      <div class="wc-cap">Paul Gauguin　·　1848–1903</div>
     </div>
-    <div>
+    <div class="thinker-text">
       <blockquote style="margin-top:0">我們從何處來？我們是誰？我們往何處去？</blockquote>
       <img class="portrait wide" src="images/gauguin_painting.jpg" alt="高更油畫《我們從何處來》" style="margin:.3em 0">
       <p class="muted">高更在喪女、貧病交迫、計畫服毒之際，完成近四公尺巨畫，把三問刻在左上角：<br>右＝沉睡嬰兒（誕生）／中＝採果男子（壯年）／左＝枯槁老婦（衰老）。</p>
