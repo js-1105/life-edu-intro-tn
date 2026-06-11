@@ -355,9 +355,23 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   radial-gradient(720px 520px at 12% 92%,rgba(134,38,51,.10),transparent 60%),
   linear-gradient(158deg,#FFF9EC 0%,#F2E0B6 120%) !important;color:var(--color-text)}
 .slide.closing::before{content:none}
-.slide.closing h2{color:var(--color-primary)}
-.slide.closing blockquote{color:#4a3b1e !important;border-color:var(--color-accent) !important;background:rgba(212,175,55,.14) !important}
-.slide.closing .signature{color:var(--color-accent-deep)}
+.closing-stage{display:grid;grid-template-columns:.92fr 1.08fr;gap:4vw;align-items:center;width:100%;min-height:72vh}
+.closing-copy{text-align:left}
+.slide.closing h2{color:var(--color-primary);font-size:clamp(2.6rem,4vw,4.1rem);line-height:1.28;margin:0 0 .45em;padding-bottom:.28em}
+.slide.closing blockquote{color:#4a3b1e !important;border-color:var(--color-accent) !important;background:rgba(255,255,255,.62) !important;box-shadow:var(--shadow-soft);font-size:clamp(1.35rem,2vw,1.8rem);line-height:1.7;margin:.4em 0;max-width:27em}
+.slide.closing .signature{color:var(--color-accent-deep);margin-top:1.2em;font-size:clamp(1rem,1.25vw,1.2rem);letter-spacing:.15em;font-weight:700}
+.closing-map{position:relative;min-height:62vh;border-radius:26px;background:rgba(255,255,255,.56);border:1px solid rgba(212,175,55,.45);box-shadow:var(--shadow-strong);overflow:hidden}
+.closing-map::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(212,175,55,.22),transparent 34%),radial-gradient(circle at 1px 1px,rgba(134,38,51,.08) 1px,transparent 1.5px);background-size:100% 100%,26px 26px}
+.closing-core{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:clamp(150px,15vw,210px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--grad-royal);color:#fff;border:6px solid #fff;box-shadow:0 12px 38px rgba(92,26,35,.28),0 0 0 3px var(--color-accent)}
+.closing-core b{font-family:var(--font-serif);font-size:clamp(1.4rem,2vw,1.9rem);line-height:1.3}
+.closing-core span{margin-top:.35em;color:var(--color-accent-soft);font-size:.75rem;letter-spacing:.12em}
+.closing-question{position:absolute;width:clamp(155px,15vw,210px);padding:.8em .9em;border-radius:15px;background:#fff;border-top:5px solid var(--color-accent);box-shadow:var(--shadow-soft);text-align:left}
+.closing-question .n{display:block;color:var(--color-accent-deep);font-size:.68rem;font-weight:800;letter-spacing:.15em}
+.closing-question b{display:block;margin-top:.15em;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.15rem,1.55vw,1.45rem);line-height:1.35}
+.closing-question.q1{left:5%;top:8%;transform:rotate(-2deg)}
+.closing-question.q2{right:5%;top:13%;transform:rotate(2deg)}
+.closing-question.q3{right:8%;bottom:8%;transform:rotate(-1deg)}
+.closing-foundation{position:absolute;left:6%;bottom:10%;width:clamp(170px,17vw,235px);padding:.75em 1em;border-radius:999px;background:rgba(134,38,51,.09);border:1px solid rgba(134,38,51,.18);color:var(--color-primary);font-weight:700;font-size:clamp(.88rem,1.08vw,1.02rem);text-align:center}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
 .qr-intro{text-align:center;max-width:none;margin:.25em auto .55em;font-size:clamp(1.45rem,2vw,1.95rem);line-height:1.5;color:var(--color-text)}
@@ -1172,21 +1186,20 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide closing">
-  <svg class="life-map-art" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="coverGoldEnd" x1="130" y1="560" x2="1050" y2="145" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#A8782E"/><stop offset=".48" stop-color="#D4AF37"/><stop offset="1" stop-color="#FFF1A8"/>
-      </linearGradient>
-    </defs>
-    <path d="M130 570 C260 520 340 530 430 455 S615 300 735 310 925 250 1065 148" fill="none" stroke="url(#coverGoldEnd)" stroke-width="5" stroke-linecap="round" opacity=".78"/>
-    <path d="M130 570 C318 410 430 366 560 390 S808 512 1030 304" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
-    <g fill="#fff7df" stroke="#D4AF37" stroke-width="3.2" filter="drop-shadow(0 0 14px rgba(212,175,55,.52))">
-      <circle cx="130" cy="570" r="13"/><circle cx="430" cy="455" r="13"/><circle cx="615" cy="330" r="17"/><circle cx="735" cy="310" r="13"/><circle cx="1065" cy="148" r="19"/>
-    </g>
-  </svg>
-  <h2>今天，我們打開了一張地圖</h2>
-  <blockquote style="color:#fff;border-color:var(--color-accent);background:rgba(255,255,255,.08)">這一週，不是讓你又學會什麼，<br>而是讓你重新有了探索生命的熱情，<br>並看見：你一直在問的問題，其實彼此相連。</blockquote>
-  <p class="signature">——生命的學問，從這裡開始</p>
+  <div class="closing-stage">
+    <div class="closing-copy">
+      <h2>今天，我們打開了<br>一張生命的地圖</h2>
+      <blockquote>這一週，不是讓你又學會什麼，<br>而是讓你重新有了探索生命的熱情，<br>並看見：你一直在問的問題，其實彼此相連。</blockquote>
+      <p class="signature">——生命的學問，從這裡開始</p>
+    </div>
+    <div class="closing-map">
+      <div class="closing-question q1"><span class="n">人生第一問</span><b>人為何活著？</b></div>
+      <div class="closing-question q2"><span class="n">人生第二問</span><b>該怎樣活著？</b></div>
+      <div class="closing-question q3"><span class="n">人生第三問</span><b>如何能活出？</b></div>
+      <div class="closing-core"><b>生命的學問</b><span>三問 × 五大素養</span></div>
+      <div class="closing-foundation">人學為基礎・哲學為方法</div>
+    </div>
+  </div>
 </section>
 
 <section class="slide eggsong">
