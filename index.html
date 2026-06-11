@@ -338,19 +338,26 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .blankmap .circle{border:3px dashed var(--c);border-radius:50%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;color:var(--c);background:rgba(255,255,255,.66);font-size:clamp(1rem,1.5vw,1.35rem)}
 .blankmap .mnotes{margin-top:.35em;display:flex;flex-direction:column;gap:.25em;align-items:center}
 .blankmap .mnote{background:#fff3b8;font-size:.8rem;line-height:1.4;padding:.25em .6em;border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.12);max-width:13em;transform:rotate(-1.5deg)}
-/* 彩蛋·主題曲頁：獨特暖金背景＋音符美工＋移除章節浮水印 */
-.slide.eggsong{background:
-  radial-gradient(880px 600px at 84% 14%,rgba(212,175,55,.24),transparent 62%),
-  radial-gradient(720px 520px at 12% 92%,rgba(134,38,51,.10),transparent 60%),
-  radial-gradient(circle at 1px 1px,rgba(134,38,51,.05) 1px,transparent 1.5px),
-  linear-gradient(158deg,#FFF9EC 0%,#F2E0B6 120%) !important;
-  background-size:auto,auto,22px 22px,100% 100% !important;}
+/* 彩蛋·主題曲頁（末頁）：酒紅暗底＋金色音符美工，移除章節浮水印 */
+.slide.eggsong{background:var(--grad-royal) !important}
 .slide.eggsong::after{content:none !important}
-.eggsong h2{border-bottom-color:var(--color-accent-deep)}
+.eggsong h2{color:#fff;border-bottom-color:var(--color-accent)}
+.eggsong .lyrics{color:#f4e9d8}
+.eggsong .lyrics .h{color:var(--color-accent-soft)}
+.eggsong .src{color:rgba(255,255,255,.72)}
 .eggsong h2,.eggsong .lyrics,.eggsong .src,.eggsong .back-home-btn{position:relative;z-index:2}
-.eggsong .egg-deco{position:absolute;z-index:0;pointer-events:none;opacity:.5}
+.eggsong .egg-deco{position:absolute;z-index:0;pointer-events:none;opacity:.62}
 .eggsong .egg-deco-tr{top:8vh;right:5vw;width:clamp(95px,9vw,150px)}
 .eggsong .egg-deco-bl{bottom:10vh;left:4.5vw;width:clamp(75px,7.5vw,120px)}
+/* 結尾頁「今天，我們打開了一張地圖」：暖金亮底＋深字（與彩蛋頁互換） */
+.slide.closing{background:
+  radial-gradient(880px 600px at 84% 14%,rgba(212,175,55,.24),transparent 62%),
+  radial-gradient(720px 520px at 12% 92%,rgba(134,38,51,.10),transparent 60%),
+  linear-gradient(158deg,#FFF9EC 0%,#F2E0B6 120%) !important;color:var(--color-text)}
+.slide.closing::before{content:none}
+.slide.closing h2{color:var(--color-primary)}
+.slide.closing blockquote{color:#4a3b1e !important;border-color:var(--color-accent) !important;background:rgba(212,175,55,.14) !important}
+.slide.closing .signature{color:var(--color-accent-deep)}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
 .qr-intro{text-align:center;max-width:none;margin:.25em auto .55em;font-size:clamp(1.45rem,2vw,1.95rem);line-height:1.5;color:var(--color-text)}
@@ -419,6 +426,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="ornament"></div>
   <p class="lead">從時代的叩問，走向人生三問與五大核心素養</p>
   <button class="cover-cta" onclick="startPresentation()">進入全螢幕．開始上課</button>
+  <button class="back-home-btn" style="margin-top:1em" onclick="goToSlide(document.querySelectorAll('.slide').length)">🎵　直達主題曲〈三問〉</button>
   <div class="meta">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台北班　Day 1</div>
 </section>
 
