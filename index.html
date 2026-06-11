@@ -292,24 +292,18 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .blankmap .mnote{background:#fff3b8;font-size:.8rem;line-height:1.4;padding:.25em .6em;border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.12);max-width:13em;transform:rotate(-1.5deg)}
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
-.qr-stage{position:relative;flex:1;width:100%;min-height:0;margin-top:.3em}
-.qr-stage .qr-card{position:absolute}
-.qr-stage .c-tl{top:0;left:2%}
-.qr-stage .c-tr{top:0;right:2%}
-.qr-stage .c-bl{bottom:0;left:2%}
-.qr-stage .c-br{bottom:0;right:2%}
-.qr-stage .c-mid{top:50%;left:50%;transform:translate(-50%,-50%)}
-.qr-intro{text-align:center;max-width:none;margin:.15em auto .2em}
-.qr-note{position:absolute;left:50%;transform:translateX(-50%);text-align:center;width:min(40vw,560px)}
-.qr-note-top{top:4%}
-.qr-note-top .lead{margin:0;max-width:none}
-.qr-note-bot{bottom:2%}
-.qr-note-bot .src{margin:0;max-width:none;display:block}
-.qr-card{background:#fff;border-radius:16px;border-top:6px solid var(--c,#862633);box-shadow:var(--shadow-strong);padding:.8em .8em .9em;display:flex;flex-direction:column;align-items:center;gap:.5em}
-.qr-box{width:clamp(130px,12vw,190px);height:clamp(130px,12vw,190px);background:#fff;display:flex;align-items:center;justify-content:center}
+.qr-intro{text-align:center;max-width:none;margin:.1em auto .15em;font-size:clamp(1.1rem,1.5vw,1.45rem)}
+.qr-stage{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,minmax(0,1fr));grid-template-areas:"g1 . g2" ". g3 ." "g4 . g5";gap:.3vh 1vw;place-items:center;flex:1;min-height:0;width:100%;margin-top:.1em}
+.qr-stage .c-tl{grid-area:g1}
+.qr-stage .c-tr{grid-area:g2}
+.qr-stage .c-mid{grid-area:g3}
+.qr-stage .c-bl{grid-area:g4}
+.qr-stage .c-br{grid-area:g5}
+.qr-card{background:#fff;border-radius:16px;border-top:6px solid var(--c,#862633);box-shadow:var(--shadow-strong);padding:.5em .7em .6em;display:flex;flex-direction:column;align-items:center;gap:.3em}
+.qr-box{width:clamp(108px,15.5vh,185px);height:clamp(108px,15.5vh,185px);background:#fff;display:flex;align-items:center;justify-content:center}
 .qr-box img,.qr-box canvas{width:100%!important;height:100%!important;display:block}
-.qr-cap{font-family:var(--font-serif);font-weight:700;color:var(--c,#862633);font-size:clamp(1rem,1.2vw,1.25rem);text-align:center;line-height:1.25}
-.qr-cap small{display:block;font-family:var(--font-sans);font-weight:600;color:var(--color-muted);font-size:.72em;letter-spacing:.02em}
+.qr-cap{font-family:var(--font-serif);font-weight:900;color:var(--c,#862633);font-size:clamp(1.35rem,1.8vw,1.75rem);text-align:center;line-height:1.18}
+.qr-cap small{display:block;font-family:var(--font-sans);font-weight:700;color:var(--color-text);font-size:.85em;letter-spacing:.02em;margin-top:.08em}
 .gpage h2 .g-dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:middle}
 .gcols{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;width:100%;margin-top:.2em}
 .gcol{display:flex;flex-direction:column;min-height:0}
@@ -621,7 +615,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <!-- S18 五組 QR：手機投稿入口（四角＋中央梅花佈局，避免掃錯組） -->
 <section class="slide">
   <h2>掃你那一組的 QR，把討論打在手機上</h2>
-  <p class="lead qr-intro">掃<b>自己角落</b>那個碼 → 在手機上充分寫下「理解」與「還不懂／接不起來」（字數不限），投影幕上你們這組的頁面即時更新。</p>
+  <p class="lead qr-intro">掃<b>自己角落</b>那個碼 → 在手機上充分寫「理解」與「還不懂／接不起來」，投影幕即時更新。</p>
   <div class="qr-stage">
     <div class="qr-card c-tl" style="--c:#862633"><div class="qr-box" data-g="1"></div><div class="qr-cap">第1組<small>終極關懷</small></div></div>
     <div class="qr-card c-tr" style="--c:#A8782E"><div class="qr-box" data-g="2"></div><div class="qr-cap">第2組<small>價值思辨</small></div></div>
