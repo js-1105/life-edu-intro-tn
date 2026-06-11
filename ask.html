@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>我的人生 X 問 · 投稿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<script src="fbconfig.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{--c:#862633}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:"Noto Sans TC","PingFang TC",sans-serif;background:#FAF7F2;color:#1A1A1A;line-height:1.6;padding:env(safe-area-inset-top) 0 2em}
+.bar{background:var(--c);color:#fff;padding:1.2em 1.1em;position:sticky;top:0;z-index:10;box-shadow:0 3px 14px rgba(0,0,0,.18)}
+.bar .g{font-family:"Noto Serif TC",serif;font-weight:900;font-size:1.55rem;letter-spacing:.03em}
+.bar .s{font-size:.88rem;opacity:.92;margin-top:.15em}
+.wrap{max-width:640px;margin:0 auto;padding:1.1em 1.1em}
+.intro{color:#6B6B6B;font-size:.98rem;margin:.2em 0 1.2em}
+.blk{background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(134,38,51,.08);border-top:5px solid var(--c);padding:1.1em 1.1em 1.2em}
+label{display:block;font-family:"Noto Serif TC",serif;font-weight:700;font-size:1.2rem;color:var(--c);margin-bottom:.5em}
+textarea{width:100%;font-family:inherit;font-size:1.12rem;line-height:1.6;padding:.7em .8em;border:2px solid #E5DDD0;border-radius:12px;background:#fffdf9;resize:vertical;min-height:4.5em}
+textarea:focus{outline:none;border-color:var(--c)}
+button.send{margin-top:.8em;width:100%;background:var(--c);color:#fff;border:none;border-radius:999px;padding:.9em;font-size:1.15rem;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.05em}
+button.send:active{transform:translateY(1px);opacity:.9}
+.list{margin-top:1.1em;display:flex;flex-direction:column;gap:.55em}
+.item{background:#FBF6E8;border-left:4px solid var(--c);border-radius:8px;padding:.6em .8em;font-size:1rem;white-space:pre-wrap;position:relative}
+.item .del{position:absolute;top:.3em;right:.5em;color:#a35;opacity:.55;font-size:.8rem;background:none;border:none;cursor:pointer}
+.empty{color:#9a8f7d;font-style:italic;font-size:.95rem}
+.foot{text-align:center;color:#6B6B6B;font-size:.85rem;margin-top:.7em;padding:0 1em}
+.flash{position:fixed;left:50%;bottom:1.5em;transform:translateX(-50%) translateY(20px);background:rgba(0,0,0,.85);color:#fff;padding:.6em 1.4em;border-radius:999px;font-size:1rem;opacity:0;transition:.3s;z-index:50;pointer-events:none}
+.flash.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="bar"><div class="g">我的人生 X 問</div><div class="s">把你提煉出的那個大哉問，打上來</div></div>
+<div class="wrap">
+  <p class="intro">從你「人生最重要的 15 件事」裡，提煉出<b>一個你最想問的大問題</b>（可多送幾個）。送出後，會即時匯入投影幕上全班的「問題雲」。</p>
+  <section class="blk">
+    <label>我的人生 X 問</label>
+    <textarea id="xwen" placeholder="例：我究竟為什麼而活？／怎樣才算活得好？／死亡是什麼？"></textarea>
+    <button class="send" onclick="sendX()">送出我的提問</button>
+    <div class="list" id="xlist"></div>
+  </section>
+  <p class="foot" id="foot">連線中…</p>
+</div>
+<div class="flash" id="flash"></div>
+<script>
+(function(){
+  function esc(s){return String(s||'').replace(/[&<>]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m];});}
+  function configured(){return window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;}
+  function listify(o){if(!o)return[];return Object.keys(o).sort(function(a,b){return (o[a].t||0)-(o[b].t||0);}).map(function(k){return {k:k,txt:o[k].txt};});}
+  var DB=null, foot=document.getElementById('foot');
+  function flash(t){var f=document.getElementById('flash');f.textContent=t;f.classList.add('show');setTimeout(function(){f.classList.remove('show');},1400);}
+  function render(arr){
+    var box=document.getElementById('xlist');
+    if(!arr||!arr.length){box.innerHTML='<div class="empty">還沒送出提問。</div>';return;}
+    box.innerHTML=arr.map(function(o){
+      var del=DB?'<button class="del" data-k="'+o.k+'">刪</button>':'';
+      return '<div class="item">'+esc(o.txt)+del+'</div>';
+    }).join('');
+  }
+  document.getElementById('xlist').addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.del'); if(!b||!DB)return;
+    DB.child(b.getAttribute('data-k')).remove();
+  });
+  var LKEY='u1_xwen_'+(window.FB_ROOM||'local');
+  function loadLocal(){try{return JSON.parse(localStorage.getItem(LKEY))||[];}catch(e){return [];}}
+  function saveLocal(a){try{localStorage.setItem(LKEY,JSON.stringify(a));}catch(e){}}
+  function renderLocal(){render(loadLocal().map(function(t,i){return {k:i,txt:t};}));}
+  window.sendX=function(){
+    var ta=document.getElementById('xwen'),txt=(ta.value||'').trim();if(!txt){flash('先寫下你的提問再送出');return;}
+    if(DB){DB.push({txt:txt,t:Date.now()});}
+    else{var a=loadLocal();a.push(txt);saveLocal(a);renderLocal();}
+    ta.value='';flash('已送出！');
+  };
+  if(configured()&&typeof firebase!=='undefined'){
+    try{
+      firebase.initializeApp(window.FB_CONFIG);
+      DB=firebase.database().ref('rooms/'+(window.FB_ROOM||'default')+'/xwen');
+      DB.on('value',function(snap){render(listify(snap.val()||{}));});
+      foot.textContent='● 已連線（房號 '+(window.FB_ROOM||'default')+'）—— 送出後投影幕問題雲即時更新';
+    }catch(e){foot.textContent='⚠ 連線失敗，改用本機暫存：'+e.message;renderLocal();}
+  }else{
+    foot.textContent='○ 尚未設定雲端（fbconfig.js）——此頁僅本機測試，不會傳到投影幕';
+    renderLocal();
+  }
+})();
+</script>
+</body>
+</html>

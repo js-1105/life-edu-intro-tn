@@ -299,6 +299,18 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .qr-box img,.qr-box canvas{width:100%!important;height:100%!important;display:block}
 .qr-cap{font-family:var(--font-serif);font-weight:900;color:var(--c,#862633);font-size:clamp(1.5rem,2.05vw,2.05rem);text-align:center;line-height:1.12}
 .qr-cap small{display:block;font-family:var(--font-sans);font-weight:700;color:var(--color-text);font-size:.78em;letter-spacing:.02em;margin-top:.15em}
+/* S27 即時問題雲 */
+.cloud-stage{display:grid;grid-template-columns:auto 1fr;gap:2.2vw;align-items:center;flex:1;min-height:0;width:100%;margin-top:.2em}
+.cloud-side{display:flex;flex-direction:column;align-items:center;gap:.7em;width:clamp(190px,18vw,260px)}
+.cloud-side .lead{text-align:center;max-width:none;margin:0;font-size:clamp(1.1rem,1.4vw,1.4rem)}
+.cloud-side .src{text-align:center;max-width:none;margin:0}
+.cloud-qr{background:#fff;border-radius:16px;border-top:7px solid var(--color-accent-deep);box-shadow:var(--shadow-strong);padding:.8em .8em .6em;display:flex;flex-direction:column;align-items:center;gap:.4em}
+.cloud-qr .qr-box{width:clamp(130px,11vw,180px);height:clamp(130px,11vw,180px)}
+.cloud-qr .qr-box img,.cloud-qr .qr-box canvas{width:100%!important;height:100%!important;display:block}
+.cloud-qr .qr-cap{font-family:var(--font-serif);font-weight:900;color:var(--color-primary);font-size:clamp(1.1rem,1.3vw,1.35rem)}
+.cloud-canvas-wrap{flex:1 1 auto;position:relative;min-height:60vh;height:100%;border-radius:16px;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.9),transparent 55%),linear-gradient(145deg,#f8f2e8,#efe5d4);box-shadow:var(--shadow-strong);overflow:hidden}
+.cloud-canvas-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.cloud-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--color-muted);font-style:italic;font-size:clamp(1.1rem,1.4vw,1.4rem);text-align:center;padding:0 1em}
 .gpage h2 .g-dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:middle}
 .gcols{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;width:100%;margin-top:.2em}
 .gcol{display:flex;flex-direction:column;min-height:0}
@@ -319,6 +331,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.2.0/wordcloud2.min.js"></script>
 </head>
 <body>
 <div class="deck" id="deck">
@@ -723,16 +736,19 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   </div>
 </section>
 
-<section class="slide roomy">
+<section class="slide">
   <h2>全班的提問，匯成一片問題雲</h2>
-  <p class="muted" style="text-align:center;max-width:none">用 Slido／Mentimeter 即時投稿——只放你<b>提煉後的人生 X 問</b>，不必貼出原始的 15 件事。</p>
-  <div class="wordcloud sky">
-    <span class="w1">我為什麼而活？</span><span class="w2">怎樣才算活得好？</span><span class="w3">死亡是什麼？</span>
-    <span class="w2">我是誰？</span><span class="w4">什麼是真正的愛？</span><span class="w1">人生的意義在哪裡？</span>
-    <span class="w3">我該怎麼選擇？</span><span class="w4">如何面對失去？</span><span class="w2">我留下什麼？</span>
-    <span class="w4">怎樣才不算白活？</span><span class="w3">什麼值得我堅持？</span><span class="w4">我能知道什麼？</span>
+  <div class="cloud-stage">
+    <div class="cloud-side">
+      <p class="lead">把你提煉出的<b>人生 X 問</b>打上來，即時匯成全班的問題雲。</p>
+      <div class="cloud-qr"><div class="qr-box" id="xwenQR"></div><div class="qr-cap">掃我，提問</div></div>
+      <p class="src">手機開 …/ask.html　·　已收集 <b><span id="xwenCount">0</span></b> 則</p>
+    </div>
+    <div class="cloud-canvas-wrap">
+      <canvas id="wordcloud-canvas"></canvas>
+      <div class="cloud-empty" id="xwenEmpty">掃左邊 QR 投稿，<br>全班的問題雲會即時長出來……</div>
+    </div>
   </div>
-  <p class="big-q" style="text-align:center;margin-top:.4em">看——我們全班一直在問的，其實就是這幾類問題。</p>
 </section>
 
 <section class="slide section-divider">
@@ -1152,8 +1168,10 @@ window.U1=(function(){
   ];
   const esc=s=>String(s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
   const SUBMIT_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'submit.html';
+  const ASK_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'ask.html';
   let DB=null, online=false;
   let DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};
+  let XWEN=[];
   const LKEY='u1_data_'+(window.FB_ROOM||'local');
   const configured=()=>window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;
   const listify=o=>o?Object.keys(o).sort((a,b)=>(o[a].t||0)-(o[b].t||0)).map(k=>o[k].txt):[];
@@ -1164,7 +1182,7 @@ window.U1=(function(){
     try{
       firebase.initializeApp(window.FB_CONFIG);
       DB=firebase.database().ref('rooms/'+(window.FB_ROOM||'default'));
-      DB.on('value',snap=>{const v=snap.val()||{};GROUPS.forEach(g=>{const n=v['g'+g.id]||{};DATA[g.id]={lijie:listify(n.lijie),kunhuo:listify(n.kunhuo)};});online=true;renderAll();setStatus();});
+      DB.on('value',snap=>{const v=snap.val()||{};GROUPS.forEach(g=>{const n=v['g'+g.id]||{};DATA[g.id]={lijie:listify(n.lijie),kunhuo:listify(n.kunhuo)};});XWEN=listify(v.xwen);online=true;renderAll();setStatus();});
       return true;
     }catch(e){return false;}
   }
@@ -1185,6 +1203,27 @@ window.U1=(function(){
         :('<div class="empty-hint">'+(type==='lijie'?'掃 QR 在手機寫下你們的「理解」，這裡會即時出現。':'掃 QR 寫下「還不懂／接不起來」，這裡會即時出現。')+'</div>');
     }));
     renderMap();
+    renderWordCloud();
+  }
+  let wcPending=false;
+  function renderWordCloud(){if(wcPending)return;wcPending=true;requestAnimationFrame(()=>{wcPending=false;doRenderWordCloud();});}
+  function doRenderWordCloud(){
+    const canvas=document.getElementById('wordcloud-canvas'); if(!canvas)return;
+    const wrap=canvas.parentElement, empty=document.getElementById('xwenEmpty'), cnt=document.getElementById('xwenCount');
+    if(cnt)cnt.textContent=XWEN.length;
+    const freq={}; XWEN.forEach(t=>{const w=(t||'').trim();if(w)freq[w]=(freq[w]||0)+1;});
+    const entries=Object.entries(freq);
+    if(!entries.length){if(empty)empty.style.display='flex';const ctx=canvas.getContext('2d');canvas.width=canvas.width;if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height);return;}
+    if(empty)empty.style.display='none';
+    const rect=wrap.getBoundingClientRect();
+    let w=Math.floor(rect.width),h=Math.floor(rect.height);
+    if(w<100)w=Math.floor(window.innerWidth*0.55); if(h<100)h=Math.floor(window.innerHeight*0.55);
+    canvas.width=w;canvas.height=h;canvas.style.width='100%';canvas.style.height='100%';
+    const maxF=entries.reduce((m,e)=>Math.max(m,e[1]),1);
+    const list=entries.sort((a,b)=>b[1]-a[1]);
+    const palette=['#862633','#A8782E','#A23A48','#6B5635','#5C1A23','#B8860B'];
+    const base=Math.max(13,Math.min(w,h)/24);
+    if(typeof WordCloud==='function'){try{WordCloud(canvas,{list:list,gridSize:Math.max(4,Math.round(w/60)),weightFactor:n=>base*(0.85+0.6*(n/maxF))*(1+0.15*Math.min(n-1,5)),fontFamily:'"Noto Serif TC",serif',color:()=>palette[Math.floor(Math.random()*palette.length)],rotateRatio:0.16,rotationSteps:2,backgroundColor:'transparent',drawOutOfBound:false,shrinkToFit:true,minSize:12});}catch(e){}}
   }
   function renderMap(){
     const m=document.getElementById('blankMap'); if(!m)return;
@@ -1201,6 +1240,8 @@ window.U1=(function(){
       const g=box.getAttribute('data-g'); box.innerHTML='';
       try{new QRCode(box,{text:SUBMIT_BASE+'?g='+g,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
     });
+    const xq=document.getElementById('xwenQR');
+    if(xq){xq.innerHTML='';try{new QRCode(xq,{text:ASK_BASE,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
   }
   function setStatus(){const el=document.getElementById('fbStatus'); if(!el)return; el.textContent=DB?(online?'● 線上（手機投稿即時更新）':'● 連線中…'):'○ 單機代打模式（未連網）';}
   function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
@@ -1208,6 +1249,11 @@ window.U1=(function(){
   let mx=0,my=0;
   function clearHovered(){
     const el=document.elementFromPoint(mx,my);
+    if(el&&el.closest&&el.closest('.cloud-canvas-wrap')){
+      if(!confirm('確定清空全班的「問題雲」？此動作無法復原。'))return;
+      if(DB){DB.child('xwen').remove();}else{XWEN=[];renderWordCloud();}
+      return;
+    }
     const box=el&&el.closest?el.closest('.gbox'):null;
     const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo)$/);
     if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（某組的「理解」或「困惑」），再按 Shift＋C',3500);return;}
@@ -1224,6 +1270,7 @@ window.U1=(function(){
     var room=window.FB_ROOM||'default';
     var rows=[['房號','組別','素養','類型','內容']];
     GROUPS.forEach(function(g){['lijie','kunhuo'].forEach(function(type){(DATA[g.id][type]||[]).forEach(function(txt){rows.push([room,'第'+g.id+'組',g.n,type==='lijie'?'理解':'還不懂/接不起來',txt]);});});});
+    XWEN.forEach(function(txt){rows.push([room,'全班','—','人生 X 問',txt]);});
     var csv=rows.map(function(r){return r.map(csvCell).join(',');}).join('\r\n');
     var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
     var url=URL.createObjectURL(blob),a=document.createElement('a');
