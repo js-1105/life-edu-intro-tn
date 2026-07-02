@@ -84,6 +84,29 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 .cover .life-map-art .node{opacity:.48;filter:none}
 .cover .life-map-art .node.dim{opacity:.25}
 .cover .stage,.cover h1,.cover .ornament,.cover .lead,.cover .cover-cta,.cover .meta{z-index:2}
+/* 封面進場動畫：沿用素養地圖頁的 .slide.active 觸發慣例；fill-mode both＝延遲期間停在起點，免設隱藏基態 */
+.slide.cover.active .life-map-art{animation:cvFade 1.2s ease both}
+.slide.cover.active .life-map-art .route{animation:cvWipe 1.5s ease .35s both}
+.slide.cover.active .life-map-art .node{transform-box:fill-box;transform-origin:center;animation:cvNode .5s cubic-bezier(.34,1.56,.64,1) both}
+.slide.cover.active .life-map-art .node:nth-of-type(1){animation-delay:.5s}
+.slide.cover.active .life-map-art .node:nth-of-type(2){animation-delay:.78s}
+.slide.cover.active .life-map-art .node:nth-of-type(3){animation-delay:1.06s}
+.slide.cover.active .life-map-art .node:nth-of-type(4){animation-delay:1.34s}
+.slide.cover.active .life-map-art .node:nth-of-type(5){animation-delay:1.62s}
+.slide.cover.active .stage{animation:cvUp .7s ease .1s both}
+.slide.cover.active h1{animation:cvUp .8s ease .28s both}
+.slide.cover.active .ornament{animation:cvUp .7s ease .5s both}
+.slide.cover.active .lead{animation:cvUp .7s ease .65s both}
+.slide.cover.active .cover-cta{animation:cvUp .7s ease .85s both}
+.slide.cover.active .back-home-btn{animation:cvUp .7s ease .95s both}
+.slide.cover.active .meta{animation:cvUp .7s ease 1.05s both}
+@keyframes cvFade{from{opacity:0}to{opacity:.42}}
+@keyframes cvWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes cvNode{from{transform:scale(0)}70%{transform:scale(1.18)}to{transform:scale(1)}}
+@keyframes cvUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+.slide.cover.active .life-map-art,.slide.cover.active .life-map-art .route,.slide.cover.active .life-map-art .node,.slide.cover.active .stage,.slide.cover.active h1,.slide.cover.active .ornament,.slide.cover.active .lead,.slide.cover.active .cover-cta,.slide.cover.active .back-home-btn,.slide.cover.active .meta{animation:none}
+}
 /* 卡片/格 */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:center;flex:1;width:100%}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;width:100%}
