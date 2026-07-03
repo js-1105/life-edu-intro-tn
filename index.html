@@ -69,15 +69,18 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 /* 封面 */
 .slide.cover{background:radial-gradient(120% 120% at 74% 24%,#18213d,#0B1020 62%);color:#EDE6D6;text-align:left;--ai:flex-start;overflow:hidden}
 .slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(760px 480px at 76% 30%,rgba(212,175,55,.07),transparent 68%);z-index:1}
-.slide.cover h1{color:#F5EFDF;font-size:clamp(2.8rem,6vw,5.2rem);max-width:56%}
+.slide.cover h1{color:#F5EFDF;font-size:clamp(2.8rem,6vw,5.2rem)}
 .slide.cover h1 .gold{color:var(--color-accent)}
-.slide.cover .lead{color:rgba(237,230,214,.92);font-family:var(--font-serif);font-weight:700;font-size:clamp(1.5rem,2.4vw,2.1rem);max-width:54%}
-.slide.cover .cv-sub{margin-top:.9em;font-size:clamp(1.05rem,1.5vw,1.35rem);color:#b9c0d6;max-width:52%;letter-spacing:.02em}
+.slide.cover .lead{color:rgba(237,230,214,.92);font-family:var(--font-serif);font-weight:700;font-size:clamp(1.5rem,2.4vw,2.1rem)}
+.slide.cover .cv-sub{margin-top:.9em;font-size:clamp(1.05rem,1.5vw,1.35rem);color:#b9c0d6;letter-spacing:.02em}
 .slide.cover .stage{color:var(--color-accent);letter-spacing:.35em;font-weight:700;font-family:var(--font-serif)}
 .slide.cover .ornament{width:90px;height:4px;background:var(--grad-accent);margin:1.2em 0;border-radius:2px}
 .slide.cover .meta{margin-top:2.2em;font-size:1rem;color:rgba(237,230,214,.6);letter-spacing:.08em}
-/* 封面右側「羅盤×五素養弧環」簽名元素（星圖羅盤＋同心弧兩構圖融合；弧色＝素養地圖頁五色） */
-.cover-orrery{position:absolute;top:50%;right:-5%;transform:translateY(-50%);height:100%;aspect-ratio:1/1;z-index:0;pointer-events:none}
+/* 封面＝真左右兩欄（文字欄＋弧環欄各自佔位，任何螢幕比例都不重疊） */
+.cover .fitwrap{flex-direction:row;align-items:center;gap:2.5vw}
+.cover .cv-left{flex:1 1 auto;min-width:0}
+/* 右欄「五素養同心弧」（弧色＝素養地圖頁五色）；尺寸受寬與高雙重上限約束 */
+.cover-orrery{flex:0 0 auto;width:min(44%,78vh);aspect-ratio:1/1;pointer-events:none}
 .cover-orrery .ob{fill:none;stroke:rgba(237,230,214,.07);stroke-width:11}
 .cover-orrery .oa{fill:none;stroke-width:11;stroke-linecap:round}
 .cover .stage,.cover h1,.cover .ornament,.cover .lead,.cover .cv-sub,.cover .cover-cta,.cover .meta{position:relative;z-index:2}
@@ -454,6 +457,16 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <!-- 1 封面 -->
 <section class="slide cover active">
+  <div class="cv-left">
+    <div class="stage">生命教育概論 · 單元一</div>
+    <h1>生命的<span class="gold">學問</span>導論</h1>
+    <div class="ornament"></div>
+    <p class="lead">從時代的叩問，走向人生三問與五大核心素養</p>
+    <p class="cv-sub">我為何而活？我該怎樣活？我如何能活出應活出的生命？</p>
+    <button class="cover-cta" onclick="startPresentation()">進入全螢幕．開始上課</button>
+    <button class="back-home-btn" style="margin-top:1em" onclick="goToSlide(document.querySelectorAll('.slide').length)">跳到最後一頁</button>
+    <div class="meta">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台北班　Day 1</div>
+  </div>
   <svg class="cover-orrery" viewBox="0 0 520 520" aria-hidden="true">
     <circle class="ob" cx="260" cy="260" r="240"/>
     <circle class="ob" cx="260" cy="260" r="222"/>
@@ -466,14 +479,6 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <circle class="oa oa4" cx="260" cy="260" r="186" stroke="#c07a55" stroke-dasharray="539 1169" transform="rotate(-90 260 260)"/>
     <circle class="oa oa5" cx="260" cy="260" r="168" stroke="#7a8bb0" stroke-dasharray="369 1056" transform="rotate(-90 260 260)"/>
   </svg>
-  <div class="stage">生命教育概論 · 單元一</div>
-  <h1>生命的<span class="gold">學問</span>導論</h1>
-  <div class="ornament"></div>
-  <p class="lead">從時代的叩問，走向人生三問與五大核心素養</p>
-  <p class="cv-sub">我為何而活？我該怎樣活？我如何能活出應活出的生命？</p>
-  <button class="cover-cta" onclick="startPresentation()">進入全螢幕．開始上課</button>
-  <button class="back-home-btn" style="margin-top:1em" onclick="goToSlide(document.querySelectorAll('.slide').length)">跳到最後一頁</button>
-  <div class="meta">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台北班　Day 1</div>
 </section>
 
 <section class="slide roomy">
