@@ -67,45 +67,54 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 .section-divider h1{margin-top:.05em;color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.25)}
 .section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:32em}
 /* 封面 */
-.slide.cover{background:var(--grad-royal);color:#fff;text-align:center;--ai:center;overflow:hidden}
-.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(720px 460px at 50% 20%,rgba(212,175,55,.12),transparent 68%),linear-gradient(180deg,rgba(40,8,13,.04),rgba(40,8,13,.2));z-index:1}
-.slide.cover h1{color:#fff;font-size:clamp(3rem,7vw,6rem)} .slide.cover .lead{color:rgba(255,255,255,.88)}
-.slide.cover .stage{color:var(--color-accent-soft);letter-spacing:.35em;font-weight:700}
-.slide.cover .ornament{width:90px;height:4px;background:var(--grad-accent);margin:1.2em auto;border-radius:2px}
-.slide.cover .meta{margin-top:2.2em;font-size:1rem;color:rgba(255,255,255,.72);letter-spacing:.08em}
-.life-map-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.9}
-.life-map-art .route{fill:none;stroke:url(#coverGold);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:10 13;opacity:.72}
-.life-map-art .thin{fill:none;stroke:rgba(255,255,255,.22);stroke-width:1.2}
-.life-map-art .node{fill:#fff7df;stroke:#D4AF37;stroke-width:3;filter:drop-shadow(0 0 12px rgba(212,175,55,.55))}
-.life-map-art .node.dim{fill:rgba(255,255,255,.32);stroke:rgba(232,208,128,.75);filter:none}
-.cover .life-map-art{opacity:.42}
-.cover .life-map-art .route{stroke-width:2.5;stroke-dasharray:7 16;opacity:.42}
-.cover .life-map-art .thin{opacity:.22}
-.cover .life-map-art .node{opacity:.48;filter:none}
-.cover .life-map-art .node.dim{opacity:.25}
-.cover .stage,.cover h1,.cover .ornament,.cover .lead,.cover .cover-cta,.cover .meta{z-index:2}
-/* 封面進場動畫：沿用素養地圖頁的 .slide.active 觸發慣例；fill-mode both＝延遲期間停在起點，免設隱藏基態 */
-.slide.cover.active .life-map-art{animation:cvFade 1.2s ease both}
-.slide.cover.active .life-map-art .route{animation:cvWipe 1.5s ease .35s both}
-.slide.cover.active .life-map-art .node{transform-box:fill-box;transform-origin:center;animation:cvNode .5s cubic-bezier(.34,1.56,.64,1) both}
-.slide.cover.active .life-map-art .node:nth-of-type(1){animation-delay:.5s}
-.slide.cover.active .life-map-art .node:nth-of-type(2){animation-delay:.78s}
-.slide.cover.active .life-map-art .node:nth-of-type(3){animation-delay:1.06s}
-.slide.cover.active .life-map-art .node:nth-of-type(4){animation-delay:1.34s}
-.slide.cover.active .life-map-art .node:nth-of-type(5){animation-delay:1.62s}
+.slide.cover{background:radial-gradient(120% 120% at 74% 24%,#18213d,#0B1020 62%);color:#EDE6D6;text-align:left;--ai:flex-start;overflow:hidden}
+.slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(760px 480px at 76% 30%,rgba(212,175,55,.07),transparent 68%);z-index:1}
+.slide.cover h1{color:#F5EFDF;font-size:clamp(2.8rem,6vw,5.2rem);max-width:56%}
+.slide.cover h1 .gold{color:var(--color-accent)}
+.slide.cover .lead{color:rgba(237,230,214,.92);font-family:var(--font-serif);font-weight:700;font-size:clamp(1.5rem,2.4vw,2.1rem);max-width:54%}
+.slide.cover .cv-sub{margin-top:.9em;font-size:clamp(1.05rem,1.5vw,1.35rem);color:#b9c0d6;max-width:52%;letter-spacing:.02em}
+.slide.cover .stage{color:var(--color-accent);letter-spacing:.35em;font-weight:700;font-family:var(--font-serif)}
+.slide.cover .ornament{width:90px;height:4px;background:var(--grad-accent);margin:1.2em 0;border-radius:2px}
+.slide.cover .meta{margin-top:2.2em;font-size:1rem;color:rgba(237,230,214,.6);letter-spacing:.08em}
+/* 封面右側「羅盤×五素養弧環」簽名元素（星圖羅盤＋同心弧兩構圖融合；弧色＝素養地圖頁五色） */
+.cover-orrery{position:absolute;top:50%;right:-5%;transform:translateY(-50%);height:100%;aspect-ratio:1/1;z-index:0;pointer-events:none}
+.cover-orrery .ob{fill:none;stroke:rgba(237,230,214,.07);stroke-width:11}
+.cover-orrery .oa{fill:none;stroke-width:11;stroke-linecap:round}
+.cover-orrery .cring{fill:none;stroke:var(--color-accent);stroke-width:1.6;opacity:.85}
+.cover-orrery .cring.faint{stroke:#6B8CBE;opacity:.5;stroke-width:1.1}
+.cover-orrery .cax{stroke:#6B8CBE;stroke-width:1;opacity:.4}
+.cover-orrery .cneedle{fill:none;stroke:var(--color-accent);stroke-width:2.2}
+.cover-orrery .cdot{fill:var(--color-accent);stroke:none}
+.cover .stage,.cover h1,.cover .ornament,.cover .lead,.cover .cv-sub,.cover .cover-cta,.cover .meta{position:relative;z-index:2}
+/* 封面進場動畫：沿用素養地圖頁的 .slide.active 觸發慣例；fill-mode both＝延遲期間停在起點，免設隱藏基態。
+   弧環終態寫死在 markup 的 stroke-dasharray 屬性（與 keyframes 100% 同值）→ 減少動態偏好下仍顯示正確弧長 */
+.slide.cover.active .cover-orrery{animation:cvFade 1.1s ease both}
+.slide.cover.active .oa1{animation:cvArc1 1.3s cubic-bezier(.4,0,.2,1) .3s both}
+.slide.cover.active .oa2{animation:cvArc2 1.3s cubic-bezier(.4,0,.2,1) .52s both}
+.slide.cover.active .oa3{animation:cvArc3 1.3s cubic-bezier(.4,0,.2,1) .74s both}
+.slide.cover.active .oa4{animation:cvArc4 1.3s cubic-bezier(.4,0,.2,1) .96s both}
+.slide.cover.active .oa5{animation:cvArc5 1.3s cubic-bezier(.4,0,.2,1) 1.18s both}
+.slide.cover.active .cneedle{transform-box:fill-box;transform-origin:center;animation:cvGrow .9s cubic-bezier(.22,1,.36,1) 1.5s both}
+.slide.cover.active .cdot{transform-box:fill-box;transform-origin:center;animation:cvNode .5s cubic-bezier(.34,1.56,.64,1) 2.15s both}
 .slide.cover.active .stage{animation:cvUp .7s ease .1s both}
 .slide.cover.active h1{animation:cvUp .8s ease .28s both}
 .slide.cover.active .ornament{animation:cvUp .7s ease .5s both}
-.slide.cover.active .lead{animation:cvUp .7s ease .65s both}
-.slide.cover.active .cover-cta{animation:cvUp .7s ease .85s both}
-.slide.cover.active .back-home-btn{animation:cvUp .7s ease .95s both}
-.slide.cover.active .meta{animation:cvUp .7s ease 1.05s both}
-@keyframes cvFade{from{opacity:0}to{opacity:.42}}
-@keyframes cvWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.slide.cover.active .lead{animation:cvUp .7s ease .62s both}
+.slide.cover.active .cv-sub{animation:cvUp .7s ease .76s both}
+.slide.cover.active .cover-cta{animation:cvUp .7s ease .9s both}
+.slide.cover.active .back-home-btn{animation:cvUp .7s ease 1s both}
+.slide.cover.active .meta{animation:cvUp .7s ease 1.1s both}
+@keyframes cvFade{from{opacity:0}to{opacity:1}}
+@keyframes cvArc1{from{stroke-dasharray:0 1508}to{stroke-dasharray:1257 1508}}
+@keyframes cvArc2{from{stroke-dasharray:0 1395}to{stroke-dasharray:976 1395}}
+@keyframes cvArc3{from{stroke-dasharray:0 1282}to{stroke-dasharray:741 1282}}
+@keyframes cvArc4{from{stroke-dasharray:0 1169}to{stroke-dasharray:539 1169}}
+@keyframes cvArc5{from{stroke-dasharray:0 1056}to{stroke-dasharray:369 1056}}
+@keyframes cvGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes cvNode{from{transform:scale(0)}70%{transform:scale(1.18)}to{transform:scale(1)}}
 @keyframes cvUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){
-.slide.cover.active .life-map-art,.slide.cover.active .life-map-art .route,.slide.cover.active .life-map-art .node,.slide.cover.active .stage,.slide.cover.active h1,.slide.cover.active .ornament,.slide.cover.active .lead,.slide.cover.active .cover-cta,.slide.cover.active .back-home-btn,.slide.cover.active .meta{animation:none}
+.slide.cover.active .cover-orrery,.slide.cover.active .oa1,.slide.cover.active .oa2,.slide.cover.active .oa3,.slide.cover.active .oa4,.slide.cover.active .oa5,.slide.cover.active .cneedle,.slide.cover.active .cdot,.slide.cover.active .stage,.slide.cover.active h1,.slide.cover.active .ornament,.slide.cover.active .lead,.slide.cover.active .cv-sub,.slide.cover.active .cover-cta,.slide.cover.active .back-home-btn,.slide.cover.active .meta{animation:none}
 }
 /* 卡片/格 */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:center;flex:1;width:100%}
@@ -454,25 +463,30 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <!-- 1 封面 -->
 <section class="slide cover active">
-  <svg class="life-map-art" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="coverGold" x1="120" y1="570" x2="1060" y2="145" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#A8782E"/><stop offset=".48" stop-color="#D4AF37"/><stop offset="1" stop-color="#FFF1A8"/>
-      </linearGradient>
-    </defs>
-    <path class="thin" d="M95 590 C235 510 315 565 450 465 S690 275 820 300 1010 230 1110 130"/>
-    <path class="thin" d="M155 635 C310 410 420 360 560 390 S800 510 1030 300"/>
-    <path class="route" d="M135 575 C260 518 335 530 430 455 S615 300 735 310 925 250 1065 148"/>
-    <circle class="node dim" cx="135" cy="575" r="12"/>
-    <circle class="node dim" cx="420" cy="460" r="13"/>
-    <circle class="node" cx="612" cy="330" r="17"/>
-    <circle class="node dim" cx="810" cy="292" r="13"/>
-    <circle class="node" cx="1065" cy="148" r="19"/>
+  <svg class="cover-orrery" viewBox="0 0 520 520" aria-hidden="true">
+    <circle class="ob" cx="260" cy="260" r="240"/>
+    <circle class="ob" cx="260" cy="260" r="222"/>
+    <circle class="ob" cx="260" cy="260" r="204"/>
+    <circle class="ob" cx="260" cy="260" r="186"/>
+    <circle class="ob" cx="260" cy="260" r="168"/>
+    <circle class="oa oa1" cx="260" cy="260" r="240" stroke="#C9A24B" stroke-dasharray="1257 1508" transform="rotate(-90 260 260)"/>
+    <circle class="oa oa2" cx="260" cy="260" r="222" stroke="#6B8CBE" stroke-dasharray="976 1395" transform="rotate(-90 260 260)"/>
+    <circle class="oa oa3" cx="260" cy="260" r="204" stroke="#8a9b6e" stroke-dasharray="741 1282" transform="rotate(-90 260 260)"/>
+    <circle class="oa oa4" cx="260" cy="260" r="186" stroke="#c07a55" stroke-dasharray="539 1169" transform="rotate(-90 260 260)"/>
+    <circle class="oa oa5" cx="260" cy="260" r="168" stroke="#7a8bb0" stroke-dasharray="369 1056" transform="rotate(-90 260 260)"/>
+    <line class="cax" x1="260" y1="104" x2="260" y2="416"/>
+    <line class="cax" x1="104" y1="260" x2="416" y2="260"/>
+    <circle class="cring" cx="260" cy="260" r="120"/>
+    <circle class="cring faint" cx="260" cy="260" r="58"/>
+    <path class="cneedle" d="M260 122 L282 260 L260 398 L238 260 Z"/>
+    <circle class="cdot" cx="260" cy="260" r="8"/>
+    <circle class="cdot" cx="260" cy="122" r="5"/>
   </svg>
-  <div class="stage">單元一</div>
-  <h1>生命的學問導論</h1>
+  <div class="stage">生命教育概論 · 單元一</div>
+  <h1>生命的<span class="gold">學問</span>導論</h1>
   <div class="ornament"></div>
   <p class="lead">從時代的叩問，走向人生三問與五大核心素養</p>
+  <p class="cv-sub">我為何而活？我該怎樣活？我如何能活出應活出的生命？</p>
   <button class="cover-cta" onclick="startPresentation()">進入全螢幕．開始上課</button>
   <button class="back-home-btn" style="margin-top:1em" onclick="goToSlide(document.querySelectorAll('.slide').length)">跳到最後一頁</button>
   <div class="meta">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台北班　Day 1</div>
