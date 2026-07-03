@@ -1342,7 +1342,7 @@ function getFsExit(){return document.exitFullscreen||document.webkitExitFullscre
 function isFs(){return document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||document.msFullscreenElement}
 function enterFs(el){const r=getFsReq(el);if(!r){showToast('此瀏覽器不支援全螢幕，請按 F11',4000);return Promise.reject()}let p;try{p=r.call(el)}catch(e){return Promise.reject(e)}return(p&&p.then)?p:Promise.resolve()}
 function toggleFullscreen(){if(isFs()){const x=getFsExit();if(x)x.call(document);return}enterFs(document.documentElement).catch(()=>{showToast(window.self!==window.top?'預覽面板內無法全螢幕，請在新分頁開啟':'無法進入全螢幕，請按 F11',4500)})}
-function startPresentation(){enterFs(document.documentElement).catch(()=>{showToast('預覽面板內無法全螢幕，請在新分頁開啟，或按 F11',6000)}).finally(()=>nextSlide())}
+function startPresentation(){toggleFullscreen()} // 封面大鈕＝純全螢幕toggle，絕不翻頁（教授2026-07-03鐵則）
 function showToast(m,ms=2500){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms)}
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextSlide()}
