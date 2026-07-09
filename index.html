@@ -20,6 +20,9 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
+/* 全螢幕零閃黑：<html>本身透明會先露出瀏覽器預設黑色::backdrop，補滿同色避免黑一下再變亮 */
+html{background:var(--color-bg)}
+::backdrop{background:var(--color-bg)}
 body{font-family:var(--font-sans);font-size:20px;line-height:1.78;color:var(--color-text);background:var(--color-bg);overflow:hidden}
 .deck{position:relative;width:100vw;height:100vh;overflow:hidden}
 .slide{position:absolute;inset:0;width:100%;height:100%;padding:5vh 6vw;opacity:0;visibility:hidden;transform:translateX(40px);transition:opacity .5s ease,transform .5s ease,visibility 0s linear .5s;display:flex;flex-direction:column;justify-content:center;
