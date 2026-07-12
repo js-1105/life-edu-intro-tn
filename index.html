@@ -246,8 +246,8 @@ svg .blank text{fill:#b3a584}
 @keyframes popNode{0%{opacity:.18;transform:scale(.82)}70%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
 @keyframes popHub{0%{opacity:.2;transform:scale(.78)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 /* 主題曲 */
-.lyrics{font-family:var(--font-serif);font-size:clamp(.95rem,1.45vw,1.18rem);line-height:1.85;color:#4a3b1e;column-count:2;column-gap:3em;max-width:58em}
-.lyrics p{font-size:clamp(.95rem,1.45vw,1.18rem);break-inside:avoid;margin-bottom:.7em;max-width:none}
+.lyrics{font-family:var(--font-serif);font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.48;color:#4a3b1e;column-count:2;column-gap:3em;max-width:64em;margin:0 auto;text-align:center}
+.lyrics p{font-size:clamp(1.2rem,1.9vw,1.5rem);break-inside:avoid;margin-bottom:.35em;max-width:none;text-align:center}
 .lyrics .h{color:var(--color-primary);font-weight:700;font-style:normal;letter-spacing:.05em}
 /* 導覽 */
 .progress-bar{position:fixed;bottom:0;left:0;height:4px;background:var(--color-accent);width:0;transition:width .4s;z-index:100}
@@ -384,11 +384,12 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .eggsong .lyrics .h{color:var(--color-accent-soft)}
 .eggsong .src{color:rgba(255,255,255,.72)}
 .eggsong h2,.eggsong .lyrics,.eggsong .src,.eggsong .back-home-btn,.eggsong .egg-player{position:relative;z-index:2}
+.eggsong h2{margin-bottom:.4em}
 .eggsong .back-home-btn{align-self:center;padding:1em 2.4em;font-size:1.05rem;font-weight:700}
 .eggsong .egg-deco{position:absolute;z-index:0;pointer-events:none;opacity:.62}
 .eggsong .egg-deco-tr{top:8vh;right:5vw;width:clamp(95px,9vw,150px)}
 .eggsong .egg-deco-bl{bottom:10vh;left:4.5vw;width:clamp(75px,7.5vw,120px)}
-.egg-player{display:flex;align-items:center;gap:1em;margin:1.6em auto 0;width:100%;max-width:44em;background:rgba(0,0,0,.28);border:1px solid rgba(212,175,55,.45);border-radius:999px;padding:.5em .6em .5em 1.4em}
+.egg-player{display:flex;align-items:center;gap:1em;margin:1.9em auto 0;width:100%;max-width:44em;background:rgba(0,0,0,.28);border:1px solid rgba(212,175,55,.45);border-radius:999px;padding:.5em .6em .5em 1.4em}
 .egg-play{flex:none;width:2.5em;height:2.5em;border-radius:50%;background:var(--color-accent);color:#2A1418;border:none;font-size:1.05rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .egg-play:hover{filter:brightness(1.08)}
 .egg-seek{flex:1;accent-color:var(--color-accent);cursor:pointer}
@@ -1272,9 +1273,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="egg-player">
     <button class="egg-play" onclick="eggTogglePlay()" aria-label="播放／暫停">▶</button>
     <input type="range" class="egg-seek" min="0" max="1000" value="0" oninput="eggSeek(this.value)" aria-label="播放進度">
-    <span class="egg-time">0:00 / 0:00</span>
+    <span class="egg-time cap">0:00 / 0:00</span>
   </div>
-  <button class="back-home-btn" style="margin-top:.7em" onclick="goToSlide(1)">↑　回到首頁</button>
+  <button class="back-home-btn" style="margin-top:1.3em" onclick="goToSlide(1)">↑　回到首頁</button>
 </section>
 
 </div>
