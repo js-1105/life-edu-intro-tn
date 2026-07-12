@@ -664,7 +664,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>時代脈動：黃仁勳——AI 重新定義「能力」</h2>
   <p class="lead" style="text-align:center;max-width:none">當執行成本趨近於零，<strong>定義問題、做出判斷、培養品味</strong>，成為人最後的競爭力。</p>
-  <div class="video-wrap" style="width:min(80vw,104vh);max-width:none;margin:.3em auto"><iframe id="ytJensen" src="https://www.youtube-nocookie.com/embed/b50C4Avf_M0?enablejsapi=1&rel=0&modestbranding=1&fs=0&start=854&end=932" title="黃仁勳 卡內基美隆大學畢業演說（精華片段）" referrerpolicy="strict-origin-when-cross-origin"></iframe><div class="cc-overlay" id="jensencc"></div><button class="vfs" title="放大影片（不離開簡報全螢幕）" aria-label="放大影片">⛶</button></div>
+  <div class="video-wrap" style="width:min(80vw,104vh);max-width:none;margin:.3em auto"><iframe src="https://www.youtube-nocookie.com/embed/b50C4Avf_M0?rel=0&modestbranding=1&fs=0&start=854&end=932" title="黃仁勳 卡內基美隆大學畢業演說（精華片段）" referrerpolicy="strict-origin-when-cross-origin"></iframe><button class="vfs" title="放大影片（不離開簡報全螢幕）" aria-label="放大影片">⛶</button></div>
   <p class="src" style="text-align:center;max-width:none">黃仁勳於卡內基美隆大學畢業演說　精華片段（全球大視野）。</p>
 </section>
 
@@ -1420,29 +1420,8 @@ var PBD_CUES=[
 function pbdShow(t){t+=PBD_OFFSET;var s='';for(var i=0;i<PBD_CUES.length;i++){if(t>=PBD_CUES[i][0]&&(i+1>=PBD_CUES.length||t<PBD_CUES[i+1][0])){s=PBD_CUES[i][1];break;}}var el=document.getElementById('pbdcc');if(el)el.innerHTML=s?('<span>'+s+'</span>'):'';}
 function onYouTubeIframeAPIReady(){
   try{new YT.Player('ytPaleBlueDot',{events:{onReady:function(e){setInterval(function(){try{pbdShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}
-  try{window._ytJensenPlayer=new YT.Player('ytJensen',{events:{onReady:function(e){setInterval(function(){try{jensenShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}
 }
 </script>
-<!-- 黃仁勳CMU畢業演說精華片段(854s~932s)自製繁體中文字幕層：時間碼取自YouTube英文自動字幕(yt-dlp android client下載核對)，逐句人工翻譯。若整體偏早/晚，改 JENSEN_OFFSET 秒數即可。 -->
-<script>
-var JENSEN_OFFSET=0;
-var JENSEN_CUES=[
- [854,"沒錯，AI 將改變每一份工作。"],
- [859,"但「任務」和「職業的目的」，不是同一回事。"],
- [865,"許多任務會被自動化，有些工作將會消失。"],
- [870,"但也會有更多新工作、全新產業被創造出來。"],
- [874,"寫程式的工作愈來愈自動化，"],
- [878,"但善用 AI，工程師反而能探索更多解法、挑戰更遠大的難題。"],
- [889,"判讀放射影像也愈來愈自動化。"],
- [893,"但善用 AI，放射科醫師更能精準診斷、照顧病人。"],
- [900,"AI 不會取代人的目的，"],
- [904,"它放大了人的能力。"],
- [907,"這正是為什麼，即使 AI 寫更多程式碼、判讀更多影像，"],
- [913,"工程師與放射科醫師的需求，反而持續成長。"],
- [918,"AI 不太可能取代你，"],
- [924,"但懂得善用 AI 的人，可能會。"]
-];
-function jensenShow(t){t+=JENSEN_OFFSET;var s='';for(var i=0;i<JENSEN_CUES.length;i++){if(t>=JENSEN_CUES[i][0]&&(i+1>=JENSEN_CUES.length||t<JENSEN_CUES[i+1][0])){s=JENSEN_CUES[i][1];break;}}var el=document.getElementById('jensencc');if(el)el.innerHTML=s?('<span>'+s+'</span>'):'';}
 </script>
 <script>
 window.U1=(function(){
