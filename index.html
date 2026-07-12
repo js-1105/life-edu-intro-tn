@@ -1478,9 +1478,9 @@ window.U1=(function(){
     if(DB){DB.child('g'+g+'/'+type).push({txt:txt,t:Date.now()});}
     else{DATA[g][type].push(txt);saveLocal();renderAll();}
   }
-  async function clearGroup(g){
-    if(!(await showConfirm({title:'清空確認',message:'確定清空第'+g+'組的內容？此動作無法復原。'})))return;
+  function clearGroup(g){
     if(DB){DB.child('g'+g).remove();}else{DATA[g]={lijie:[],kunhuo:[]};saveLocal();renderAll();}
+    if(typeof showToast==='function')showToast('已清空第'+g+'組',1800);
   }
   function renderAll(){
     GROUPS.forEach(g=>['lijie','kunhuo'].forEach(type=>{
@@ -1534,7 +1534,7 @@ window.U1=(function(){
   function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
   window.U1submitDai=submitDai;
   let mx=0,my=0;
-  async function clearHovered(){
+  function clearHovered(){
     const active=document.querySelector('.slide.active');
     if(active&&active.querySelector('#wordcloud-canvas')){
       if(DB){DB.child('xwen').remove();}else{XWEN=[];renderWordCloud();}
@@ -1546,9 +1546,9 @@ window.U1=(function(){
     const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo)$/);
     if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（某組的「理解」或「困惑」），再按 Shift＋C',3500);return;}
     const g=m[1],type=m[2],grp=GROUPS.filter(x=>x.id==g)[0],name=grp?grp.n:('第'+g+'組');
-    if(!(await showConfirm({title:'清空確認',message:'確定清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':'困惑')+'」這一欄？此動作無法復原。'})))return;
     if(DB){DB.child('g'+g+'/'+type).remove();}
     else{DATA[g][type]=[];saveLocal();renderAll();}
+    if(typeof showToast==='function')showToast('已清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':'困惑')+'」',2200);
   }
   window.U1clear=clearHovered;
   function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
