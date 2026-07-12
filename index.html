@@ -137,6 +137,12 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .sched-n.cap{flex:0 0 9em;text-align:right;color:var(--color-accent-deep);font-size:clamp(.85rem,1.05vw,1rem);font-style:italic}
 .ref-list{display:flex;flex-direction:column;gap:.65em;width:100%}
 .ref-item{padding:.8em 1.3em;background:#fff;border-radius:10px;box-shadow:var(--shadow-soft);border-left:4px solid var(--color-accent);font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.55}
+.rubric-rows{display:flex;flex-direction:column;gap:.6em;width:100%}
+.rubric-row{position:relative;display:flex;align-items:center;gap:1.1em;padding:.75em 1.3em;background:#fff;border-radius:12px;box-shadow:var(--shadow-soft);border-left:5px solid var(--color-primary);overflow:hidden}
+.rubric-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w,0%);background:linear-gradient(90deg,rgba(212,175,55,.2),rgba(212,175,55,.02));z-index:0}
+.rubric-pct{position:relative;z-index:1;flex:0 0 3.6em;font-family:var(--font-serif);font-weight:900;font-size:clamp(1.4rem,1.8vw,1.7rem);color:var(--color-primary)}
+.rubric-name{position:relative;z-index:1;flex:0 0 11.5em;font-weight:700;color:var(--color-text);font-size:clamp(1.6rem,1.6vw,1.75rem)}
+.rubric-desc{position:relative;z-index:1;flex:1;color:var(--color-muted);font-size:clamp(1.6rem,1.6vw,1.75rem);line-height:1.32}
 .closing{text-align:center;background:var(--grad-royal);color:#fff;--ai:center;overflow:hidden}
 .closing::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 480px at 50% 30%,rgba(212,175,55,.18),transparent 62%);z-index:0}
 .closing h2{color:#fff;border-color:var(--color-accent)} .closing .signature{margin-top:1.5em;font-size:1rem;letter-spacing:.15em;opacity:.85}
@@ -909,6 +915,19 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide section-divider">
   <div class="num">參</div>
   <h1>我的人生 X 問</h1>
+</section>
+
+<!-- 單元一課前作業評分標準 -->
+<section class="slide">
+  <h2>課前作業評分標準</h2>
+  <p class="lead" style="text-align:center;max-width:none;margin-bottom:.4em">「人生最重要的 15 件事」——總分 100，五個面向</p>
+  <div class="rubric-rows">
+    <div class="rubric-row" style="--w:27%"><span class="rubric-pct">10%</span><span class="rubric-name">清單與經驗反思</span><span class="rubric-desc">確實列出 15 件事；具體指出哪些真實經驗形塑了清單中的項目</span></div>
+    <div class="rubric-row" style="--w:54%"><span class="rubric-pct">20%</span><span class="rubric-name">AI 協作歷程紀錄</span><span class="rubric-desc">prompt 與設定理由、AI 回應節錄、同意／不同意的理由、最終採納的立場——四要素齊備</span></div>
+    <div class="rubric-row" style="--w:95%"><span class="rubric-pct">35%</span><span class="rubric-name">分類與 AI 對話調整</span><span class="rubric-desc">明確分類即給分（不限任何特定框架）；完整記錄請 AI 分類、比較異同、對話調整至滿意為止的歷程</span></div>
+    <div class="rubric-row" style="--w:54%"><span class="rubric-pct">20%</span><span class="rubric-name">個人反思深度</span><span class="rubric-desc">連結自身真實生命經驗做出統整與判斷，看得出真實思考的痕跡</span></div>
+    <div class="rubric-row" style="--w:41%"><span class="rubric-pct">15%</span><span class="rubric-name">論證清晰度與文字表達</span><span class="rubric-desc">四小題之間邏輯連貫、彼此呼應；文字清晰流暢</span></div>
+  </div>
 </section>
 
 <section class="slide roomy">
