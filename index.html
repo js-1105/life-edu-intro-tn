@@ -118,7 +118,7 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;width:100%}
 .card{background:#fff;padding:1.3em 1.4em;border-radius:14px;box-shadow:var(--shadow-soft);border-top:4px solid var(--color-accent)}
 .card h3{margin-top:0;color:var(--color-primary)}
-.card.compact p{font-size:1.2rem;margin-bottom:.3em}
+.card.compact p{font-size:1.56rem;line-height:1.5;margin-bottom:.3em}
 .tag{display:inline-block;background:var(--color-primary);color:#fff;padding:.25em .9em;border-radius:999px;font-size:.85rem;font-weight:600;letter-spacing:.08em;margin-bottom:.6em}
 ul.fl{list-style:none} ul.fl li{position:relative;padding:.5em 0 .5em 1.6em;font-size:clamp(1.25rem,1.9vw,1.7rem);border-bottom:1px dashed var(--color-line)}
 ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;height:.7em;background:var(--color-accent);border-radius:50%}
@@ -297,11 +297,11 @@ ul.feature-list{list-style:none;counter-reset:li-counter}
 ul.feature-list li{position:relative;padding:.55em 0 .55em 2.3em;font-size:clamp(1.05rem,1.5vw,1.35rem);border-bottom:1px dashed var(--color-line);line-height:1.6}
 ul.feature-list li::before{content:counter(li-counter);counter-increment:li-counter;position:absolute;left:0;top:.7em;width:1.6em;height:1.6em;background:var(--color-accent);color:var(--color-primary-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85em}
 .practice-box{background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.04));border:2px dashed var(--color-accent);padding:1.2em 1.6em;border-radius:16px;margin-top:1em}
-.contrast-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1.2vw;align-items:stretch;margin-top:.6em}
-.contrast-card{padding:1.1em 1.2em;border-radius:14px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column}
-.contrast-card h3{margin:.2em 0 .5em;font-size:clamp(1.2rem,1.7vw,1.55rem);color:var(--color-primary)}
-.contrast-card p{font-size:clamp(.95rem,1.25vw,1.18rem);margin-bottom:.5em;line-height:1.65}
-.contrast-card .contrast-year{font-size:clamp(2rem,3.4vw,3rem);font-weight:700;font-family:var(--font-serif);letter-spacing:.05em;line-height:1;margin-bottom:.1em}
+.contrast-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1.1vw;align-items:stretch;margin-top:.3em}
+.contrast-card{padding:.62em .9em;border-radius:14px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column}
+.contrast-card h3{margin:.05em 0 .2em;font-size:clamp(1.3rem,1.65vw,1.5rem);color:var(--color-primary)}
+.contrast-card p{font-size:clamp(1.5rem,1.6vw,1.54rem);margin-bottom:.25em;line-height:1.32}
+.contrast-card .contrast-year{font-size:clamp(1.35rem,2.1vw,1.8rem);font-weight:700;font-family:var(--font-serif);letter-spacing:.05em;line-height:1;margin-bottom:.05em}
 .contrast-light{background:linear-gradient(135deg,#FFFFFF 0%,#FBF6E8 100%);border-top:5px solid var(--color-accent)}
 .contrast-light .contrast-year{color:var(--color-accent)}
 .contrast-dark{background:linear-gradient(135deg,#2A1418 0%,#3A1B22 100%);color:#F4E8D9;border-top:5px solid #6B6B6B}
@@ -344,32 +344,32 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .stat-source{display:block;margin-top:.8em;padding-top:.65em;border-top:1px dashed var(--color-line);font-size:.7rem;color:var(--color-muted);line-height:1.45}
 .stats-slide blockquote{margin:.8em auto 0;max-width:52em;text-align:center;font-size:clamp(1.05rem,1.45vw,1.3rem);background:rgba(255,255,255,.62)}
 /* Karpathy：沿用章節底色、金書脊與浮水印的人物引言頁 */
-.karpathy-slide{--jc:flex-start;--gap:1.2vh;padding:4.5vh 5.4vw;overflow:hidden}
-.kp-head{display:grid;grid-template-columns:1.48fr 1fr;gap:2.6vw;align-items:start;width:100%}
-.kp-text{display:flex;flex-direction:column;gap:.5em;min-width:0}
+.karpathy-slide{--jc:flex-start;--gap:.4vh;padding:2.2vh 5vw;overflow:hidden}
+.kp-head{display:grid;grid-template-columns:1.5fr 1fr;gap:2.2vw;align-items:start;width:100%}
+.kp-text{display:flex;flex-direction:column;gap:.24em;min-width:0}
 .karpathy-kicker{display:flex;align-items:center;gap:.7em;color:var(--color-accent-deep);font-size:clamp(.85rem,1.05vw,1rem);font-weight:700;letter-spacing:.16em}
 .karpathy-kicker::before{content:"";width:48px;height:2px;background:var(--color-accent)}
-.karpathy-slide h2{margin:.02em 0 0;padding:0;border:0;color:var(--color-primary);font-size:clamp(2.1rem,3.4vw,3.2rem);line-height:1.22}
-.kp-lead{margin:0;color:var(--color-muted);font-size:clamp(.98rem,1.2vw,1.15rem);line-height:1.5;max-width:none}
-.karpathy-quote{margin:.1em 0;padding:.5em .85em;border-left:5px solid var(--color-accent);background:rgba(255,255,255,.7);box-shadow:var(--shadow-soft);color:#4a3b1e;font-size:clamp(1.3rem,1.85vw,1.7rem);line-height:1.45;max-width:none}
+.karpathy-slide h2{margin:.02em 0 0;padding:0;border:0;color:var(--color-primary);font-size:clamp(1.9rem,2.8vw,2.55rem);line-height:1.14}
+.kp-lead{margin:0;color:var(--color-muted);font-size:clamp(1.5rem,1.82vw,1.56rem);line-height:1.3;max-width:none}
+.karpathy-quote{margin:.05em 0;padding:.38em .8em;border-left:5px solid var(--color-accent);background:rgba(255,255,255,.7);box-shadow:var(--shadow-soft);color:#4a3b1e;font-size:clamp(1.3rem,1.75vw,1.6rem);line-height:1.3;max-width:none}
 .karpathy-quote strong{color:var(--color-primary)}
 .karpathy-byline{display:block;margin-top:.2em;font-family:var(--font-sans);font-size:.5em;font-style:normal;font-weight:600;letter-spacing:.13em;color:var(--color-accent-deep)}
-.kp-body{margin:0;color:var(--color-text);font-size:clamp(1.05rem,1.35vw,1.3rem);line-height:1.55;max-width:none}
+.kp-body{margin:0;color:var(--color-text);font-size:clamp(1.5rem,1.85vw,1.6rem);line-height:1.35;max-width:none}
 .kp-body strong{color:var(--color-primary)}
-.kp-aside{margin:0;color:var(--color-muted);font-size:clamp(1rem,1.25vw,1.2rem);line-height:1.5;max-width:none}
+.kp-aside{margin:0;color:var(--color-muted);font-size:clamp(1.5rem,1.82vw,1.56rem);line-height:1.3;max-width:none}
 .kp-aside strong{color:var(--color-primary)}
-.kp-en{margin:0;color:var(--color-primary);font-style:italic;font-family:var(--font-serif);font-size:clamp(1rem,1.25vw,1.2rem);line-height:1.4;max-width:none}
+.kp-en{margin:0;color:var(--color-primary);font-style:italic;font-family:var(--font-serif);font-size:clamp(1.5rem,1.82vw,1.56rem);line-height:1.25;max-width:none}
 .kp-photo{margin:0;position:relative;padding:7px;border-radius:20px;background:#fff;box-shadow:var(--shadow-strong);transform:rotate(1deg)}
-.kp-photo img{display:block;width:100%;height:48vh;object-fit:cover;object-position:58% center;border-radius:14px;filter:saturate(.8) contrast(1.04)}
+.kp-photo img{display:block;width:100%;height:40vh;object-fit:cover;object-position:58% center;border-radius:14px;filter:saturate(.8) contrast(1.04)}
 .kp-photo::after{content:"";position:absolute;inset:7px;border-radius:14px;background:linear-gradient(180deg,transparent 58%,rgba(61,16,22,.5));pointer-events:none}
 .kp-photo figcaption{position:absolute;right:.7em;bottom:.5em;color:#fff;font-size:.62rem;letter-spacing:.03em;text-shadow:0 1px 3px rgba(0,0,0,.85)}
 .kp-bottom{width:100%;margin-top:auto}
-.kp-bottom h3{margin:.1em 0 .45em;color:var(--color-primary);font-size:clamp(1.25rem,1.65vw,1.55rem);border:0}
-.kp-assets{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin-bottom:.7em}
-.kp-asset{padding:.85em 1.05em;border-top:5px solid var(--color-accent);border-radius:14px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-soft)}
-.kp-asset b{display:block;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.2rem,1.55vw,1.5rem);letter-spacing:.05em}
-.kp-asset span{display:block;margin-top:.2em;color:var(--color-muted);font-size:clamp(.95rem,1.15vw,1.1rem);line-height:1.45}
-.kp-practice{background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.04));border:2px dashed var(--color-accent);border-radius:16px;padding:.85em 1.3em;font-size:clamp(1.02rem,1.28vw,1.22rem);line-height:1.55;color:var(--color-text)}
+.kp-bottom h3{margin:.05em 0 .28em;color:var(--color-primary);font-size:clamp(1.3rem,1.7vw,1.6rem);border:0}
+.kp-assets{display:grid;grid-template-columns:repeat(3,1fr);gap:.7em;margin-bottom:.35em}
+.kp-asset{padding:.5em .85em;border-top:5px solid var(--color-accent);border-radius:14px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-soft)}
+.kp-asset b{display:block;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.3rem,1.6vw,1.52rem);letter-spacing:.05em}
+.kp-asset span{display:block;margin-top:.15em;color:var(--color-muted);font-size:clamp(1.48rem,1.78vw,1.54rem);line-height:1.3}
+.kp-practice{background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.04));border:2px dashed var(--color-accent);border-radius:16px;padding:.5em 1.2em;font-size:clamp(1.5rem,1.82vw,1.58rem);line-height:1.32;color:var(--color-text)}
 .kp-practice strong{color:var(--color-primary)}
 .kp-practice .src-note{display:block;margin-top:.3em;color:var(--color-muted);font-size:.78em;font-style:italic}
 /* —— 第二堂互動模組 —— */
@@ -680,7 +680,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <div class="contrast-year">1966</div>
       <h3>王金平　×　尹衍樑</h3>
       <p>感化院少年帶著刀傷走進老師宿舍。26 歲的王金平沒有通報、沒有切割，他拿出醫藥箱，包紮、清傷、然後說：</p>
-      <blockquote style="font-size:1.05rem;margin:.5em 0">「數學不會的，晚飯後來找我，我教你。<br>英文一天背三個單字，很快就補齊了。」</blockquote>
+      <blockquote style="font-size:1.5rem;margin:.25em 0;padding:.3em 1em;line-height:1.34">「數學不會的，晚飯後來找我，我教你。<br>英文一天背三個單字，很快就補齊了。」</blockquote>
       <p>那個少年後來成為擁有近 600 項國際專利的<strong>千億總裁尹衍樑</strong>。事業有成後，向當年的王金平老師<strong>三鞠躬</strong>。</p>
     </div>
     <div class="contrast-vs">VS</div>
@@ -689,10 +689,10 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <h3>高雄某資深自然科老師</h3>
       <p>教學認真、深受學生喜愛、長期指導科展，卻長期遭受極度不服管教學生<strong>言語霸凌、提告、家長申訴</strong>。</p>
       <p>請了身心調適假回到學校後——<strong>從校舍高處墜落，送醫不治。</strong></p>
-      <p style="font-size:.92rem;color:var(--color-muted);margin-top:.5em">臺北市 2024 學年度校事會議案件，<strong>八成最後未成案</strong>——但老師在等待結果的那段時間，已被貼上「問題老師」標籤。</p>
+      <p style="font-size:1.5rem;color:var(--color-muted);margin-top:.25em;line-height:1.32">臺北市 2024 學年度校事會議案件，<strong>八成最後未成案</strong>——但老師在等待結果的那段時間，已被貼上「問題老師」標籤。</p>
     </div>
   </div>
-  <blockquote style="margin-top:.6em">教育最珍貴的地方，從來不是把乖孩子教得更乖；而是有人願意在一個孩子還不可愛、一身麻煩時，仍然<strong>相信他有可能變好</strong>。</blockquote>
+  <blockquote style="margin-top:.3em;font-size:clamp(1.5rem,1.85vw,1.65rem);padding:.3em 1.1em;line-height:1.36">教育最珍貴的地方，從來不是把乖孩子教得更乖；而是有人願意在一個孩子還不可愛、一身麻煩時，仍然<strong>相信他有可能變好</strong>。</blockquote>
 </section>
 
 <section class="slide">
@@ -1200,8 +1200,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <p class="lead">「人應為何而活？」——關乎生命終極目的的提問</p>
   <p>當我們不斷追問「然後呢？」時，最終會觸及那個最核心的問題：<b>這一切的努力，最終是為了什麼？</b>如果生命最終都將走向死亡，那麼活著的意義究竟何在？</p>
   <div class="grid2" style="margin-top:.6em">
-    <div class="card"><h3>Meaning <em>in</em> life</h3><p>在人生中所能<b>經驗或開創</b>的意義——涉及<b>終極理想</b>的探問。</p><p class="muted" style="font-size:.95rem;margin-top:.4em">希臘 eudaimonia ／士林哲學 bonum summum ／《大學》「至善」——人生所能達到的最圓滿幸福。</p></div>
-    <div class="card"><h3>Meaning <em>of</em> life</h3><p>人的存在本身是否具有<b>超越虛無</b>的意義——涉及<b>終極信念</b>的確立。</p><p class="muted" style="font-size:.95rem;margin-top:.4em">在虛無主義與宗教信仰之間，人究竟如何立足？</p></div>
+    <div class="card"><h3>Meaning <em>in</em> life</h3><p>在人生中所能<b>經驗或開創</b>的意義——涉及<b>終極理想</b>的探問。</p><p class="muted" style="font-size:1.55rem;line-height:1.45;margin-top:.4em">希臘 eudaimonia ／士林哲學 bonum summum ／《大學》「至善」——人生所能達到的最圓滿幸福。</p></div>
+    <div class="card"><h3>Meaning <em>of</em> life</h3><p>人的存在本身是否具有<b>超越虛無</b>的意義——涉及<b>終極信念</b>的確立。</p><p class="muted" style="font-size:1.55rem;line-height:1.45;margin-top:.4em">在虛無主義與宗教信仰之間，人究竟如何立足？</p></div>
   </div>
 </section>
 
@@ -1216,8 +1216,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div style="flex:1;min-width:0">
       <p class="lead" style="max-width:none;margin-bottom:.5em"><b>海德格</b>：「人是<b>向死存有</b>」（being-towards-death），注定走向死亡。問題是——死亡是一堵牆，還是一扇門？</p>
       <div class="grid2" style="gap:1.6vw;align-items:start">
-        <div class="card" style="border-top-color:#6B6B6B"><h3>死亡是一堵牆？</h3><p style="font-size:clamp(1rem,1.2vw,1.18rem);line-height:1.5">純粹唯物論——死後是虛無與斷滅。物理主義者 Owen Flanagan 坦承：「在沒有死後存在的世界中，意義問題非常棘手。」卡繆的存在虛無主義即如此：人生荒謬，卻仍勇敢挺立反抗。</p></div>
-        <div class="card"><h3>死亡是一扇門？</h3><p style="font-size:clamp(1rem,1.2vw,1.18rem);line-height:1.5">托爾斯泰與齊克果選擇<b>信仰的跳躍</b>——死後另有世界，人生能超越虛無、延伸至永恆。佛教「涅槃」、基督宗教「天國」、儒家「天人合一」皆指引人超越有限、追求永恆。</p></div>
+        <div class="card" style="border-top-color:#6B6B6B"><h3>死亡是一堵牆？</h3><p style="font-size:clamp(1.5rem,1.85vw,1.6rem);line-height:1.5">純粹唯物論——死後是虛無與斷滅。物理主義者 Owen Flanagan 坦承：「在沒有死後存在的世界中，意義問題非常棘手。」卡繆的存在虛無主義即如此：人生荒謬，卻仍勇敢挺立反抗。</p></div>
+        <div class="card"><h3>死亡是一扇門？</h3><p style="font-size:clamp(1.5rem,1.85vw,1.6rem);line-height:1.5">托爾斯泰與齊克果選擇<b>信仰的跳躍</b>——死後另有世界，人生能超越虛無、延伸至永恆。佛教「涅槃」、基督宗教「天國」、儒家「天人合一」皆指引人超越有限、追求永恆。</p></div>
       </div>
       <p class="src" style="max-width:none;margin-top:.5em">生命教育並不預設特定終極信念或宗教立場，但鼓勵學生保持開放的心胸，去認識不同立場各代表怎樣的人生觀。</p>
     </div>
@@ -1278,9 +1278,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide">
-  <h2>五大核心素養關係圖</h2>
+  <h2 style="margin-bottom:.22em;padding-bottom:.16em;font-size:clamp(1.8rem,2.9vw,2.5rem)">五大核心素養關係圖</h2>
   <div class="map-wrap">
-    <svg class="core-map" viewBox="0 0 520 440" width="100%" style="max-width:620px" font-family="var(--font-serif)">
+    <svg class="core-map" viewBox="54 26 412 392" width="100%" style="max-width:620px" font-family="var(--font-serif)">
       <defs>
         <radialGradient id="hub" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#fff7df"/><stop offset="100%" stop-color="#f0d488"/></radialGradient>
         <linearGradient id="node" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="100%" stop-color="#fbf3e3"/></linearGradient>
@@ -1344,7 +1344,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="closing-stage">
     <div class="closing-copy">
       <h2>今天，我們打開了<br>一張生命的地圖</h2>
-      <blockquote>這一週，不是讓你又學會什麼，<br>而是讓你重新有了探索生命的熱情，<br>並看見：生命教育的人生三問與五大核心素養，其實彼此相同。</blockquote>
+      <blockquote>這一週，不是讓你又學會什麼，<br>而是讓你重新有了探索生命的熱情，<br>並看見：生命教育的人生三問與五大核心素養，其實彼此相連。</blockquote>
       <p class="signature">——生命的學問，從這裡開始</p>
     </div>
     <div class="closing-map">
