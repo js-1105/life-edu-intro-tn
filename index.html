@@ -384,12 +384,12 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .eggsong .lyrics .h{color:var(--color-accent-soft)}
 .eggsong .src{color:rgba(255,255,255,.72)}
 .eggsong h2,.eggsong .lyrics,.eggsong .src,.eggsong .back-home-btn,.eggsong .egg-player{position:relative;z-index:2}
-.eggsong h2{margin-bottom:.4em}
+.eggsong h2{margin-bottom:1em}
 .eggsong .back-home-btn{align-self:center;padding:1em 2.4em;font-size:1.05rem;font-weight:700}
 .eggsong .egg-deco{position:absolute;z-index:0;pointer-events:none;opacity:.62}
 .eggsong .egg-deco-tr{top:8vh;right:5vw;width:clamp(95px,9vw,150px)}
 .eggsong .egg-deco-bl{bottom:10vh;left:4.5vw;width:clamp(75px,7.5vw,120px)}
-.egg-player{display:flex;align-items:center;gap:1em;margin:1.9em auto 0;width:100%;max-width:44em;background:rgba(0,0,0,.28);border:1px solid rgba(212,175,55,.45);border-radius:999px;padding:.5em .6em .5em 1.4em}
+.egg-player{display:flex;align-items:center;gap:1em;margin:2.7em auto 0;width:100%;max-width:44em;background:rgba(0,0,0,.28);border:1px solid rgba(212,175,55,.45);border-radius:999px;padding:.5em .6em .5em 1.4em}
 .egg-play{flex:none;width:2.5em;height:2.5em;border-radius:50%;background:var(--color-accent);color:#2A1418;border:none;font-size:1.05rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .egg-play:hover{filter:brightness(1.08)}
 .egg-seek{flex:1;accent-color:var(--color-accent);cursor:pointer}
@@ -1268,7 +1268,6 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <p><span class="h">〔副歌〕</span><br>為何而活　為何而活<br>在每個天微亮的清晨　輕輕問自己<br>該怎麼活　該怎麼活<br>在每個十字路口　誠實地選一條路<br>如何活出　如何活出<br>讓我說過的話　和我走過的路　慢慢合而為一</p>
     <p><span class="h">〔尾聲｜漸弱〕</span><br>為何活……該怎麼活……如何活出……<br>這，就是我的人生三問</p>
   </div>
-  <p class="src">〈三問〉——《生命的學問》概念專輯的開場曲；整週的最後一節，它會再次響起。</p>
   <audio id="eggAudio" src="media/theme_song.m4a" preload="metadata"></audio>
   <div class="egg-player">
     <button class="egg-play" onclick="eggTogglePlay()" aria-label="播放／暫停">▶</button>
