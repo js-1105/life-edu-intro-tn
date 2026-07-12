@@ -125,6 +125,18 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .practice{background:linear-gradient(135deg,rgba(212,175,55,.13),rgba(212,175,55,.03));border:2px dashed var(--color-accent);padding:1.2em 1.5em;border-radius:16px;margin-top:.5em}
 .practice .label{display:inline-block;background:var(--color-primary);color:#fff;padding:.25em .9em;border-radius:999px;font-size:.85rem;font-weight:600;margin-bottom:.5em;letter-spacing:.1em}
 .big-q{font-family:var(--font-serif);font-size:clamp(1.5rem,3.2vw,2.6rem);font-weight:700;color:var(--color-primary);line-height:1.5}
+.info-grid{display:flex;flex-direction:column;gap:.4em;width:100%}
+.info-row{display:flex;align-items:baseline;gap:1.2em;padding:.42em 1.2em;background:#fff;border-radius:12px;box-shadow:var(--shadow-soft);border-left:5px solid var(--color-accent)}
+.info-k{flex:0 0 8em;font-weight:700;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.35rem,1.8vw,1.65rem)}
+.info-v{flex:1;color:var(--color-text);font-size:clamp(1.35rem,1.8vw,1.65rem)}
+.sched-rows{display:flex;flex-direction:column;gap:.32em;width:100%}
+.sched-row{display:flex;align-items:center;gap:1em;padding:.4em 1.1em;background:#fff;border-radius:12px;box-shadow:var(--shadow-soft);border-left:5px solid var(--color-accent)}
+.sched-d{flex:0 0 6em;font-weight:700;color:var(--color-primary);font-family:var(--font-serif);font-size:clamp(1.25rem,1.6vw,1.5rem)}
+.sched-u{flex:0 0 11.5em;font-weight:700;color:var(--color-text);font-size:clamp(1.25rem,1.6vw,1.5rem)}
+.sched-t{flex:1;color:var(--color-muted);font-size:clamp(1.55rem,1.6vw,1.65rem);line-height:1.3}
+.sched-n.cap{flex:0 0 9em;text-align:right;color:var(--color-accent-deep);font-size:clamp(.85rem,1.05vw,1rem);font-style:italic}
+.ref-list{display:flex;flex-direction:column;gap:.65em;width:100%}
+.ref-item{padding:.8em 1.3em;background:#fff;border-radius:10px;box-shadow:var(--shadow-soft);border-left:4px solid var(--color-accent);font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.55}
 .closing{text-align:center;background:var(--grad-royal);color:#fff;--ai:center;overflow:hidden}
 .closing::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 480px at 50% 30%,rgba(212,175,55,.18),transparent 62%);z-index:0}
 .closing h2{color:#fff;border-color:var(--color-accent)} .closing .signature{margin-top:1.5em;font-size:1rem;letter-spacing:.15em;opacity:.85}
@@ -503,6 +515,55 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <circle class="oa oa4" cx="260" cy="260" r="186" stroke="#c07a55" stroke-dasharray="539 1169" transform="rotate(-90 260 260)"/>
     <circle class="oa oa5" cx="260" cy="260" r="168" stroke="#7a8bb0" stroke-dasharray="369 1056" transform="rotate(-90 260 260)"/>
   </svg>
+</section>
+
+<!-- 課程基本資訊 -->
+<section class="slide">
+  <h2>課程基本資訊</h2>
+  <div class="info-grid">
+    <div class="info-row"><span class="info-k">課程名稱</span><span class="info-v">生命教育概論（2 學分）</span></div>
+    <div class="info-row"><span class="info-k">授課教師</span><span class="info-v">孫效智 教授（國立臺灣大學哲學系）</span></div>
+    <div class="info-row"><span class="info-k">上課對象</span><span class="info-v">第十期師資培育第二專長學分班學員</span></div>
+    <div class="info-row"><span class="info-k">上課日期</span><span class="info-v">115 年 7 月 13 日（一）至 7 月 17 日（五）</span></div>
+    <div class="info-row"><span class="info-k">上課時間</span><span class="info-v">每日 9:10–12:00、13:30–16:20（每日六節）</span></div>
+    <div class="info-row"><span class="info-k">上課地點</span><span class="info-v">國立臺灣大學博雅教學館302/202教室、普通教學館202教室</span></div>
+    <div class="info-row"><span class="info-k">期末考試</span><span class="info-v">115 年 8 月 13 日（四）10:00–12:00（2 小時）</span></div>
+    <div class="info-row"><span class="info-k">期末檢討</span><span class="info-v">115 年 8 月 22 日（六）10:10–14:00（4 小時）</span></div>
+  </div>
+</section>
+
+<!-- 課程性質與定位 -->
+<section class="slide roomy" style="--ai:center;text-align:center">
+  <h2>課程性質與定位</h2>
+  <p class="lead" style="max-width:52em;margin:0 auto .6em">本課程於學分班最後階段開設，並非一門「導論」課，而是一門<b>「總整課程」</b>（capstone course）。</p>
+  <blockquote style="max-width:52em;margin:0 auto">在各位修畢三學期生命教育各分科課程之後，以<b>「人生三問 × 五大核心素養」</b>為骨幹，把過去所學的終極關懷、價值思辨、靈性修養、人學探索與哲學思考重新收攏、貫串成生命教育的整體圖像，並回到每個人自身的生命實踐。</blockquote>
+</section>
+
+<!-- 課程架構與時間配置 -->
+<section class="slide">
+  <h2>課程架構與時間配置</h2>
+  <div class="sched-rows">
+    <div class="sched-row"><span class="sched-d">7/13（一）</span><span class="sched-u">單元一　生命的學問導論</span><span class="sched-t">破題：人生三問與五大核心素養的整體圖像</span><span class="sched-n cap">全日六節</span></div>
+    <div class="sched-row"><span class="sched-d">7/14（二）</span><span class="sched-u">單元二　終極關懷</span><span class="sched-t">人生第一問：人為何而活</span><span class="sched-n cap">全日六節</span></div>
+    <div class="sched-row"><span class="sched-d">7/15（三）</span><span class="sched-u">單元三　價值思辨</span><span class="sched-t">人生第二問：人該怎樣活著</span><span class="sched-n cap">全日六節</span></div>
+    <div class="sched-row"><span class="sched-d">7/16（四）</span><span class="sched-u">單元四　靈性修養</span><span class="sched-t">人生第三問：人如何能活出應活出的生命（五大素養樞紐）</span><span class="sched-n cap">全日六節</span></div>
+    <div class="sched-row"><span class="sched-d">7/17（五）</span><span class="sched-u">單元五　人學探索</span><span class="sched-t">五大素養之基礎：人是什麼</span><span class="sched-n cap">第1–2節＋第3節前半</span></div>
+    <div class="sched-row"><span class="sched-d">7/17（五）</span><span class="sched-u">單元六　哲學思考</span><span class="sched-t">五大素養之方法：思考素養與後設思考</span><span class="sched-n cap">第3節後半＋第4–5節</span></div>
+    <div class="sched-row"><span class="sched-d">7/17（五）</span><span class="sched-u">綜合 Q&amp;A</span><span class="sched-t">課程總整與問題討論</span><span class="sched-n cap">第6節</span></div>
+  </div>
+  <p class="src" style="text-align:center;max-width:none;margin-top:.5em">節次時間：第1節 9:10–10:00｜第2節 10:10–11:00｜第3節 11:10–12:00｜第4節 13:30–14:20｜第5節 14:30–15:20｜第6節 15:30–16:20</p>
+</section>
+
+<!-- 參考文獻 -->
+<section class="slide">
+  <h2>參考文獻</h2>
+  <div class="ref-list">
+    <div class="ref-item">孫效智，〈臺灣生命教育的理論基礎與發展歷程〉，北京首都師範大學，2026。</div>
+    <div class="ref-item">孫效智，〈未知死，焉知生〉，《科學人》，2010。</div>
+    <div class="ref-item">孫效智，〈以生命教育為核心重構主流靈性健康理論〉，載於「2025 第二十一屆生命教育學術研討會」會議手冊（頁 3–52），國立臺灣大學生命教育研發育成中心、社團法人台灣生命教育學會，臺北，2025 年 10 月。</div>
+    <div class="ref-item">米洛斯拉夫．沃弗（Miroslav Volf）、馬修．克羅斯蒙（Matthew Croasmun）、萊恩．麥克安納利林茨（Ryan McAnnally-Linz）著，廖建容譯，《耶魯大學的人生思辨課》，天下雜誌，2023。</div>
+  </div>
+  <p class="muted" style="text-align:center;margin-top:.6em">以上為目前書面課程綱要所列參考文獻；視學員學習情況，後續可能會再補充其他文獻。</p>
 </section>
 
 <section class="slide roomy">
