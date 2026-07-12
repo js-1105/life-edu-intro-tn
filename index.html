@@ -457,6 +457,15 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .daiuda input{flex:1;min-width:11em}
 .daiuda .btn{background:var(--color-primary);color:#fff;border:none;border-radius:999px;padding:.5em 1.3em;font-size:.95rem;font-weight:700;cursor:pointer}
 #fbStatus{font-weight:700}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99980;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-backdrop.show{display:flex}
+.modal-card{background:#fff;border-radius:14px;padding:1.8em 2em 1.4em;max-width:420px;border-top:4px solid var(--color-accent);font-family:var(--font-sans);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.modal-card h3{margin:0 0 .5em;color:var(--color-primary);font-family:var(--font-serif)}
+.modal-card p{margin:0 0 1.2em;color:var(--color-text);line-height:1.6}
+.modal-actions{display:flex;gap:.8em;justify-content:flex-end}
+.modal-actions button{border:none;border-radius:999px;padding:.55em 1.4em;font-size:.95rem;font-weight:700;cursor:pointer;font-family:var(--font-sans)}
+.modal-btn-cancel{background:#eee;color:#333}
+.modal-btn-confirm{background:var(--color-primary);color:#fff}
 </style>
 <script src="fbconfig.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -1469,8 +1478,8 @@ window.U1=(function(){
     if(DB){DB.child('g'+g+'/'+type).push({txt:txt,t:Date.now()});}
     else{DATA[g][type].push(txt);saveLocal();renderAll();}
   }
-  function clearGroup(g){
-    if(!confirm('確定清空第'+g+'組的內容？此動作無法復原。'))return;
+  async function clearGroup(g){
+    if(!(await showConfirm({title:'清空確認',message:'確定清空第'+g+'組的內容？此動作無法復原。'})))return;
     if(DB){DB.child('g'+g).remove();}else{DATA[g]={lijie:[],kunhuo:[]};saveLocal();renderAll();}
   }
   function renderAll(){
@@ -1516,7 +1525,7 @@ window.U1=(function(){
     if(typeof QRCode==='undefined')return;
     document.querySelectorAll('.qr-box[data-g]').forEach(box=>{
       const g=box.getAttribute('data-g'); box.innerHTML='';
-      try{new QRCode(box,{text:SUBMIT_BASE+'?g='+g,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
+      try{new QRCode(box,{text:SUBMIT_BASE+'?g='+g+'&v=g6fix1',width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
     });
     const xq=document.getElementById('xwenQR');
     if(xq){xq.innerHTML='';try{new QRCode(xq,{text:ASK_BASE,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
@@ -1525,7 +1534,7 @@ window.U1=(function(){
   function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
   window.U1submitDai=submitDai;
   let mx=0,my=0;
-  function clearHovered(){
+  async function clearHovered(){
     const active=document.querySelector('.slide.active');
     if(active&&active.querySelector('#wordcloud-canvas')){
       if(DB){DB.child('xwen').remove();}else{XWEN=[];renderWordCloud();}
@@ -1537,7 +1546,7 @@ window.U1=(function(){
     const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo)$/);
     if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（某組的「理解」或「困惑」），再按 Shift＋C',3500);return;}
     const g=m[1],type=m[2],grp=GROUPS.filter(x=>x.id==g)[0],name=grp?grp.n:('第'+g+'組');
-    if(!confirm('確定清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':'困惑')+'」這一欄？此動作無法復原。'))return;
+    if(!(await showConfirm({title:'清空確認',message:'確定清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':'困惑')+'」這一欄？此動作無法復原。'})))return;
     if(DB){DB.child('g'+g+'/'+type).remove();}
     else{DATA[g][type]=[];saveLocal();renderAll();}
   }
@@ -1556,10 +1565,10 @@ window.U1=(function(){
     a.href=url;a.download='單元一第二堂_'+room+'_'+stamp+'.csv';document.body.appendChild(a);a.click();a.remove();
     setTimeout(function(){URL.revokeObjectURL(url);},1500);
   }
-  function exportAndClear(){
+  async function exportAndClear(){
     var stamp=nowStamp(),room=window.FB_ROOM||'default';
     downloadCSV(stamp);
-    if(!confirm('六組資料已下載成 CSV（存在這台電腦的「下載」資料夾，可用 Excel／Numbers 開啟做分析評量）。要現在把本場全部清空、房間掃乾淨嗎？')){if(typeof showToast==='function')showToast('已下載備份，未清空',2500);return;}
+    if(!(await showConfirm({title:'清空確認',message:'六組資料已下載成 CSV（存在這台電腦的「下載」資料夾，可用 Excel／Numbers 開啟做分析評量）。要現在把本場全部清空、房間掃乾淨嗎？'}))){if(typeof showToast==='function')showToast('已下載備份，未清空',2500);return;}
     if(DB){
       DB.once('value').then(function(snap){
         var val=snap.val(),fin=function(){DB.remove();if(typeof showToast==='function')showToast('已下載 CSV＋雲端封存，並清空本場',3000);};
@@ -1580,6 +1589,34 @@ window.U1=(function(){
   if(document.readyState!=='loading')initAll();else document.addEventListener('DOMContentLoaded',initAll);
   return {add,clearGroup,renderAll};
 })();
+</script>
+<!-- 自訂確認對話框：絕不用原生 confirm()/alert()（會強制離開全螢幕），改用此 DOM modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-card">
+    <h3 id="modalTitle">確認</h3>
+    <p id="modalMessage"></p>
+    <div class="modal-actions">
+      <button class="modal-btn-cancel" id="modalCancel">取消</button>
+      <button class="modal-btn-confirm" id="modalConfirm">確定</button>
+    </div>
+  </div>
+</div>
+<script>
+function showConfirm({title='確認',message='',okText='確定',cancelText='取消'}={}){
+  return new Promise(resolve=>{
+    const backdrop=document.getElementById('modalBackdrop');
+    document.getElementById('modalTitle').textContent=title;
+    document.getElementById('modalMessage').textContent=message;
+    const okBtn=document.getElementById('modalConfirm'),cancelBtn=document.getElementById('modalCancel');
+    okBtn.textContent=okText;cancelBtn.textContent=cancelText;
+    const cleanup=(val)=>{backdrop.classList.remove('show');okBtn.removeEventListener('click',onOk);cancelBtn.removeEventListener('click',onCancel);document.removeEventListener('keydown',onKey);resolve(val);};
+    const onOk=()=>cleanup(true),onCancel=()=>cleanup(false);
+    const onKey=(e)=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();cleanup(false);}if(e.key==='Enter'){e.preventDefault();e.stopPropagation();cleanup(true);}};
+    okBtn.addEventListener('click',onOk);cancelBtn.addEventListener('click',onCancel);
+    document.addEventListener('keydown',onKey,true);
+    backdrop.classList.add('show');
+  });
+}
 </script>
 <!-- ===================== 影片就地放大（同一 iframe/video 切 CSS class；播放不中斷、不重頭、不停止）===================== -->
 <div id="zoomBackdrop"></div>
