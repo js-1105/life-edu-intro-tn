@@ -140,36 +140,38 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .namecard .nm{font-family:var(--font-serif);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:700;color:var(--color-primary)}
 .namecard .life{font-size:.92rem;letter-spacing:.12em;color:var(--color-accent-deep);font-weight:700}
 /* 水彩肖像框（比照 life-edu-philosophy） */
-.thinker-row{display:flex;align-items:center;gap:4vw;flex:1;width:calc(100% + 7vw);margin-left:-3.5vw}
-.thinker-row>.thinker-text{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:.45em}
-.thinker-text p{font-size:clamp(1.55rem,2.05vw,2.15rem);max-width:none;margin:0}
+.thinker-row{display:flex;align-items:center;gap:3.4vw;flex:1;width:calc(100% + 2vw);margin-left:-1vw}
+.thinker-row>.thinker-text{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:.3em}
+.thinker-text p{font-size:clamp(1.3rem,1.7vw,1.75rem);max-width:none;margin:0;line-height:1.4}
 .thinker-text .fl{margin:0}
 .thinker-text .fl li{font-size:clamp(1.65rem,2.3vw,2.25rem);padding:.72em 0 .72em 1.8em}
-.thinker-text blockquote{font-size:clamp(1.75rem,2.55vw,2.35rem);max-width:none}
+.thinker-text blockquote{font-size:clamp(1.6rem,2.1vw,2rem);max-width:none;line-height:1.35}
 .thinker-text .big-q{font-size:clamp(1.95rem,3vw,2.7rem)}
 .thinker-text .src{font-size:clamp(1rem,1.25vw,1.22rem);max-width:none}
 .thinker-text .lead{font-size:clamp(1.4rem,1.85vw,1.78rem);color:var(--color-muted);font-weight:300;margin:0}
-.q-stack{display:flex;flex-direction:column;gap:.6em}
-.q-stack .card{padding:.72em 1.2em}
+.q-stack{display:flex;flex-direction:column;gap:.4em}
+.q-stack.q-row{flex-direction:row;gap:.9vw}
+.q-stack.q-row .card{flex:1;min-width:0;padding:.5em .8em}
+.q-stack .card{padding:.5em 1em}
 .q-stack .card h3{margin:.05em 0 .12em;color:var(--color-primary);font-size:clamp(1.25rem,1.55vw,1.52rem)}
-.q-stack .card .q-question{margin:0 0 .28em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,1.12vw,1.1rem);color:var(--color-accent-deep);letter-spacing:.02em}
-.q-stack .card p{margin:0;font-size:clamp(1.05rem,1.28vw,1.25rem);line-height:1.5}
-.painting-clean{display:block;height:25vh;width:auto;max-width:100%;margin:.4em auto;border-radius:10px;box-shadow:var(--shadow-strong);border:2px solid var(--color-accent)}
-.three-q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw;margin-top:.5em}
-.three-q-grid .card{padding:.6em .8em}
+.q-stack .card .q-question{margin:0 0 .22em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,1.12vw,1.1rem);color:var(--color-accent-deep);letter-spacing:.02em}
+.q-stack .card p{margin:0;font-size:clamp(1.15rem,1.7vw,1.55rem);line-height:1.42}
+.painting-clean{display:block;height:19vh;width:auto;max-width:100%;margin:.3em auto;border-radius:10px;box-shadow:var(--shadow-strong);border:2px solid var(--color-accent)}
+.three-q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9vw;margin-top:.3em}
+.three-q-grid .card{padding:.45em .7em}
 .three-q-grid .card h3{margin:.05em 0 .08em;color:var(--color-primary);font-size:clamp(1.02rem,1.3vw,1.25rem)}
-.three-q-grid .card .q-question{margin:0 0 .25em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.82rem,1vw,.96rem);color:var(--color-accent-deep)}
-.three-q-grid .card p{margin:0;font-size:clamp(.9rem,1.08vw,1.02rem);line-height:1.42}
+.three-q-grid .card .q-question{margin:0 0 .2em;font-family:var(--font-serif);font-style:italic;font-size:clamp(.82rem,1vw,.96rem);color:var(--color-accent-deep)}
+.three-q-grid .card p{margin:0;font-size:clamp(1.2rem,1.7vw,1.6rem);line-height:1.38}
 /* 以終為始：兩列「圖左＋文字滿版」，消除兩側留白 */
-.goal-rows{display:flex;flex-direction:column;gap:2.4vh;width:calc(100% + 11vw);margin-left:-5.5vw;margin-top:.4em}
-.goal-row{display:flex;align-items:center;gap:2.8vw}
-.goal-row .wc-with-caption{flex:none;width:clamp(270px,26vw,350px)}
+.goal-rows{display:flex;flex-direction:column;gap:1vh;width:calc(100% + 2vw);margin-left:-1vw;margin-top:0}
+.goal-row{display:flex;align-items:center;gap:2.2vw}
+.goal-row .wc-with-caption{flex:none;width:clamp(190px,17vw,240px)}
 .goal-row .wc-frame{margin:0 auto}
-.goal-row .wc-frame img{width:auto;height:29vh;max-width:24vw}
+.goal-row .wc-frame img{width:auto;height:13.5vh;max-width:15vw}
 .goal-row .wc-cap{margin-top:.35em}
-.goal-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:.55em}
-.goal-text blockquote{font-size:clamp(1.75rem,2.2vw,2.2rem);line-height:1.55;max-width:none;margin:0}
-.goal-text .muted{font-size:clamp(1.45rem,1.8vw,1.78rem);line-height:1.5;margin:0}
+.goal-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:.3em}
+.goal-text blockquote{font-size:clamp(1.5rem,1.85vw,1.9rem);line-height:1.4;max-width:none;margin:0}
+.goal-text .muted{font-size:clamp(1.3rem,1.75vw,1.65rem);line-height:1.35;margin:0}
 /* 一路玩到掛（人生二問）版型——比照參考頁 */
 .bl-grid{display:grid;grid-template-columns:6fr 5fr;gap:2.8vw;align-items:center;flex:1;min-height:0;margin-top:.3em;width:100%}
 .bl-photo{width:100%;display:block;border-radius:16px;box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.4)}
@@ -621,8 +623,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <p class="muted" style="margin-top:.8em">當「整老師」變成可以彼此傳授的攻略，受傷的不只是老師，而是整個教育體系的崩解。</p>
     </div>
     <div style="text-align:center">
-      <img class="portrait" src="images/drama_chamgyoyuk_netflix.jpg" alt="Netflix 韓劇《鐵拳教育》（참교육）官方海報" style="max-height:74vh">
-      <div class="namecard" style="margin-top:.4em"><div class="nm">韓劇《鐵拳教育》（참교육）</div><div class="life">Netflix · 2026</div></div>
+      <img class="portrait" src="images/drama_chamgyoyuk_netflix.jpg" alt="Netflix 韓劇《鐵拳教育》（참교육）官方海報" style="max-height:46vh">
+      <div class="namecard" style="margin-top:.4em"><div class="nm">韓劇《鐵拳教育》（참교육）</div><div class="life credit">Netflix · 2026</div></div>
       <p class="src" style="text-align:center;max-width:none">校園失序、教師求助無門，劇中政府設「教權保護局」以非常手段整頓——爆紅之餘，照見的是真實的教師困境。</p>
     </div>
   </div>
@@ -657,8 +659,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>時代脈動：黃仁勳——AI 重新定義「能力」</h2>
   <p class="lead" style="text-align:center;max-width:none">當執行成本趨近於零，<strong>定義問題、做出判斷、培養品味</strong>，成為人最後的競爭力。</p>
-  <div class="video-wrap" style="width:min(80vw,104vh);max-width:none;margin:.3em auto"><iframe src="https://www.youtube-nocookie.com/embed/b50C4Avf_M0?rel=0&modestbranding=1&fs=0" title="黃仁勳 卡內基美隆大學畢業演說" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><button class="vfs" title="放大影片（不離開簡報全螢幕）" aria-label="放大影片">⛶</button></div>
-  <p class="src" style="text-align:center;max-width:none">黃仁勳於卡內基美隆大學畢業演說（全球大視野）。</p>
+  <div class="video-wrap" style="width:min(80vw,104vh);max-width:none;margin:.3em auto"><iframe id="ytJensen" src="https://www.youtube-nocookie.com/embed/b50C4Avf_M0?enablejsapi=1&rel=0&modestbranding=1&fs=0&start=854&end=932" title="黃仁勳 卡內基美隆大學畢業演說（精華片段）" referrerpolicy="strict-origin-when-cross-origin"></iframe><div class="cc-overlay" id="jensencc"></div><button class="vfs" title="放大影片（不離開簡報全螢幕）" aria-label="放大影片">⛶</button></div>
+  <p class="src" style="text-align:center;max-width:none">黃仁勳於卡內基美隆大學畢業演說　精華片段（全球大視野）。</p>
 </section>
 
 <section class="slide karpathy-slide">
@@ -883,7 +885,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>卡繆的「人生一問」</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(330px,33vw,460px)">
+    <div class="wc-with-caption" style="width:clamp(230px,22vw,300px)">
       <div class="wc-frame wc-camus"><img src="images/camus_wc.jpg" alt="Albert Camus 水彩肖像"></div>
       <div class="wc-cap">Albert Camus　·　1913–1960</div>
     </div>
@@ -891,7 +893,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <blockquote>真正嚴肅的哲學問題只有一個：那就是自殺。</blockquote>
       <p>卡繆問：若人生本身是<b>荒謬</b>、沒有意義的，人為什麼還要繼續活下去、而<b>不</b>自殺？這一問相當尖銳。</p>
       <p>但這個問題其實<b>預設</b>了「人生荒謬」的立場——這個預設站不站得住，本身就值得追問。在他的「人生一問」背後，其實還有更根本的問題待解。</p>
-      <div class="card" style="background:transparent;box-shadow:none;border-top:4px solid var(--color-accent);margin-top:.5em"><h3>卡繆的回應</h3><p class="muted">不選擇自殺，也不選擇逃避荒謬的宗教——<b>即使荒謬，也要勇敢地活下去</b>。沙特稱他為「頑固的人本主義者」（stubborn humanist）。</p></div>
+      <div class="card" style="background:transparent;box-shadow:none;border-top:4px solid var(--color-accent);margin-top:.3em;padding:.5em 1em"><h3 style="font-size:clamp(1.15rem,1.4vw,1.4rem)">卡繆的回應</h3><p class="muted">不選擇自殺，也不選擇逃避荒謬的宗教——<b>即使荒謬，也要勇敢地活下去</b>。沙特稱他為「頑固的人本主義者」（stubborn humanist）。</p></div>
       <p class="src">卡繆《薛西弗斯的神話》。</p>
     </div>
   </div>
@@ -931,18 +933,18 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>康德的「人生三問」</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(330px,33vw,460px)">
+    <div class="wc-with-caption" style="width:clamp(210px,20vw,280px)">
       <div class="wc-frame wc-kant"><img src="images/kant_wc.jpg" alt="Immanuel Kant 水彩肖像"></div>
       <div class="wc-cap">Immanuel Kant　·　1724–1804</div>
     </div>
     <div class="thinker-text">
-      <p class="lead">康德在《純粹理性批判》、《實踐理性批判》、《判斷力批判》三大批判的深奧論述背後，核心問題可歸結為三：</p>
-      <div class="q-stack">
-        <div class="card"><h3>我能知道什麼？</h3><p class="q-question">What can I know?</p><p>探討人類認識能力的界限與可能性——哪些知識客觀真實，哪些只是主觀認知的產物。<b>知識論的範疇。</b></p></div>
-        <div class="card"><h3>我應該做什麼？</h3><p class="q-question">What ought I to do?</p><p>探討人類行為的道德準則——康德強調「無上命令」，道德行為應出於對道德法則的純粹敬重。<b>倫理學的核心課題。</b></p></div>
-        <div class="card"><h3>我可以期待什麼？</h3><p class="q-question">What may I hope?</p><p>觸及宗教與信仰的層面——盡了道德義務後，可否期待超越現世的回報？為道德實踐的圓滿，必須「預設」上帝與靈魂不朽。</p></div>
+      <p class="lead">康德三大批判的深奧論述背後，核心問題可歸結為三：</p>
+      <div class="q-stack q-row">
+        <div class="card"><h3>我能知道什麼？</h3><p class="q-question cap">What can I know?</p><p>知識的界限——哪些客觀真實，哪些只是主觀認知。</p></div>
+        <div class="card"><h3>我應該做什麼？</h3><p class="q-question cap">What ought I to do?</p><p>道德準則——「無上命令」：出於對法則本身的純粹敬重。</p></div>
+        <div class="card"><h3>我可以期待什麼？</h3><p class="q-question cap">What may I hope?</p><p>盡了道德義務，可否期待超越現世的回報？須「預設」上帝與靈魂不朽。</p></div>
       </div>
-      <blockquote style="font-size:clamp(1.3rem,1.75vw,1.65rem);max-width:none">三問最終都歸結到一個更根本的提問——<b>「人是什麼？」（What is man?）</b>　這顯示了「人學探索」在人生根本課題中的核心地位。</blockquote>
+      <blockquote style="font-size:clamp(1.3rem,1.75vw,1.65rem);max-width:none">三問終歸結到一個更根本的提問——<b>「人是什麼？」（What is man?）</b></blockquote>
     </div>
   </div>
 </section>
@@ -950,7 +952,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <section class="slide">
   <h2>托爾斯泰的「人生三問」</h2>
   <div class="thinker-row">
-    <div class="wc-with-caption" style="width:clamp(290px,29vw,390px)">
+    <div class="wc-with-caption" style="width:clamp(220px,21vw,290px)">
       <div class="wc-frame wc-tolstoy"><img src="images/tolstoy_wc.jpg" alt="Leo Tolstoy 水彩肖像"></div>
       <div class="wc-cap">Leo Tolstoy　·　1828–1910</div>
     </div>
@@ -977,9 +979,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <p class="lead">高更於 1897 年在大溪地完成近四公尺巨幅油畫——《<b>我們從何處來？我們是誰？我們向何處去？</b>》（D'où venons-nous? Que sommes-nous? Où allons-nous?）</p>
       <img class="painting-clean" src="images/gauguin_painting.jpg" alt="高更《我們從何處來？我們是誰？我們向何處去？》（1897）">
       <div class="three-q-grid">
-        <div class="card"><h3>我們從何處來？</h3><p class="q-question">D'où venons-nous?</p><p>畫作右側：沉睡的嬰兒與年輕女性，象徵<b>生命的誕生與純真</b>，引導思考生命的起源。</p></div>
-        <div class="card"><h3>我們是誰？</h3><p class="q-question">Que sommes-nous?</p><p>畫作中央：採摘果實的成年男子，象徵<b>壯年的勞動、慾望與追求</b>，促使我們反思自我。</p></div>
-        <div class="card"><h3>我們向何處去？</h3><p class="q-question">Où allons-nous?</p><p>畫作左側：形容枯槁的老婦人，象徵<b>衰老與死亡的臨近</b>，逼迫我們直面死亡。</p></div>
+        <div class="card"><h3>我們從何處來？</h3><p class="q-question cap">D'où venons-nous?</p><p>畫右：沉睡的嬰兒與年輕女性，象徵<b>生命的誕生與純真</b>。</p></div>
+        <div class="card"><h3>我們是誰？</h3><p class="q-question cap">Que sommes-nous?</p><p>畫中：採摘果實的成年男子，象徵<b>壯年的勞動與追求</b>。</p></div>
+        <div class="card"><h3>我們向何處去？</h3><p class="q-question cap">Où allons-nous?</p><p>畫左：形容枯槁的老婦人，象徵<b>衰老與死亡的臨近</b>。</p></div>
       </div>
       <p class="src" style="font-style:italic;max-width:none">高更從<b>神學人學</b>追問存在的起源、本質與歸宿，但缺乏實踐關懷，更多反映個人的絕望與困惑。</p>
     </div>
@@ -1026,7 +1028,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       </div>
     </div>
   </div>
-  <p class="big-q" style="text-align:center;margin-top:.5em">開車先輸入目的地，導航才算得出路線——我們有沒有為人生，輸入過一個目的地？</p>
+  <p class="big-q" style="text-align:center;margin-top:.3em;font-size:clamp(1.4rem,2.6vw,2.1rem)">開車先輸入目的地，導航才算得出路線——我們有沒有為人生，輸入過一個目的地？</p>
 </section>
 
 <section class="slide">
@@ -1194,34 +1196,31 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <p class="src">人學探索＝<b>基礎</b>；哲學思考＝<b>方法</b>；靈性修養＝<b>樞紐</b>，滲透並支撐其他四個核心素養。現在回頭看——接得起來了嗎？</p>
 </section>
 
-<section class="slide roomy">
+<section class="slide">
   <h2>小組討論：把今天上午的收穫，接成一張網</h2>
-  <p class="lead">今天上午，我們一一認識了五大核心素養，也在關係圖上看見它們彼此相連。現在回到小組，把所學整理清楚。</p>
-  <div class="grid2" style="align-items:start">
+  <p class="lead" style="margin-bottom:.35em">今天上午，我們認識了五大核心素養，也在關係圖上看見彼此相連。現在回到小組，把所學整理清楚。</p>
+  <div class="grid2" style="align-items:start;gap:2vw">
     <div>
-      <p style="font-weight:700;color:var(--color-primary)">兩個討論重點</p>
-      <ul class="fl">
-        <li><b>① 個別理解：</b>逐一說說每個核心素養<b>到底在問什麼、核心是什麼</b>——終極關懷、價值思辨、靈性修養、人學探索、哲學思考。</li>
-        <li><b>② 彼此關係：</b>它們之間<b>如何環環相扣</b>？哪個是源頭、哪個是方法、哪個是樞紐？（也把早上「接不起來」的地方，試著接上。）</li>
+      <p style="font-weight:700;color:var(--color-primary);margin-bottom:.35em">兩個討論重點</p>
+      <ul class="fl" style="margin:0">
+        <li style="padding:.35em 0 .35em 1.6em"><b>① 個別理解：</b>逐一說說每個核心素養<b>在問什麼</b>——終極關懷、價值思辨、靈性修養、人學探索、哲學思考。</li>
+        <li style="padding:.35em 0 .35em 1.6em"><b>② 彼此關係：</b>它們<b>如何環環相扣</b>？哪個是源頭、方法、樞紐？（把早上「接不起來」的地方試著接上。）</li>
       </ul>
     </div>
-    <div class="practice">
-      <span class="label">⏱ 小組討論 10 分鐘</span>
-      <p><b>① 一人一素養：</b>每人挑一個，用一句話講它的核心。<br><b>② 連連看：</b>在白紙上把五個素養排出關係（誰連誰、為什麼）。<br><b>③ 一句總結：</b>你們這組覺得，五大素養合起來，是在回答什麼？</p>
+    <div class="practice" style="padding:.6em .9em;margin-top:0">
+      <span class="label chip">⏱ 小組討論 10 分鐘</span>
+      <p style="margin:.3em 0 0"><b>① 一人一素養：</b>每人挑一個，一句話講核心。<br><b>② 連連看：</b>白紙上排出五素養關係（誰連誰、為什麼）。<br><b>③ 一句總結：</b>五大素養合起來，在回答什麼？</p>
     </div>
   </div>
-  <p class="muted">這既是今天上午的收束，也是檢核——明天起，我們會一一深入這些問題。</p>
+  <p class="muted" style="margin:.15em 0 0">這既是今天上午的收束，也是檢核——明天起，我們會一一深入這些問題。</p>
 </section>
 
 <section class="slide roomy" style="--ai:center;text-align:center">
   <h2>單元二　終極關懷課前作業</h2>
-  <div class="practice" style="max-width:60rem;text-align:left">
-    <span class="label">於單元二上課前繳交</span>
-    <ul class="fl">
-      <li>電影欣賞《一路玩到掛》觀後心得：<b>逐點列出並說明</b>這部電影對你<b>最具啟發性</b>的地方。</li>
-      
-    </ul>
-    
+  <p class="lead" style="max-width:44em;margin:0 auto .6em">明天，我們從「人為何而活」這一問，正式走進終極關懷。</p>
+  <div class="practice" style="max-width:50rem;text-align:left;margin:0 auto">
+    <span class="label chip">課前已完成</span>
+    <p style="font-size:clamp(1.55rem,2.2vw,2rem);line-height:1.6;margin:.4em 0 0">電影欣賞《一路玩到掛》觀後心得——<b>逐點列出並說明</b>這部電影對你<b>最具啟發性</b>的地方。</p>
   </div>
 </section>
 
@@ -1385,7 +1384,31 @@ var PBD_CUES=[
  [186,"對我而言，它凸顯了我們的責任：要更善待彼此，珍惜並守護這顆蒼白的藍點——我們唯一的家。"]
 ];
 function pbdShow(t){t+=PBD_OFFSET;var s='';for(var i=0;i<PBD_CUES.length;i++){if(t>=PBD_CUES[i][0]&&(i+1>=PBD_CUES.length||t<PBD_CUES[i+1][0])){s=PBD_CUES[i][1];break;}}var el=document.getElementById('pbdcc');if(el)el.innerHTML=s?('<span>'+s+'</span>'):'';}
-function onYouTubeIframeAPIReady(){try{new YT.Player('ytPaleBlueDot',{events:{onReady:function(e){setInterval(function(){try{pbdShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}}
+function onYouTubeIframeAPIReady(){
+  try{new YT.Player('ytPaleBlueDot',{events:{onReady:function(e){setInterval(function(){try{pbdShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}
+  try{window._ytJensenPlayer=new YT.Player('ytJensen',{events:{onReady:function(e){setInterval(function(){try{jensenShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}
+}
+</script>
+<!-- 黃仁勳CMU畢業演說精華片段(854s~932s)自製繁體中文字幕層：時間碼取自YouTube英文自動字幕(yt-dlp android client下載核對)，逐句人工翻譯。若整體偏早/晚，改 JENSEN_OFFSET 秒數即可。 -->
+<script>
+var JENSEN_OFFSET=0;
+var JENSEN_CUES=[
+ [854,"沒錯，AI 將改變每一份工作。"],
+ [859,"但「任務」和「職業的目的」，不是同一回事。"],
+ [865,"許多任務會被自動化，有些工作將會消失。"],
+ [870,"但也會有更多新工作、全新產業被創造出來。"],
+ [874,"寫程式的工作愈來愈自動化，"],
+ [878,"但善用 AI，工程師反而能探索更多解法、挑戰更遠大的難題。"],
+ [889,"判讀放射影像也愈來愈自動化。"],
+ [893,"但善用 AI，放射科醫師更能精準診斷、照顧病人。"],
+ [900,"AI 不會取代人的目的，"],
+ [904,"它放大了人的能力。"],
+ [907,"這正是為什麼，即使 AI 寫更多程式碼、判讀更多影像，"],
+ [913,"工程師與放射科醫師的需求，反而持續成長。"],
+ [918,"AI 不太可能取代你，"],
+ [924,"但懂得善用 AI 的人，可能會。"]
+];
+function jensenShow(t){t+=JENSEN_OFFSET;var s='';for(var i=0;i<JENSEN_CUES.length;i++){if(t>=JENSEN_CUES[i][0]&&(i+1>=JENSEN_CUES.length||t<JENSEN_CUES[i+1][0])){s=JENSEN_CUES[i][1];break;}}var el=document.getElementById('jensencc');if(el)el.innerHTML=s?('<span>'+s+'</span>'):'';}
 </script>
 <script>
 window.U1=(function(){
