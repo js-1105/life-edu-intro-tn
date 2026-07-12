@@ -353,8 +353,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .kp-practice .src-note{display:block;margin-top:.3em;color:var(--color-muted);font-size:.78em;font-style:italic}
 /* —— 第二堂互動模組 —— */
 .u1-corner{position:absolute;top:2.5vh;right:3vw;width:clamp(110px,12vw,180px);height:auto;opacity:.85;z-index:0;pointer-events:none}
-.comp-chips{display:flex;flex-wrap:wrap;gap:.7em;margin:.6em 0 1em}
-.comp-chip{background:var(--c,#862633);color:#fff;font-weight:700;padding:.45em 1.1em;border-radius:999px;font-size:clamp(1.05rem,1.5vw,1.4rem);letter-spacing:.04em;box-shadow:var(--shadow-soft)}
+.comp-chips{display:flex;flex-wrap:wrap;gap:.5em;margin:.5em 0 .6em}
+.comp-chip{background:var(--c,#862633);color:#fff;font-weight:700;padding:.35em .95em;border-radius:999px;font-size:clamp(1rem,1.35vw,1.25rem);letter-spacing:.04em;box-shadow:var(--shadow-soft)}
 .interact{display:flex;flex-direction:column;flex:1;width:100%;min-height:0}
 .interact .io{display:flex;gap:.6em;flex-wrap:wrap;align-items:center;margin:.2em 0 .9em}
 .interact select,.interact input{font-family:var(--font-sans);font-size:1.1rem;padding:.55em .8em;border:2px solid var(--color-line);border-radius:10px;background:#fff;color:var(--color-text)}
@@ -424,9 +424,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 @media(max-width:768px){.grid2,.grid3,.figure,.figure.rev,.two-col,.four-col{grid-template-columns:1fr}.lyrics{column-count:1}}
 /* —— 第二堂 五組QR / 即時顯示頁 —— */
 .qr-intro{text-align:center;max-width:none;margin:.25em auto .55em;font-size:clamp(1.45rem,2vw,1.95rem);line-height:1.5;color:var(--color-text)}
-.qr-stage{display:flex;justify-content:center;align-items:center;gap:1.6vw;flex:1;min-height:0;width:100%}
-.qr-card{flex:1 1 0;max-width:320px;background:#fff;border-radius:20px;border-top:9px solid var(--c,#862633);box-shadow:var(--shadow-strong);padding:1.3em 1.1em 1.4em;display:flex;flex-direction:column;align-items:center;gap:.8em}
-.qr-box{width:100%;max-width:245px;aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center}
+.qr-stage{display:flex;justify-content:center;align-items:center;gap:1vw;flex:1;min-height:0;width:100%}
+.qr-card{flex:1 1 0;max-width:230px;background:#fff;border-radius:18px;border-top:8px solid var(--c,#862633);box-shadow:var(--shadow-strong);padding:.9em .8em 1em;display:flex;flex-direction:column;align-items:center;gap:.6em}
+.qr-box{width:100%;max-width:175px;aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center}
 .qr-box img,.qr-box canvas{width:100%!important;height:100%!important;display:block}
 .qr-cap{font-family:var(--font-serif);font-weight:900;color:var(--c,#862633);font-size:clamp(1.5rem,2.05vw,2.05rem);text-align:center;line-height:1.12}
 .qr-cap small{display:block;font-family:var(--font-sans);font-weight:700;color:var(--color-text);font-size:.78em;letter-spacing:.02em;margin-top:.15em}
@@ -702,17 +702,18 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <!-- S16 任務總覽 -->
-<section class="slide roomy">
+<section class="slide">
   <h2>分組任務：盤點你負責的核心素養</h2>
   <div class="grid2" style="align-items:center">
     <div>
-      <p class="lead">五組各認領一個核心素養，就四個面向討論，再上台報告。</p>
+      <p class="lead">六組各認領一個核心素養，第6組可任選一個核心素養深入，就四個面向討論，再上台報告。</p>
       <div class="comp-chips">
         <span class="comp-chip" style="--c:#862633">第1組 · 終極關懷</span>
         <span class="comp-chip" style="--c:#A8782E">第2組 · 價值思辨</span>
         <span class="comp-chip" style="--c:#A23A48">第3組 · 靈性修養</span>
         <span class="comp-chip" style="--c:#6B5635">第4組 · 人學探索</span>
         <span class="comp-chip" style="--c:#5C1A23">第5組 · 哲學思考</span>
+        <span class="comp-chip" style="--c:#1A1A1A">第6組 · 任意門</span>
       </div>
       <div class="practice">
         <span class="label">流程</span>
@@ -750,7 +751,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 30 分鐘</span><p>分工討論四面向，推一位代表準備上台。重點放在：<b>②</b> 對所負責核心素養的理解、<b>③</b> 還有哪些地方不太懂、<b>④</b> 能否掌握「所負責的核心素養與其他核心素養之間的關係」。</p></div>
 </section>
 
-<!-- S18 五組 QR：手機投稿入口（四角＋中央梅花佈局，避免掃錯組） -->
+<!-- S18 六組 QR：手機投稿入口 -->
 <section class="slide">
   <h2>掃你那一組的 QR，把討論打在手機上</h2>
   <p class="lead qr-intro">請各小組派<b>一位同學</b>，掃描小組該討論的核心素養那個碼，<br>在手機上充分寫下「理解」與「還不懂／接不起來」，投影幕即時更新。</p>
@@ -760,6 +761,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div class="qr-card c-mid" style="--c:#A23A48"><div class="qr-box" data-g="3"></div><div class="qr-cap">第3組<small>靈性修養</small></div></div>
     <div class="qr-card c-bl" style="--c:#6B5635"><div class="qr-box" data-g="4"></div><div class="qr-cap">第4組<small>人學探索</small></div></div>
     <div class="qr-card c-br" style="--c:#5C1A23"><div class="qr-box" data-g="5"></div><div class="qr-cap">第5組<small>哲學思考</small></div></div>
+    <div class="qr-card c-6" style="--c:#1A1A1A"><div class="qr-box" data-g="6"></div><div class="qr-cap">第6組<small>任意門</small></div></div>
   </div>
 </section>
 
@@ -813,7 +815,17 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <div class="daiuda" data-g="5" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
-<!-- S24 空白地圖收束（合併原S24地圖＋S25收束）：自動匯入五組困惑 -->
+<!-- S24 第6組 任意門（自由認領一個核心素養深入討論） -->
+<section class="slide gpage" style="--c:#1A1A1A">
+  <h2><span class="g-dot"></span>第6組 · 任意門</h2>
+  <div class="gcols">
+    <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g6-lijie"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g6-kunhuo"></div></div>
+  </div>
+  <div class="daiuda" data-g="6" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
+</section>
+
+<!-- S25 空白地圖收束（合併原S24地圖＋S25收束）：自動匯入五組困惑 -->
 <section class="slide">
   <h2>空白地圖：五塊拼塊都在，只是還沒有完全拼起來</h2>
   <div class="blankmap" id="blankMap"></div>
@@ -1430,13 +1442,14 @@ window.U1=(function(){
     {id:2,n:'價值思辨',c:'#A8782E',x:50,y:19},
     {id:3,n:'靈性修養',c:'#A23A48',x:73,y:28},
     {id:4,n:'人學探索',c:'#6B5635',x:34,y:74},
-    {id:5,n:'哲學思考',c:'#5C1A23',x:66,y:74}
+    {id:5,n:'哲學思考',c:'#5C1A23',x:66,y:74},
+    {id:6,n:'任意門',c:'#1A1A1A'}
   ];
   const esc=s=>String(s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
   const SUBMIT_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'submit.html';
   const ASK_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'ask.html';
   let DB=null, online=false;
-  let DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};
+  let DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]},6:{lijie:[],kunhuo:[]}};
   let XWEN=[];
   const LKEY='u1_data_'+(window.FB_ROOM||'local');
   const configured=()=>window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;
@@ -1494,7 +1507,7 @@ window.U1=(function(){
   function renderMap(){
     const m=document.getElementById('blankMap'); if(!m)return;
     const svg='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#cbb89a" stroke-width=".4" stroke-dasharray="1.6 1.4" fill="none" opacity=".75"><line x1="27" y1="28" x2="50" y2="19"/><line x1="50" y1="19" x2="73" y2="28"/><line x1="34" y1="74" x2="66" y2="74"/><line x1="50" y1="19" x2="50" y2="74"/></g></svg>';
-    const nodes=GROUPS.map(g=>{
+    const nodes=GROUPS.filter(g=>g.x!=null).map(g=>{
       const nn=(DATA[g.id].kunhuo||[]).map(t=>`<div class="mnote">${esc(t)}</div>`).join('');
       return `<div class="node" style="left:${g.x}%;top:${g.y}%"><div class="circle" style="--c:${g.c}">${g.n}</div><div class="mnotes">${nn}</div></div>`;
     }).join('');
@@ -1532,7 +1545,7 @@ window.U1=(function(){
   window.U1clear=clearHovered;
   function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
   function nowStamp(){var d=new Date(),p=function(n){return(n<10?'0':'')+n;};return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes());}
-  function emptyData(){return {1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]}};}
+  function emptyData(){return {1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]},6:{lijie:[],kunhuo:[]}};}
   function downloadCSV(stamp){
     var room=window.FB_ROOM||'default';
     var rows=[['房號','組別','素養','類型','內容']];
@@ -1547,7 +1560,7 @@ window.U1=(function(){
   function exportAndClear(){
     var stamp=nowStamp(),room=window.FB_ROOM||'default';
     downloadCSV(stamp);
-    if(!confirm('五組資料已下載成 CSV（存在這台電腦的「下載」資料夾，可用 Excel／Numbers 開啟做分析評量）。要現在把本場全部清空、房間掃乾淨嗎？')){if(typeof showToast==='function')showToast('已下載備份，未清空',2500);return;}
+    if(!confirm('六組資料已下載成 CSV（存在這台電腦的「下載」資料夾，可用 Excel／Numbers 開啟做分析評量）。要現在把本場全部清空、房間掃乾淨嗎？')){if(typeof showToast==='function')showToast('已下載備份，未清空',2500);return;}
     if(DB){
       DB.once('value').then(function(snap){
         var val=snap.val(),fin=function(){DB.remove();if(typeof showToast==='function')showToast('已下載 CSV＋雲端封存，並清空本場',3000);};
