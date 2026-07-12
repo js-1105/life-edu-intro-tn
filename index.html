@@ -383,10 +383,15 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .eggsong .lyrics{color:#f4e9d8}
 .eggsong .lyrics .h{color:var(--color-accent-soft)}
 .eggsong .src{color:rgba(255,255,255,.72)}
-.eggsong h2,.eggsong .lyrics,.eggsong .src,.eggsong .back-home-btn{position:relative;z-index:2}
+.eggsong h2,.eggsong .lyrics,.eggsong .src,.eggsong .back-home-btn,.eggsong .egg-player{position:relative;z-index:2}
 .eggsong .egg-deco{position:absolute;z-index:0;pointer-events:none;opacity:.62}
 .eggsong .egg-deco-tr{top:8vh;right:5vw;width:clamp(95px,9vw,150px)}
 .eggsong .egg-deco-bl{bottom:10vh;left:4.5vw;width:clamp(75px,7.5vw,120px)}
+.egg-player{display:flex;align-items:center;gap:.9em;margin:1.6em auto 0;max-width:28em;background:rgba(0,0,0,.28);border:1px solid rgba(212,175,55,.45);border-radius:999px;padding:.5em .6em .5em 1.3em}
+.egg-play{flex:none;width:2.5em;height:2.5em;border-radius:50%;background:var(--color-accent);color:#2A1418;border:none;font-size:1.05rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.egg-play:hover{filter:brightness(1.08)}
+.egg-seek{flex:1;accent-color:var(--color-accent);cursor:pointer}
+.egg-time{flex:none;font-variant-numeric:tabular-nums;font-size:.85rem;color:rgba(255,255,255,.85);min-width:5.4em;text-align:right;padding-right:.3em}
 /* 結尾頁「今天，我們打開了一張地圖」：暖金亮底＋深字（與彩蛋頁互換） */
 .slide.closing{background:
   radial-gradient(880px 600px at 84% 14%,rgba(212,175,55,.24),transparent 62%),
@@ -1262,7 +1267,13 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <p><span class="h">〔尾聲｜漸弱〕</span><br>為何活……該怎麼活……如何活出……<br>這，就是我的人生三問</p>
   </div>
   <p class="src">〈三問〉——《生命的學問》概念專輯的開場曲；整週的最後一節，它會再次響起。</p>
-  <button class="back-home-btn" onclick="goToSlide(1)">↑　回到首頁</button>
+  <audio id="eggAudio" src="media/theme_song.m4a" preload="metadata"></audio>
+  <div class="egg-player">
+    <button class="egg-play" onclick="eggTogglePlay()" aria-label="播放／暫停">▶</button>
+    <input type="range" class="egg-seek" min="0" max="1000" value="0" oninput="eggSeek(this.value)" aria-label="播放進度">
+    <span class="egg-time">0:00 / 0:00</span>
+  </div>
+  <button class="back-home-btn" style="margin-top:.7em" onclick="goToSlide(1)">↑　回到首頁</button>
 </section>
 
 </div>
@@ -1331,6 +1342,7 @@ slides.forEach((s,i)=>{if(s.classList.contains('cover')||s.querySelector('iframe
 function showSlide(n){
   if(window.__exitVideoZoom)window.__exitVideoZoom();
   if(n<1)n=1;if(n>total)n=total;
+  if(n!==total)eggPause();
   slides.forEach((s,i)=>{s.classList.remove('active','prev');if(i+1===n)s.classList.add('active');else if(i+1<n)s.classList.add('prev');});
   current=n;
   document.getElementById('curr').textContent=current;
@@ -1338,6 +1350,29 @@ function showSlide(n){
   history.replaceState(null,'','#'+current);
   document.body.classList.toggle('no-clickzones',noClickZoneSlides.includes(n));
 }
+// 彩蛋主題曲：自製播放器（純<audio>，不彈出外部播放器），時間軸/播放鈕即時更新
+function eggFmt(t){t=Math.floor(t||0);var m=Math.floor(t/60),s=t%60;return m+':'+(s<10?'0':'')+s;}
+function eggPause(){var a=document.getElementById('eggAudio');if(a&&!a.paused){a.pause();}var b=document.querySelector('.egg-play');if(b)b.textContent='▶';}
+function eggTogglePlay(){
+  var a=document.getElementById('eggAudio');if(!a)return;
+  var b=document.querySelector('.egg-play');
+  if(a.paused){a.play();if(b)b.textContent='⏸';}else{a.pause();if(b)b.textContent='▶';}
+}
+function eggSeek(v){var a=document.getElementById('eggAudio');if(!a||!a.duration)return;a.currentTime=(v/1000)*a.duration;}
+(function(){
+  var a=document.getElementById('eggAudio');if(!a)return;
+  a.addEventListener('timeupdate',function(){
+    var seek=document.querySelector('.egg-seek'),t=document.querySelector('.egg-time');
+    if(a.duration&&seek)seek.value=Math.round((a.currentTime/a.duration)*1000);
+    if(t)t.textContent=eggFmt(a.currentTime)+' / '+eggFmt(a.duration);
+  });
+  a.addEventListener('loadedmetadata',function(){
+    var t=document.querySelector('.egg-time');if(t)t.textContent='0:00 / '+eggFmt(a.duration);
+  });
+  a.addEventListener('ended',function(){var b=document.querySelector('.egg-play');if(b)b.textContent='▶';});
+  var seekEl=document.querySelector('.egg-seek');
+  if(seekEl)seekEl.addEventListener('keydown',function(e){if(['ArrowLeft','ArrowRight',' '].includes(e.key))e.stopPropagation();});
+})();
 function nextSlide(){showSlide(current+1)}function prevSlide(){showSlide(current-1)}function goToSlide(n){showSlide(n)}
 function getFsReq(el){return el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||null}
 function getFsExit(){return document.exitFullscreen||document.webkitExitFullscreen||document.mozCancelFullScreen||document.msExitFullscreen||null}
