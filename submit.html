@@ -58,8 +58,8 @@ button.send:active{transform:translateY(1px);opacity:.9}
 <div class="flash" id="flash"></div>
 <script>
 (function(){
-  var GROUPS={1:{n:'終極關懷',c:'#862633'},2:{n:'價值思辨',c:'#A8782E'},3:{n:'靈性修養',c:'#A23A48'},4:{n:'人學探索',c:'#6B5635'},5:{n:'哲學思考',c:'#5C1A23'}};
-  var g=(new URLSearchParams(location.search).get('g')||'1').replace(/[^1-5]/g,'')||'1';
+  var GROUPS={1:{n:'終極關懷',c:'#862633'},2:{n:'價值思辨',c:'#A8782E'},3:{n:'靈性修養',c:'#A23A48'},4:{n:'人學探索',c:'#6B5635'},5:{n:'哲學思考',c:'#5C1A23'},6:{n:'任意門',c:'#1A1A1A'}};
+  var g=(new URLSearchParams(location.search).get('g')||'1').replace(/[^1-6]/g,'')||'1';
   var G=GROUPS[g];
   document.documentElement.style.setProperty('--c',G.c);
   document.getElementById('gName').textContent='第 '+g+' 組 · '+G.n;
