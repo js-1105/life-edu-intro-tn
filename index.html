@@ -176,10 +176,11 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .bl-grid{display:grid;grid-template-columns:6fr 5fr;gap:2.8vw;align-items:center;flex:1;min-height:0;margin-top:.3em;width:100%}
 .bl-photo{width:100%;display:block;border-radius:16px;box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.4)}
 .bl-photo-cap{text-align:center;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,1.15vw,1.15rem);color:var(--color-muted);margin-top:.5em}
-.bl-cards{display:flex;flex-direction:column;gap:1.1em}
-.bl-cards .card h3{margin:.1em 0 .35em;color:var(--color-primary);font-size:clamp(1.3rem,1.7vw,1.65rem)}
+.bl-cards{display:flex;flex-direction:column;gap:.4em}
+.bl-cards .card{padding:.6em 1.1em}
+.bl-cards .card h3{margin:.03em 0 .12em;color:var(--color-primary);font-size:clamp(1.3rem,1.7vw,1.65rem)}
 ul.plain{list-style:none;margin:0;padding:0}
-ul.plain li{font-size:clamp(1.1rem,1.4vw,1.35rem);line-height:1.65;padding:.1em 0;color:var(--color-text)}
+ul.plain li{font-size:clamp(1.6rem,1.5vw,1.75rem);line-height:1.22;padding:.02em 0;color:var(--color-text)}
 .wc-with-caption{display:flex;flex-direction:column;align-items:center;flex:none}
 .wc-frame{display:inline-block;padding:11px;border-radius:18px;background:linear-gradient(155deg,var(--wc1,#F3EFE6),var(--wc2,#E7DECB));box-shadow:var(--shadow-strong);border:1px solid rgba(212,175,55,.45)}
 .wc-frame img{display:block;width:100%;height:auto;border-radius:12px}
@@ -936,6 +937,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
       <div class="card">
         <h3>一生是否都過得快樂？</h3>
         <ul class="plain">
+          <li>什麼是快樂？</li>
           <li>快樂有表面、感官、短暫的</li>
           <li>也有深層、精神、長期的</li>
           <li>快樂真的那麼重要嗎？</li>
