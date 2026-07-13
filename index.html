@@ -1503,8 +1503,25 @@ function replayCoverIntro(){const cover=document.querySelector('.slide.cover');i
 function toggleFullscreen(){if(isFs()){const x=getFsExit();if(x)x.call(document);return}enterFs(document.documentElement).then(()=>{if(current===1)replayCoverIntro()}).catch(()=>{showToast(window.self!==window.top?'預覽面板內無法全螢幕，請在新分頁開啟':'無法進入全螢幕，請按 F11',4500)})}
 function startPresentation(){toggleFullscreen()} // 封面大鈕＝純全螢幕toggle，絕不翻頁（教授2026-07-03鐵則）
 function showToast(m,ms=2500){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms)}
+// ===== Space 鍵：滑鼠在影音框(.video-wrap/.vframe)內＝播放/暫停該片、不翻頁；框外＝維持翻頁（六單元通用）=====
+let __spaceMx=0,__spaceMy=0;
+document.addEventListener('mousemove',e=>{__spaceMx=e.clientX;__spaceMy=e.clientY;},{passive:true});
+function toggleVideoInFocus(){
+  const el=document.elementFromPoint(__spaceMx,__spaceMy);
+  const vc=el&&el.closest?el.closest('.video-wrap,.vframe'):null;
+  if(!vc)return false; // 不在影音框內，回傳 false 讓呼叫端執行 nextSlide()
+  const vid=vc.querySelector('video');
+  if(vid){ if(vid.paused)vid.play();else vid.pause(); return true; }
+  const yt=vc._ytPlayer;
+  if(yt&&typeof yt.getPlayerState==='function'){
+    try{ const state=yt.getPlayerState(); if(state===1)yt.pauseVideo();else yt.playVideo(); }catch(_){}
+    return true;
+  }
+  return true; // 在影音框內但無 API（純 iframe），仍阻止跳頁，不強行 nextSlide
+}
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextSlide()}
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();nextSlide()}
+  if(e.key===' '){e.preventDefault();if(!toggleVideoInFocus())nextSlide();}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide()}
   if(e.key==='f'||e.key==='F'){e.preventDefault();toggleFullscreen()}
   if(e.key==='Escape'&&isFs())(getFsExit()||(()=>{})).call(document);
@@ -1541,7 +1558,7 @@ var PBD_CUES=[
 ];
 function pbdShow(t){t+=PBD_OFFSET;var s='';for(var i=0;i<PBD_CUES.length;i++){if(t>=PBD_CUES[i][0]&&(i+1>=PBD_CUES.length||t<PBD_CUES[i+1][0])){s=PBD_CUES[i][1];break;}}var el=document.getElementById('pbdcc');if(el)el.innerHTML=s?('<span>'+s+'</span>'):'';}
 function onYouTubeIframeAPIReady(){
-  try{new YT.Player('ytPaleBlueDot',{events:{onReady:function(e){setInterval(function(){try{pbdShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}
+  try{new YT.Player('ytPaleBlueDot',{events:{onReady:function(e){try{var __vw=e.target.getIframe().closest('.video-wrap,.vframe');if(__vw)__vw._ytPlayer=e.target;}catch(_){}setInterval(function(){try{pbdShow(e.target.getCurrentTime());}catch(_){}},250);}}});}catch(_){}
 }
 </script>
 </script>
