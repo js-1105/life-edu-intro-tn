@@ -17,4 +17,4 @@ window.FB_CONFIG = {
 
 /* 每屆上課換一個房號即可「清空重來」（不同房號＝不同資料；
  * 也可在 Firebase 主控台直接刪掉該節點）。建議用日期。 */
-window.FB_ROOM = "u1-2026-0713";
+window.FB_ROOM = "u1tn-2026-0727";
