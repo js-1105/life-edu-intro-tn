@@ -295,6 +295,7 @@ body.no-clickzones .click-zones{display:none}
 .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vw}
 .four-col .card{padding:1.2em 1.2em;border-radius:16px;min-height:17vh;display:flex;flex-direction:column;justify-content:center;border-top-width:6px}
 .four-col.fc-top .card{justify-content:flex-start}
+.four-col.fc-lg .card p{font-size:clamp(1.5rem,1.85vw,1.6rem);line-height:1.44}
 .four-col .card h3{font-size:clamp(1.3rem,1.8vw,1.75rem);margin:0 0 .5em;line-height:1.3;color:var(--color-primary)}
 .four-col .card p{font-size:clamp(1.05rem,1.35vw,1.3rem);color:var(--color-muted);margin:0;line-height:1.55}
 ul.feature-list{list-style:none;counter-reset:li-counter}
@@ -798,10 +799,10 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <!-- S16 任務總覽 -->
 <section class="slide">
-  <h2>分組任務：盤點你負責的核心素養</h2>
+  <h2>小組討論（一）：過去所學與核心素養</h2>
   <div class="grid2" style="align-items:center">
     <div>
-      <p class="lead">六組各認領一個核心素養，第6組可任選一個核心素養深入，就四個面向討論，再上台報告。</p>
+      <p class="lead">六組各認領一個核心素養，第6組可任選一個核心素養深入。</p>
       <div class="comp-chips">
         <span class="comp-chip" style="--c:#862633">第1組 · 終極關懷</span>
         <span class="comp-chip" style="--c:#A8782E">第2組 · 價值思辨</span>
@@ -811,8 +812,8 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
         <span class="comp-chip" style="--c:#1A1A1A">第6組 · 任意門</span>
       </div>
       <div class="practice">
-        <span class="label">流程</span>
-        <p><b>① 分組討論 20 分</b>（四面向見下頁）　→　<b>② 各組報告 5 分</b></p>
+        <span class="label">討論題目</span>
+        <p>過去三學期修過的科目中，<b>哪些涉及你們這一組負責的核心素養</b>？請說明理由。</p>
       </div>
     </div>
     <div class="visual-card" aria-hidden="true">
@@ -836,14 +837,14 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <circle cx="50" cy="50" r="34" fill="#D4AF37" opacity=".12"/>
     <g fill="none" stroke="#A8782E"><line x1="50" y1="18" x2="50" y2="82" stroke-width="2.5" opacity=".55"/><line x1="18" y1="50" x2="82" y2="50" stroke-width="2.5" opacity=".55"/><circle cx="50" cy="50" r="34" stroke-width="6"/><line x1="75" y1="75" x2="104" y2="104" stroke-width="9" stroke-linecap="round"/></g>
   </svg>
-  <h2>四個討論面向</h2>
-  <div class="four-col fc-top" style="margin-top:.4em">
-    <div class="card" style="border-top-color:#862633"><h3>① 學了什麼</h3><p>這三學期，圍繞這個素養，你們修過哪些課、學到了哪些內容？</p></div>
-    <div class="card" style="border-top-color:#A8782E"><h3>② 理解了什麼意涵</h3><p>這些所學，如何幫助你們把握<b>所負責的這個核心素養</b>真正的意涵？收斂成一段你們對它的「理解」。</p></div>
-    <div class="card" style="border-top-color:#A23A48"><h3>③ 哪裡還不懂</h3><p>關於這個素養，你們覺得自己<b>哪些地方還理解得不夠</b>？</p></div>
-    <div class="card" style="border-top-color:#5C1A23"><h3>④ 和誰接不起來</h3><p>它和<b>其他四個素養</b>是什麼關係？哪一條連結你們<b>接不太起來</b>？</p></div>
+  <h2>小組討論（二）：核心素養問題四面向</h2>
+  <div class="four-col fc-top fc-lg" style="margin-top:.4em">
+    <div class="card" style="border-top-color:#862633"><h3>① 內涵</h3><p>你們這一組負責的核心素養，究竟在講什麼？</p></div>
+    <div class="card" style="border-top-color:#A8782E"><h3>② 與其他素養的關係</h3><p>它和其他四個核心素養之間，是什麼樣的關係？</p></div>
+    <div class="card" style="border-top-color:#A23A48"><h3>③ 內涵的疑問</h3><p>關於它的內涵，你們還有哪些地方不了解？</p></div>
+    <div class="card" style="border-top-color:#5C1A23"><h3>④ 關係的疑問</h3><p>它和其他素養的關係，哪些還不明白？</p></div>
   </div>
-  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>分工討論四面向，推一位代表準備上台。重點放在：<b>②</b> 對所負責核心素養的理解、<b>③</b> 還有哪些地方不太懂、<b>④</b> 能否掌握「所負責的核心素養與其他核心素養之間的關係」。</p></div>
+  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四個面向逐一討論，推一位代表整理後上台報告。</p></div>
 </section>
 
 <!-- S18 六組 QR：手機投稿入口 -->
