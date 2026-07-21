@@ -397,11 +397,18 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .sticky .cc{display:block;font-size:.74rem;font-weight:700;color:var(--c,#862633);margin-bottom:.2em}
 .empty-hint{color:var(--color-muted);font-style:italic;margin:auto;font-size:1.2rem}
 @keyframes u1pop{from{opacity:0;transform:scale(.85)}to{opacity:1}}
-.blankmap{position:relative;flex:1;width:100%;min-height:58vh}
-.blankmap .node{position:absolute;transform:translate(-50%,-50%);width:clamp(8.5em,13vw,12em);text-align:center}
-.blankmap .circle{border:3px dashed var(--c);border-radius:50%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;color:var(--c);background:rgba(255,255,255,.66);font-size:clamp(1rem,1.5vw,1.35rem)}
-.blankmap .mnotes{margin-top:.35em;display:flex;flex-direction:column;gap:.2em;align-items:center;max-height:6.2em;overflow-y:auto;overflow-x:hidden;padding:.3em;width:100%;background:#fdfaf3;border:1px solid var(--color-line);border-radius:8px;box-shadow:0 3px 12px rgba(0,0,0,.14);position:relative;z-index:2}
-.blankmap .mnote{background:#fff3b8;font-size:.68rem;line-height:1.3;padding:.22em .55em;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.1);max-width:12.5em;white-space:pre-line;transform:none;flex:none}
+.blankmap{position:relative;flex:1;width:100%;min-height:57vh}
+.blankmap .cmap{position:absolute;inset:0;width:100%;height:100%}
+.blankmap .link{stroke:#cbb89a;stroke-width:1.5;opacity:.16;transition:opacity .5s,stroke .5s,stroke-width .5s;vector-effect:non-scaling-stroke}
+.blankmap.s2 .link.lit{stroke:var(--color-accent-deep);stroke-width:3;opacity:.95}
+.blankmap .node{position:absolute;transform:translate(-50%,-50%);width:clamp(9em,15vw,13.5em);text-align:center;z-index:2}
+.blankmap .circle{border:3px dashed var(--c);border-radius:50%;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.18em;font-family:var(--font-serif);font-weight:700;color:var(--c);background:rgba(255,255,255,.82);box-shadow:0 4px 16px rgba(0,0,0,.07);font-size:clamp(1.35rem,1.85vw,1.62rem);padding:.6em}
+.blankmap .cq{font-family:var(--font-sans);font-weight:400;font-size:clamp(1.5rem,1.62vw,1.42rem);line-height:1.28;color:var(--color-text);opacity:0;transform:translateY(6px);transition:opacity .45s,transform .45s}
+.blankmap.s1 .cq,.blankmap.s2 .cq{opacity:1;transform:none}
+.blankmap .rel{position:absolute;transform:translate(-50%,-50%);background:#FFF6DF;max-width:11em;border:1.5px solid var(--color-accent);border-radius:10px;padding:.28em .7em;font-size:clamp(1.5rem,1.55vw,1.36rem);line-height:1.26;color:#5C1A23;max-width:13em;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.12);opacity:0;transition:opacity .45s;z-index:3}
+.blankmap.s2 .rel{opacity:1}
+.blankmap .maphint{position:absolute;right:0;top:-.4em;color:var(--color-muted);font-size:clamp(1.5rem,1.45vw,1.28rem);white-space:nowrap;opacity:.85}
+.blankmap .cq.none{color:var(--color-muted);font-style:italic}
 /* 彩蛋·主題曲頁（末頁）：酒紅暗底＋金色音符美工，移除章節浮水印 */
 .slide.eggsong{background:var(--grad-royal) !important}
 .slide.eggsong::after{content:none !important}
@@ -1486,6 +1493,7 @@ function showSlide(n){
   if(n!==total)eggPause();
   slides.forEach((s,i)=>{s.classList.remove('active','prev');if(i+1===n)s.classList.add('active');else if(i+1<n)s.classList.add('prev');});
   current=n;
+  if(typeof window.U1mapReset==='function')window.U1mapReset(n);
   document.getElementById('curr').textContent=current;
   document.getElementById('progress').style.width=(current/total*100)+'%';
   history.replaceState(null,'','#'+current);
@@ -1540,6 +1548,8 @@ function toggleVideoInFocus(){
   return true; // 在影音框內但無 API（純 iframe），仍阻止跳頁，不強行 nextSlide
 }
 document.addEventListener('keydown',e=>{
+  if((e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')&&typeof window.U1mapStep==='function'&&window.U1mapStep(1)){e.preventDefault();e.stopPropagation();return;}
+  if((e.key==='ArrowLeft'||e.key==='PageUp')&&typeof window.U1mapStep==='function'&&window.U1mapStep(-1)){e.preventDefault();e.stopPropagation();return;}
   if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();nextSlide()}
   if(e.key===' '){e.preventDefault();if(!toggleVideoInFocus())nextSlide();}
   if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide()}
@@ -1585,22 +1595,24 @@ function onYouTubeIframeAPIReady(){
 <script>
 window.U1=(function(){
   const GROUPS=[
-    {id:1,n:'終極關懷',c:'#862633',x:27,y:20},
-    {id:2,n:'價值思辨',c:'#A8782E',x:50,y:13},
-    {id:3,n:'靈性修養',c:'#A23A48',x:73,y:20},
-    {id:4,n:'人學探索',c:'#6B5635',x:34,y:84},
-    {id:5,n:'哲學思考',c:'#5C1A23',x:66,y:84},
+    {id:1,n:'終極關懷',c:'#862633',x:50,y:15},
+    {id:2,n:'價值思辨',c:'#A8782E',x:86,y:41},
+    {id:3,n:'靈性修養',c:'#A23A48',x:72,y:83},
+    {id:4,n:'人學探索',c:'#6B5635',x:28,y:83},
+    {id:5,n:'哲學思考',c:'#5C1A23',x:14,y:41},
     {id:6,n:'任意門',c:'#1A1A1A'}
   ];
   const esc=s=>String(s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
   const SUBMIT_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'submit.html';
   const ASK_BASE=location.origin+location.pathname.replace(/[^/]*$/,'')+'ask.html';
   let DB=null, online=false;
-  let DATA={1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]},6:{lijie:[],kunhuo:[]}};
+  let DATA={1:{lijie:[],kunhuo:[],guanxi:[]},2:{lijie:[],kunhuo:[],guanxi:[]},3:{lijie:[],kunhuo:[],guanxi:[]},4:{lijie:[],kunhuo:[],guanxi:[]},5:{lijie:[],kunhuo:[],guanxi:[]},6:{lijie:[],kunhuo:[],guanxi:[]}};
+  let PICK6=null, MAPSTEP=0;
   let XWEN=[];
   const LKEY='u1_data_'+(window.FB_ROOM||'local');
   const configured=()=>window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;
   const listify=o=>o?Object.keys(o).sort((a,b)=>(o[a].t||0)-(o[b].t||0)).map(k=>o[k].txt):[];
+  const listifyRel=o=>o?Object.keys(o).sort((a,b)=>(o[a].t||0)-(o[b].t||0)).map(k=>({txt:o[k].txt,tgt:String(o[k].tgt||'')})):[];
   function loadLocal(){try{const d=JSON.parse(localStorage.getItem(LKEY));if(d)DATA=d;}catch(e){}}
   function saveLocal(){try{localStorage.setItem(LKEY,JSON.stringify(DATA))}catch(e){}}
   function initFB(){
@@ -1608,7 +1620,7 @@ window.U1=(function(){
     try{
       firebase.initializeApp(window.FB_CONFIG);
       DB=firebase.database().ref('rooms/'+(window.FB_ROOM||'default'));
-      DB.on('value',snap=>{const v=snap.val()||{};GROUPS.forEach(g=>{const n=v['g'+g.id]||{};DATA[g.id]={lijie:listify(n.lijie),kunhuo:listify(n.kunhuo)};});XWEN=listify(v.xwen);online=true;renderAll();setStatus();});
+      DB.on('value',snap=>{const v=snap.val()||{};GROUPS.forEach(g=>{const n=v['g'+g.id]||{};DATA[g.id]={lijie:listify(n.lijie),kunhuo:listify(n.kunhuo),guanxi:listifyRel(n.guanxi)};});PICK6=(v.g6&&v.g6.pick)||null;XWEN=listify(v.xwen);online=true;renderAll();setStatus();});
       return true;
     }catch(e){return false;}
   }
@@ -1618,7 +1630,7 @@ window.U1=(function(){
     else{DATA[g][type].push(txt);saveLocal();renderAll();}
   }
   function clearGroup(g){
-    if(DB){DB.child('g'+g).remove();}else{DATA[g]={lijie:[],kunhuo:[]};saveLocal();renderAll();}
+    if(DB){DB.child('g'+g).remove();}else{DATA[g]={lijie:[],kunhuo:[],guanxi:[]};saveLocal();renderAll();}
     if(typeof showToast==='function')showToast('已清空第'+g+'組',1800);
   }
   function renderAll(){
@@ -1654,15 +1666,79 @@ window.U1=(function(){
       return `<span class="cloud-chip" style="--c:${c};--rot:${rot}deg;--sz:${sz}">${esc(t)}</span>`;
     }).join('');
   }
+  // 星座圖：五個素養為節點，十條連線預設暗；有「關係的疑問」的線亮起並掛標籤。
+  // 第6組自選素養，其投稿併入該素養。分段揭示：0=空白地圖 1=內涵疑問 2=關係疑問。
+  function mergedFor(id){
+    const own=DATA[id]||{lijie:[],kunhuo:[],guanxi:[]};
+    const k=(own.kunhuo||[]).slice(), r=(own.guanxi||[]).slice();
+    if(PICK6&&String(PICK6)===String(id)){
+      const g6=DATA[6]||{};
+      (g6.kunhuo||[]).forEach(t=>k.push(t));
+      (g6.guanxi||[]).forEach(o=>r.push(o));
+    }
+    return {kunhuo:k,guanxi:r};
+  }
   function renderMap(){
     const m=document.getElementById('blankMap'); if(!m)return;
-    const svg='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#cbb89a" stroke-width=".4" stroke-dasharray="1.6 1.4" fill="none" opacity=".75"><line x1="27" y1="20" x2="50" y2="13"/><line x1="50" y1="13" x2="73" y2="20"/><line x1="34" y1="84" x2="66" y2="84"/><line x1="50" y1="13" x2="50" y2="84"/></g></svg>';
-    const nodes=GROUPS.filter(g=>g.x!=null).map(g=>{
-      const nn=(DATA[g.id].kunhuo||[]).map(t=>`<div class="mnote">${esc(t)}</div>`).join('');
-      return `<div class="node" style="left:${g.x}%;top:${g.y}%"><div class="circle" style="--c:${g.c}">${g.n}</div><div class="mnotes">${nn}</div></div>`;
+    const pts=GROUPS.filter(g=>g.x!=null);
+    // 十條連線；有關係疑問者亮起
+    const rel={};                                   // 'a-b' -> [疑問…]
+    pts.forEach(g=>{
+      mergedFor(g.id).guanxi.forEach(o=>{
+        const t=String(o.tgt||''); if(!t||t===String(g.id))return;
+        const key=[g.id,t].map(Number).sort((a,b)=>a-b).join('-');
+        (rel[key]=rel[key]||[]).push(o.txt);
+      });
+    });
+    let lines='', labels='';
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const a=pts[i], b=pts[j];
+      const key=[a.id,b.id].map(Number).sort((x,y)=>x-y).join('-');
+      const qs=rel[key];
+      lines+=`<line class="link${qs?' lit':''}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`;
+      if(qs){
+        // 標籤定位：外圍五邊放中點再往外推（不會撞到圈）；內部對角線放線上 32% 處
+        // 並沿法線偏移，避開中央壅塞與兩端的圓圈。
+        const adj=(Math.abs(i-j)===1)||(i===0&&j===pts.length-1);
+        let mx,my;
+        if(adj){
+          mx=(a.x+b.x)/2; my=(a.y+b.y)/2;
+          const dx=mx-50, dy=my-50, d=Math.hypot(dx,dy)||1;
+          mx+=dx/d*9; my+=dy/d*9;
+        }else{
+          const t=0.34;
+          mx=a.x+(b.x-a.x)*t; my=a.y+(b.y-a.y)*t;
+          const lx=b.x-a.x, ly=b.y-a.y, L=Math.hypot(lx,ly)||1;
+          const sign=((i+j)%2)?1:-1;                 // 左右交替，避免多條對角線標籤疊在一起
+          mx+=(-ly/L)*6*sign; my+=(lx/L)*6*sign;
+        }
+        labels+=`<div class="rel" style="left:${mx.toFixed(1)}%;top:${my.toFixed(1)}%">${esc(qs[0])}</div>`;
+      }
+    }
+    const svg=`<svg class="cmap" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}</svg>`;
+    const nodes=pts.map(g=>{
+      const q=mergedFor(g.id).kunhuo;
+      const body=q.length?`<div class="cq">${esc(q[0])}</div>`:'<div class="cq none">（待補）</div>';
+      return `<div class="node" style="left:${g.x}%;top:${g.y}%"><div class="circle" style="--c:${g.c}">${g.n}${body}</div></div>`;
     }).join('');
-    m.innerHTML=svg+nodes;
+    const hint=MAPSTEP===0?'按 → 讓各組的疑問浮現'
+             :MAPSTEP===1?'再按 → 點亮素養之間接不起來的連結'
+             :'亮起來的每一條，就是今天下午要補的';
+    m.className='blankmap s'+MAPSTEP;
+    m.innerHTML=svg+nodes+labels+`<div class="maphint">${hint}</div>`;
   }
+  window.U1mapReset=function(n){
+    const sec=document.querySelectorAll('.slide')[n-1];
+    if(!sec||!sec.querySelector('#blankMap')){MAPSTEP=0;return;}   // 離開地圖頁即歸零
+    MAPSTEP=0; renderMap();
+  };
+  window.U1mapStep=function(dir){
+    const act=document.querySelector('.slide.active');
+    if(!act||!act.querySelector('#blankMap'))return false;   // 不在地圖頁：不攔截
+    const nx=MAPSTEP+(dir>0?1:-1);
+    if(nx<0||nx>2)return false;                              // 已到兩端：交還翻頁
+    MAPSTEP=nx; renderMap(); return true;
+  };
   function makeQRs(){
     if(typeof QRCode==='undefined')return;
     document.querySelectorAll('.qr-box[data-g]').forEach(box=>{
@@ -1695,7 +1771,7 @@ window.U1=(function(){
   window.U1clear=clearHovered;
   function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
   function nowStamp(){var d=new Date(),p=function(n){return(n<10?'0':'')+n;};return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes());}
-  function emptyData(){return {1:{lijie:[],kunhuo:[]},2:{lijie:[],kunhuo:[]},3:{lijie:[],kunhuo:[]},4:{lijie:[],kunhuo:[]},5:{lijie:[],kunhuo:[]},6:{lijie:[],kunhuo:[]}};}
+  function emptyData(){return {1:{lijie:[],kunhuo:[],guanxi:[]},2:{lijie:[],kunhuo:[],guanxi:[]},3:{lijie:[],kunhuo:[],guanxi:[]},4:{lijie:[],kunhuo:[],guanxi:[]},5:{lijie:[],kunhuo:[],guanxi:[]},6:{lijie:[],kunhuo:[],guanxi:[]}};}
   function downloadCSV(stamp){
     var room=window.FB_ROOM||'default';
     var rows=[['房號','組別','素養','類型','內容']];

@@ -35,12 +35,30 @@ button.send:active{transform:translateY(1px);opacity:.9}
 .foot{text-align:center;color:#6B6B6B;font-size:.85rem;margin-top:.5em;padding:0 1em}
 .flash{position:fixed;left:50%;bottom:1.5em;transform:translateX(-50%) translateY(20px);background:rgba(0,0,0,.85);color:#fff;padding:.6em 1.4em;border-radius:999px;font-size:1rem;opacity:0;transition:.3s;z-index:50;pointer-events:none}
 .flash.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.blk.rel{border-top-color:#6B5635}
+.blk.rel label{color:#6B5635}
+.blk.rel button.send{background:#6B5635}
+.blk.rel .item{background:#F3EEE0;border-left-color:#6B5635}
+select{width:100%;font-family:inherit;font-size:1.08rem;padding:.7em .8em;border:2px solid #E5DDD0;border-radius:12px;background:#fffdf9;margin-bottom:.6em}
+select:focus{outline:none;border-color:var(--c)}
+input.one{width:100%;font-family:inherit;font-size:1.08rem;padding:.7em .8em;border:2px solid #E5DDD0;border-radius:12px;background:#fffdf9}
+input.one:focus{outline:none;border-color:var(--c)}
+.hint{font-size:.88rem;color:#8a7f6d;margin-top:.4em;display:flex;justify-content:space-between;gap:.6em}
+.hint .cnt{font-variant-numeric:tabular-nums}
+.hint .cnt.over{color:#b0304a;font-weight:700}
+.pickbar{background:#fff;border-radius:16px;box-shadow:0 4px 18px rgba(134,38,51,.08);border-top:5px solid var(--c);padding:1.1em;margin-bottom:1.3em}
+.pickbar label{margin-bottom:.4em}
+.tag{display:inline-block;background:#EFE6D2;color:#5C1A23;border-radius:999px;padding:.15em .7em;font-size:.85rem;margin-left:.4em}
 </style>
 </head>
 <body>
 <div class="bar"><div class="g" id="gName">第 ? 組</div><div class="s" id="gSub">把你們的討論打上來</div></div>
 <div class="wrap">
-  <p class="intro">把你們這一組討論的結果<b>充分</b>寫下來，字數不限、可分多次送出。送出後會即時出現在投影幕上你們這一組的頁面。</p>
+  <p class="intro">把你們這一組討論的結果寫下來，可分多次送出。送出後會即時出現在投影幕上。</p>
+  <div class="pickbar" id="pickBar" style="display:none">
+    <label>你們這一組要討論哪一個核心素養？</label>
+    <select id="pickSel"><option value="">請選擇…</option></select>
+  </div>
   <section class="blk">
     <label>① 我們對這個核心素養的「理解」</label>
     <textarea id="lijie" placeholder="這個核心素養到底在問什麼、核心是什麼？把你們收斂出的理解寫在這裡…"></textarea>
@@ -48,10 +66,19 @@ button.send:active{transform:translateY(1px);opacity:.9}
     <div class="list" id="lijieList"></div>
   </section>
   <section class="blk kun">
-    <label>② 還不懂／接不起來</label>
-    <textarea id="kunhuo" placeholder="哪些地方還理解得不夠？它和其他核心素養，哪一條你們接不太起來？"></textarea>
-    <button class="send" onclick="send('kunhuo')">送出「困惑」</button>
+    <label>② 對這個素養的「內涵」還有什麼不懂</label>
+    <input class="one" id="kunhuo" maxlength="20" placeholder="例：靈性修養與心理健康怎麼分？">
+    <div class="hint"><span>一則一句、20 字以內（投影幕上要放得下）</span><span class="cnt" id="kunCnt">0／20</span></div>
+    <button class="send" onclick="send('kunhuo')">送出「內涵的疑問」</button>
     <div class="list" id="kunhuoList"></div>
+  </section>
+  <section class="blk rel">
+    <label>③ 這個素養和「哪一個素養」的關係還接不起來</label>
+    <select id="relTgt"><option value="">先選一個素養…</option></select>
+    <input class="one" id="guanxi" maxlength="20" placeholder="例：兩者的先後次序是什麼？">
+    <div class="hint"><span>一則一句、20 字以內</span><span class="cnt" id="relCnt">0／20</span></div>
+    <button class="send" onclick="send('guanxi')">送出「關係的疑問」</button>
+    <div class="list" id="guanxiList"></div>
   </section>
   <p class="foot" id="foot">連線中…</p>
 </div>
@@ -66,19 +93,38 @@ button.send:active{transform:translateY(1px);opacity:.9}
   document.getElementById('gSub').textContent='你們負責的核心素養：'+G.n;
   document.title='第'+g+'組 '+G.n+' · 投稿';
   function esc(s){return String(s||'').replace(/[&<>]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m];});}
+  // 第6組自選一個核心素養；其餘組別即為自己的素養
+  var PICK=null;                                   // 第6組所選素養 id（字串 '1'~'5'）
+  function ownId(){return g==='6'?PICK:g;}
+  function ownName(){var o=ownId();return o?GROUPS[o].n:'（尚未選擇）';}
+  function fillSel(sel,skip,ph){
+    sel.innerHTML='<option value="">'+ph+'</option>'+[1,2,3,4,5].filter(function(i){return String(i)!==String(skip);})
+      .map(function(i){return '<option value="'+i+'">'+GROUPS[i].n+'</option>';}).join('');
+  }
+  function syncHead(){
+    var o=ownId();
+    if(g==='6'){
+      document.getElementById('gName').textContent='第 6 組 · 任意門';
+      document.getElementById('gSub').textContent=o?('你們選的核心素養：'+GROUPS[o].n):'請先在下方選一個核心素養';
+      if(o)document.documentElement.style.setProperty('--c',GROUPS[o].c);
+    }
+    fillSel(document.getElementById('relTgt'),o,o?'和哪一個素養的關係？':'請先選定你們的素養');
+  }
   function configured(){return window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;}
-  function listify(o){if(!o)return[];return Object.keys(o).sort(function(a,b){return (o[a].t||0)-(o[b].t||0);}).map(function(k){return {k:k,txt:o[k].txt};});}
+  function listify(o){if(!o)return[];return Object.keys(o).sort(function(a,b){return (o[a].t||0)-(o[b].t||0);}).map(function(k){return {k:k,txt:o[k].txt,tgt:o[k].tgt};});}
   var DB=null, foot=document.getElementById('foot');
   function flash(t){var f=document.getElementById('flash');f.textContent=t;f.classList.add('show');setTimeout(function(){f.classList.remove('show');},1400);}
+  var EMPTY={lijie:'還沒送出理解。',kunhuo:'還沒送出內涵的疑問。',guanxi:'還沒送出關係的疑問。'};
   function render(type,arr){
-    var box=document.getElementById(type+'List');
-    if(!arr||!arr.length){box.innerHTML='<div class="empty">'+(type==='lijie'?'還沒送出理解。':'還沒送出困惑。')+'</div>';return;}
+    var box=document.getElementById(type+'List'); if(!box)return;
+    if(!arr||!arr.length){box.innerHTML='<div class="empty">'+EMPTY[type]+'</div>';return;}
     box.innerHTML=arr.map(function(o){
       var del=DB?'<button class="del" data-type="'+type+'" data-k="'+o.k+'">刪</button>':'';
-      return '<div class="item">'+esc(o.txt)+del+'</div>';
+      var tag=o.tgt&&GROUPS[o.tgt]?'<span class="tag">↔ '+GROUPS[o.tgt].n+'</span>':'';
+      return '<div class="item">'+esc(o.txt)+tag+del+'</div>';
     }).join('');
   }
-  ['lijieList','kunhuoList'].forEach(function(id){
+  ['lijieList','kunhuoList','guanxiList'].forEach(function(id){
     var el=document.getElementById(id);
     if(el)el.addEventListener('click',function(e){
       var b=e.target.closest&&e.target.closest('.del'); if(!b||!DB)return;
@@ -89,24 +135,64 @@ button.send:active{transform:translateY(1px);opacity:.9}
   var LKEY='u1_data_'+(window.FB_ROOM||'local');
   function loadLocal(){try{var d=JSON.parse(localStorage.getItem(LKEY));return d||{};}catch(e){return {};}}
   function saveLocal(d){try{localStorage.setItem(LKEY,JSON.stringify(d));}catch(e){}}
-  function renderLocal(){var d=loadLocal()['g'+g]||{lijie:[],kunhuo:[]};
+  function renderLocal(){var d=loadLocal()['g'+g]||{lijie:[],kunhuo:[],guanxi:[]};
     render('lijie',(d.lijie||[]).map(function(t,i){return {k:i,txt:t};}));
-    render('kunhuo',(d.kunhuo||[]).map(function(t,i){return {k:i,txt:t};}));}
+    render('kunhuo',(d.kunhuo||[]).map(function(t,i){return {k:i,txt:t};}));
+    render('guanxi',(d.guanxi||[]).map(function(o,i){return {k:i,txt:o.txt||o,tgt:o.tgt};}));}
   window.send=function(type){
+    if(g==='6'&&!PICK){flash('請先選一個核心素養');return;}
     var ta=document.getElementById(type);var txt=(ta.value||'').trim();if(!txt){flash('先寫點東西再送出');return;}
-    if(DB){DB.child(type).push({txt:txt,t:Date.now()});}
-    else{var d=loadLocal();if(!d['g'+g])d['g'+g]={lijie:[],kunhuo:[]};d['g'+g][type].push(txt);saveLocal(d);renderLocal();}
-    ta.value='';flash('已送出！');
+    var tgt=null;
+    if(type==='guanxi'){
+      tgt=document.getElementById('relTgt').value;
+      if(!tgt){flash('請先選「和哪一個素養」');return;}
+    }
+    if(DB){var o={txt:txt,t:Date.now()};if(tgt)o.tgt=tgt;DB.child(type).push(o);}
+    else{var d=loadLocal();if(!d['g'+g])d['g'+g]={lijie:[],kunhuo:[],guanxi:[]};
+      if(!d['g'+g][type])d['g'+g][type]=[];
+      d['g'+g][type].push(type==='guanxi'?{txt:txt,tgt:tgt}:txt);saveLocal(d);renderLocal();}
+    ta.value='';updCnt();flash('已送出！');
   };
+  // 字數計數
+  function updCnt(){
+    [['kunhuo','kunCnt'],['guanxi','relCnt']].forEach(function(pair){
+      var inp=document.getElementById(pair[0]),el=document.getElementById(pair[1]);
+      if(!inp||!el)return;
+      var n=(inp.value||'').length; el.textContent=n+'／20'; el.classList.toggle('over',n>=20);
+    });
+  }
+  ['kunhuo','guanxi'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',updCnt);});
+  // 第6組：顯示素養選擇器
+  if(g==='6'){
+    var bar=document.getElementById('pickBar'); bar.style.display='';
+    var psel=document.getElementById('pickSel');
+    fillSel(psel,null,'請選擇…');
+    psel.addEventListener('change',function(){
+      PICK=psel.value||null;
+      if(DB){DB.child('pick').set(PICK);}
+      else{var d=loadLocal();if(!d.g6)d.g6={lijie:[],kunhuo:[],guanxi:[]};d.g6.pick=PICK;saveLocal(d);}
+      syncHead();
+    });
+  }
+  syncHead();
+  updCnt();
   if(configured()&&typeof firebase!=='undefined'){
     try{
       firebase.initializeApp(window.FB_CONFIG);
       DB=firebase.database().ref('rooms/'+(window.FB_ROOM||'default')+'/g'+g);
-      DB.on('value',function(snap){var v=snap.val()||{};render('lijie',listify(v.lijie));render('kunhuo',listify(v.kunhuo));});
+      DB.on('value',function(snap){
+        var v=snap.val()||{};
+        if(g==='6'){
+          var np=v.pick||null;
+          if(np!==PICK){PICK=np;var ps=document.getElementById('pickSel');if(ps)ps.value=PICK||'';syncHead();}
+        }
+        render('lijie',listify(v.lijie));render('kunhuo',listify(v.kunhuo));render('guanxi',listify(v.guanxi));
+      });
       foot.textContent='● 已連線（房號 '+(window.FB_ROOM||'default')+'）—— 送出後投影幕即時更新';
     }catch(e){foot.textContent='⚠ 連線失敗，改用本機暫存：'+e.message;renderLocal();}
   } else {
     foot.textContent='○ 尚未設定雲端（fbconfig.js）——此頁僅本機測試，不會傳到投影幕';
+    if(g==='6'){var dd=loadLocal().g6||{};PICK=dd.pick||null;var ps2=document.getElementById('pickSel');if(ps2)ps2.value=PICK||'';syncHead();}
     renderLocal();
   }
 })();
