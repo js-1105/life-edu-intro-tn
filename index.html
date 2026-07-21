@@ -1637,8 +1637,8 @@ window.U1=(function(){
   }
   const NAME_OF=id=>{const g=GROUPS.filter(x=>String(x.id)===String(id))[0];return g?g.n:'';};
   const HINT={lijie:'掃 QR 在手機寫下你們的「理解」，這裡會即時出現。',
-              kunhuo:'掃 QR 寫下「內涵的疑問」，這裡會即時出現。',
-              guanxi:'掃 QR 寫下「和哪個素養接不起來」，這裡會即時出現。'};
+              kunhuo:'掃 QR 盡情寫下內涵的疑問，開頭先寫重點——全文顯示在這裡，素養地圖只秀前 20 字。',
+              guanxi:'掃 QR 選定對象素養、以「和◯◯…」起頭盡情寫——全文顯示在這裡，地圖只秀前 20 字。'};
   function renderAll(){
     const g6n=document.getElementById('g6pickName');
     if(g6n)g6n.textContent=PICK6?('　→ 深入：'+NAME_OF(PICK6)):'　（先在手機上選定要深入的素養）';
