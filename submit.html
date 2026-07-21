@@ -54,7 +54,7 @@ input.one:focus{outline:none;border-color:var(--c)}
 <body>
 <div class="bar"><div class="g" id="gName">第 ? 組</div><div class="s" id="gSub">把你們的討論打上來</div></div>
 <div class="wrap">
-  <p class="intro">依序送出三樣東西，都會即時出現在投影幕：<b>①理解</b>→你們那一組的頁面；<b>②內涵的疑問</b>→素養地圖上你們素養的圈圈裡；<b>③關係的疑問</b>→點亮地圖上兩個素養之間的連線。</p>
+  <p class="intro">依序送出三樣東西，都會即時出現在投影幕：<b>①理解</b>→你們那一組的頁面；<b>②內涵的疑問</b>→素養地圖你們素養的圈圈裡；<b>③關係的疑問</b>→點亮兩素養間的連線。②③字數不限，但地圖只秀前 20 字——先寫重點，再展開。</p>
   <div class="pickbar" id="pickBar" style="display:none">
     <label>任意門：你們要深入哪一個核心素養？（先選，才能投稿；投影幕會顯示你們的選擇）</label>
     <select id="pickSel"><option value="">請選擇…</option></select>
@@ -67,16 +67,16 @@ input.one:focus{outline:none;border-color:var(--c)}
   </section>
   <section class="blk kun">
     <label>② 對這個素養的「內涵」還有什麼不懂</label>
-    <input class="one" id="kunhuo" maxlength="20" placeholder="例：靈性修養與心理健康怎麼分？">
-    <div class="hint"><span>一句 20 字內——會放進素養地圖<b>你們素養的圈圈裡</b></span><span class="cnt" id="kunCnt">0／20</span></div>
+    <textarea id="kunhuo" placeholder="開頭一句先寫重點，之後再詳細展開…"></textarea>
+    <div class="hint"><span>字數不限、盡情寫。投影幕的素養地圖只會秀<b>前 20 字</b>——請開宗明義先寫重點，再詳細展開。</span></div>
     <button class="send" onclick="send('kunhuo')">送出「內涵的疑問」</button>
     <div class="list" id="kunhuoList"></div>
   </section>
   <section class="blk rel">
     <label>③ 這個素養和「哪一個素養」的關係還接不起來</label>
     <select id="relTgt"><option value="">先選一個素養…</option></select>
-    <input class="one" id="guanxi" maxlength="20" placeholder="例：和價值思辨如何相連，說不上來">
-    <div class="hint"><span>以<b>「和◯◯…」起頭</b>寫出關係哪裡不明白、20 字內——會點亮兩素養間的連線</span><span class="cnt" id="relCnt">0／20</span></div>
+    <textarea id="guanxi" placeholder="例：和價值思辨如何相連，說不上來——之後再詳細展開…"></textarea>
+    <div class="hint"><span>以<b>「和◯◯…」起頭</b>寫出關係哪裡不明白；字數不限，地圖只秀<b>前 20 字</b>——先寫重點，再展開。會點亮兩素養間的連線。</span></div>
     <button class="send" onclick="send('guanxi')">送出「關係的疑問」</button>
     <div class="list" id="guanxiList"></div>
   </section>
@@ -151,7 +151,7 @@ input.one:focus{outline:none;border-color:var(--c)}
       var n=(inp.value||'').length; el.textContent=n+'／20'; el.classList.toggle('over',n>=20);
     });
   }
-  ['kunhuo','guanxi'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',updCnt);});
+
   // 第6組：顯示素養選擇器
   if(g==='6'){
     var bar=document.getElementById('pickBar'); bar.style.display='';

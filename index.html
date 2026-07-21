@@ -853,13 +853,13 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div class="card" style="border-top-color:#A23A48"><h3>③ 內涵的疑問</h3><p>關於它的內涵，你們還有哪些地方不了解？</p></div>
     <div class="card" style="border-top-color:#5C1A23"><h3>④ 關係的疑問</h3><p>它和其他素養的關係，哪些還不明白？</p></div>
   </div>
-  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四面向逐一討論，推一位代表上台報告。討論後掃 QR 投稿：<b>③ 一句 20 字內</b>→進你們素養的圈圈；<b>④ 選定對象素養、以「和◯◯…」起頭，寫出你們說不清楚的是關係的哪個部分</b>（例：和價值思辨如何相連，說不上來）→點亮兩素養間的連線。</p><button class="peek-btn" onclick="event.stopPropagation();U1peekMap()">先看一眼素養地圖　↗</button></div>
+  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四面向逐一討論，推一位代表上台報告。討論後掃 QR 投稿：③④ <b>字數不限、盡情寫，但地圖只秀每則前 20 字——開宗明義先寫重點，再詳細展開</b>；④ 先選定對象素養、以「和◯◯…」起頭寫關係哪裡說不清（例：和價值思辨如何相連，說不上來）。</p><button class="peek-btn" onclick="event.stopPropagation();U1peekMap()">先看一眼素養地圖　↗</button></div>
 </section>
 
 <!-- S18 六組 QR：手機投稿入口 -->
 <section class="slide">
   <h2>掃你那一組的 QR，把討論打在手機上</h2>
-  <p class="lead qr-intro">請各小組派<b>一位同學</b>掃你們那一組的碼，依序送出三樣東西，投影幕即時更新：<br><b>① 理解</b>（不限字數）、<b>② 內涵的疑問</b>（一句 20 字內→進素養圈）、<b>③ 關係的疑問</b>（先選對象素養→點亮連線）。<br>第 6 組請先在手機上<b>選定要深入的核心素養</b>再投稿。</p>
+  <p class="lead qr-intro">請各小組派<b>一位同學</b>掃你們那一組的碼，依序送出三樣東西，投影幕即時更新：<br><b>① 理解</b>、<b>② 內涵的疑問</b>→進素養圈、<b>③ 關係的疑問</b>（先選對象素養）→點亮連線。<br>字數不限，但地圖只秀前 20 字——先寫重點，再展開。第 6 組請先在手機上<b>選定要深入的素養</b>再投稿。</p>
   <div class="qr-stage">
     <div class="qr-card c-tl" style="--c:#862633"><div class="qr-box" data-g="1"></div><div class="qr-cap">第1組<small>終極關懷</small></div></div>
     <div class="qr-card c-tr" style="--c:#A8782E"><div class="qr-box" data-g="2"></div><div class="qr-cap">第2組<small>價值思辨</small></div></div>
@@ -1681,6 +1681,7 @@ window.U1=(function(){
   }
   // 星座圖：五個素養為節點，十條連線預設暗；有「關係的疑問」的線亮起並掛標籤。
   // 第6組自選素養，其投稿併入該素養。分段揭示：0=空白地圖 1=內涵疑問 2=關係疑問。
+  const trunc20=t=>{t=String(t||'').trim();return t.length>20?t.slice(0,20)+'…':t;};
   function mergedFor(id){
     const own=DATA[id]||{lijie:[],kunhuo:[],guanxi:[]};
     const k=(own.kunhuo||[]).slice(), r=(own.guanxi||[]).slice();
@@ -1725,13 +1726,13 @@ window.U1=(function(){
           const sign=((i+j)%2)?1:-1;                 // 左右交替，避免多條對角線標籤疊在一起
           mx+=(-ly/L)*6*sign; my+=(lx/L)*6*sign;
         }
-        labels+=`<div class="rel" style="left:${mx.toFixed(1)}%;top:${my.toFixed(1)}%">${esc(qs[0])}</div>`;
+        labels+=`<div class="rel" style="left:${mx.toFixed(1)}%;top:${my.toFixed(1)}%">${esc(trunc20(qs[0]))}</div>`;
       }
     }
     const svg=`<svg class="cmap" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}</svg>`;
     const nodes=pts.map(g=>{
       const q=mergedFor(g.id).kunhuo;
-      const body=q.length?`<div class="cq">${esc(q[0])}</div>`:'<div class="cq none">（待補）</div>';
+      const body=q.length?`<div class="cq">${esc(trunc20(q[0]))}</div>`:'<div class="cq none">（待補）</div>';
       return `<div class="node" style="left:${g.x}%;top:${g.y}%"><div class="circle" style="--c:${g.c}">${g.n}${body}</div></div>`;
     }).join('');
     const hint=MAPSTEP===0?'按 → 讓各組的疑問浮現'
