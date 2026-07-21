@@ -288,6 +288,9 @@ body.no-clickzones .click-zones{display:none}
 .cover-cta:hover{transform:translateY(-2px)}
 .back-home-btn{position:relative;z-index:60;margin-top:1.8em;background:transparent;color:var(--color-accent);border:2px solid var(--color-accent);padding:.7em 1.8em;font-size:.95rem;font-weight:600;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.1em;transition:all .2s}
 .back-home-btn:hover{background:var(--color-accent);color:var(--color-primary-dark);transform:translateY(-2px)}
+.peek-btn{position:relative;z-index:60;display:inline-block;margin-top:.55em;background:transparent;color:var(--color-primary);border:2px solid var(--color-accent);padding:.45em 1.4em;font-size:1.5rem;font-weight:700;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.06em;transition:all .2s}
+.peek-btn:hover{background:var(--color-accent);color:var(--color-primary-dark)}
+#peekBack{position:fixed;left:50%;bottom:9vh;transform:translateX(-50%);z-index:70;display:none;background:var(--color-primary);color:#fff;border:none;padding:.6em 1.8em;font-size:1.1rem;font-weight:700;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.08em;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 .toast{position:fixed;top:1.5em;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:.6em 1.4em;border-radius:999px;font-size:.9rem;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
 /* 移植自 life-edu-philosophy #9-#12（時代挑戰） */
@@ -850,7 +853,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div class="card" style="border-top-color:#A23A48"><h3>③ 內涵的疑問</h3><p>關於它的內涵，你們還有哪些地方不了解？</p></div>
     <div class="card" style="border-top-color:#5C1A23"><h3>④ 關係的疑問</h3><p>它和其他素養的關係，哪些還不明白？</p></div>
   </div>
-  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四個面向逐一討論，推一位代表整理後上台報告。討論後掃 QR 投稿：<b>③ 寫成一句 20 字內的疑問</b>，會出現在「素養地圖」你們素養的圈圈裡；<b>④ 先選定「和哪一個素養」再寫一句</b>，會點亮地圖上兩個素養之間的連線。</p></div>
+  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四個面向逐一討論，推一位代表整理後上台報告。討論後掃 QR 投稿：<b>③ 寫成一句 20 字內的疑問</b>，會出現在「素養地圖」你們素養的圈圈裡；<b>④ 先選定「和哪一個素養」再寫一句</b>，會點亮地圖上兩個素養之間的連線。</p><button class="peek-btn" onclick="event.stopPropagation();U1peekMap()">先看一眼素養地圖　↗</button></div>
 </section>
 
 <!-- S18 六組 QR：手機投稿入口 -->
@@ -1420,6 +1423,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 </div>
 
+<button id="peekBack" onclick="event.stopPropagation();U1peekBack()">↩　回到小組討論</button>
 <div class="click-zones" id="clickZones">
   <div class="click-zone" onclick="prevSlide()" title="前一頁"></div>
   <div class="click-zone" onclick="nextSlide()" title="下一頁"></div>
@@ -1736,7 +1740,12 @@ window.U1=(function(){
     m.className='blankmap s'+MAPSTEP;
     m.innerHTML=svg+nodes+labels+`<div class="maphint">${hint}</div>`;
   }
+  function mapSlideNo(){const ss=document.querySelectorAll('.slide');for(let i=0;i<ss.length;i++)if(ss[i].querySelector('#blankMap'))return i+1;return null;}
+  let PEEK_FROM=null;
+  window.U1peekMap=function(){const m=mapSlideNo();if(!m)return;PEEK_FROM=current;goToSlide(m);const b=document.getElementById('peekBack');if(b)b.style.display='block';};
+  window.U1peekBack=function(){const n=PEEK_FROM;PEEK_FROM=null;const b=document.getElementById('peekBack');if(b)b.style.display='none';if(n)goToSlide(n);};
   window.U1mapReset=function(n){
+    if(PEEK_FROM!==null&&n!==mapSlideNo()){PEEK_FROM=null;const b=document.getElementById('peekBack');if(b)b.style.display='none';}
     const sec=document.querySelectorAll('.slide')[n-1];
     if(!sec||!sec.querySelector('#blankMap')){MAPSTEP=0;return;}   // 離開地圖頁即歸零
     MAPSTEP=0; renderMap();
