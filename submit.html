@@ -131,14 +131,6 @@ input.one:focus{outline:none;border-color:var(--c)}
       DB.child(b.getAttribute('data-type')+'/'+b.getAttribute('data-k')).remove();
     });
   });
-  // 本機備援
-  var LKEY='u1_data_'+(window.FB_ROOM||'local');
-  function loadLocal(){try{var d=JSON.parse(localStorage.getItem(LKEY));return d||{};}catch(e){return {};}}
-  function saveLocal(d){try{localStorage.setItem(LKEY,JSON.stringify(d));}catch(e){}}
-  function renderLocal(){var d=loadLocal()['g'+g]||{lijie:[],kunhuo:[],guanxi:[]};
-    render('lijie',(d.lijie||[]).map(function(t,i){return {k:i,txt:t};}));
-    render('kunhuo',(d.kunhuo||[]).map(function(t,i){return {k:i,txt:t};}));
-    render('guanxi',(d.guanxi||[]).map(function(o,i){return {k:i,txt:o.txt||o,tgt:o.tgt};}));}
   window.send=function(type){
     if(g==='6'&&!PICK){flash('請先選一個核心素養');return;}
     var ta=document.getElementById(type);var txt=(ta.value||'').trim();if(!txt){flash('先寫點東西再送出');return;}
@@ -147,10 +139,8 @@ input.one:focus{outline:none;border-color:var(--c)}
       tgt=document.getElementById('relTgt').value;
       if(!tgt){flash('請先選「和哪一個素養」');return;}
     }
-    if(DB){var o={txt:txt,t:Date.now()};if(tgt)o.tgt=tgt;DB.child(type).push(o);}
-    else{var d=loadLocal();if(!d['g'+g])d['g'+g]={lijie:[],kunhuo:[],guanxi:[]};
-      if(!d['g'+g][type])d['g'+g][type]=[];
-      d['g'+g][type].push(type==='guanxi'?{txt:txt,tgt:tgt}:txt);saveLocal(d);renderLocal();}
+    if(!DB){flash('尚未連線，請稍候再送出');return;}
+    var o={txt:txt,t:Date.now()};if(tgt)o.tgt=tgt;DB.child(type).push(o);
     ta.value='';updCnt();flash('已送出！');
   };
   // 字數計數
@@ -169,8 +159,7 @@ input.one:focus{outline:none;border-color:var(--c)}
     fillSel(psel,null,'請選擇…');
     psel.addEventListener('change',function(){
       PICK=psel.value||null;
-      if(DB){DB.child('pick').set(PICK);}
-      else{var d=loadLocal();if(!d.g6)d.g6={lijie:[],kunhuo:[],guanxi:[]};d.g6.pick=PICK;saveLocal(d);}
+      if(DB)DB.child('pick').set(PICK);
       syncHead();
     });
   }
@@ -189,11 +178,9 @@ input.one:focus{outline:none;border-color:var(--c)}
         render('lijie',listify(v.lijie));render('kunhuo',listify(v.kunhuo));render('guanxi',listify(v.guanxi));
       });
       foot.textContent='● 已連線（房號 '+(window.FB_ROOM||'default')+'）—— 送出後投影幕即時更新';
-    }catch(e){foot.textContent='⚠ 連線失敗，改用本機暫存：'+e.message;renderLocal();}
+    }catch(e){foot.textContent='⚠ 連線失敗：'+e.message+'（請確認網路後重新整理）';}
   } else {
-    foot.textContent='○ 尚未設定雲端（fbconfig.js）——此頁僅本機測試，不會傳到投影幕';
-    if(g==='6'){var dd=loadLocal().g6||{};PICK=dd.pick||null;var ps2=document.getElementById('pickSel');if(ps2)ps2.value=PICK||'';syncHead();}
-    renderLocal();
+    foot.textContent='⚠ 尚未設定連線，請通知老師';
   }
 })();
 </script>

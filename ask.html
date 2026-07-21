@@ -65,14 +65,10 @@ button.send:active{transform:translateY(1px);opacity:.9}
     var b=e.target.closest&&e.target.closest('.del'); if(!b||!DB)return;
     DB.child(b.getAttribute('data-k')).remove();
   });
-  var LKEY='u1_xwen_'+(window.FB_ROOM||'local');
-  function loadLocal(){try{return JSON.parse(localStorage.getItem(LKEY))||[];}catch(e){return [];}}
-  function saveLocal(a){try{localStorage.setItem(LKEY,JSON.stringify(a));}catch(e){}}
-  function renderLocal(){render(loadLocal().map(function(t,i){return {k:i,txt:t};}));}
   window.sendX=function(){
     var ta=document.getElementById('xwen'),txt=(ta.value||'').trim();if(!txt){flash('先寫下你的提問再送出');return;}
-    if(DB){DB.push({txt:txt,t:Date.now()});}
-    else{var a=loadLocal();a.push(txt);saveLocal(a);renderLocal();}
+    if(!DB){flash('尚未連線，請稍候再送出');return;}
+    DB.push({txt:txt,t:Date.now()});
     ta.value='';flash('已送出！');
   };
   if(configured()&&typeof firebase!=='undefined'){
@@ -81,10 +77,9 @@ button.send:active{transform:translateY(1px);opacity:.9}
       DB=firebase.database().ref('rooms/'+(window.FB_ROOM||'default')+'/xwen');
       DB.on('value',function(snap){render(listify(snap.val()||{}));});
       foot.textContent='● 已連線（房號 '+(window.FB_ROOM||'default')+'）—— 送出後投影幕問題雲即時更新';
-    }catch(e){foot.textContent='⚠ 連線失敗，改用本機暫存：'+e.message;renderLocal();}
+    }catch(e){foot.textContent='⚠ 連線失敗：'+e.message+'（請確認網路後重新整理）';}
   }else{
-    foot.textContent='○ 尚未設定雲端（fbconfig.js）——此頁僅本機測試，不會傳到投影幕';
-    renderLocal();
+    foot.textContent='⚠ 尚未設定連線，請通知老師';
   }
 })();
 </script>

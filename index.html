@@ -395,7 +395,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .kunhuo-board{position:relative;flex:1;background:linear-gradient(145deg,#fff7e7,#ead8b6);border-radius:18px;box-shadow:var(--shadow-strong);padding:1em;display:flex;flex-wrap:wrap;gap:.9em;align-content:flex-start;overflow:auto}
 .sticky{background:#fff3b8;padding:.7em .9em;border-radius:4px;box-shadow:0 4px 10px rgba(92,26,35,.18);max-width:15em;font-size:1.05rem;line-height:1.45;transform:rotate(var(--r,-2deg));animation:u1pop .3s ease;border-left:5px solid var(--c,#862633)}
 .sticky .cc{display:block;font-size:.74rem;font-weight:700;color:var(--c,#862633);margin-bottom:.2em}
-.empty-hint{color:var(--color-muted);font-style:italic;margin:auto;font-size:1.2rem}
+.empty-hint{color:var(--color-muted);font-style:italic;margin:auto;font-size:1.5rem}
 @keyframes u1pop{from{opacity:0;transform:scale(.85)}to{opacity:1}}
 .blankmap{position:relative;flex:1;width:100%;min-height:57vh}
 .blankmap .cmap{position:absolute;inset:0;width:100%;height:100%}
@@ -478,19 +478,17 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 .cloud-chip{display:inline-block;box-sizing:border-box;max-width:20em;background:#fff;border:2px solid var(--c,#862633);color:var(--c,#862633);border-radius:14px;padding:.4em .85em;font-family:"Noto Serif TC",serif;font-weight:700;line-height:1.35;text-align:center;white-space:normal;box-shadow:0 3px 10px rgba(0,0,0,.08);transform:rotate(var(--rot,0deg));font-size:calc(1.05rem*var(--sz,1))}
 .cloud-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--color-muted);font-style:italic;font-size:clamp(1.5rem,1.8vw,1.75rem);text-align:center;padding:0 1em}
 .gpage h2 .g-dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:middle}
-.gcols{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;width:100%;margin-top:.2em}
+.gcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2vw;flex:1;min-height:0;width:100%;margin-top:.2em}
 .gcol{display:flex;flex-direction:column;min-height:0}
-.gcol-h{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.15rem,1.5vw,1.5rem);color:#fff;background:var(--c,#862633);padding:.38em .9em;border-radius:12px 12px 0 0}
+.gcol-h{font-family:var(--font-serif);font-weight:700;font-size:clamp(1.55rem,1.8vw,1.72rem);color:#fff;background:var(--c,#862633);padding:.38em .9em;border-radius:12px 12px 0 0}
 .gcol-h.kunhuo{background:#5C1A23}
+.gcol-h.rel{background:#6B5635}
+.gbox.rel .gitem{background:#F3EEE0;border-left-color:#6B5635}
+.gitem .rtag{display:inline-block;background:#6B5635;color:#fff;border-radius:999px;padding:.05em .6em;margin-right:.4em;font-size:.78em;white-space:nowrap}
 .gbox{flex:1;min-height:0;overflow:auto;background:rgba(255,255,255,.85);border:2px solid var(--color-line);border-top:none;border-radius:0 0 14px 14px;padding:.7em .8em;display:flex;flex-direction:column;gap:.55em}
-.gitem{background:#fff;border-left:5px solid var(--c,#862633);border-radius:8px;box-shadow:var(--shadow-soft);padding:.55em .8em;font-size:clamp(1.05rem,1.3vw,1.3rem);line-height:1.55;white-space:pre-wrap;animation:u1pop .3s ease}
+.gitem{background:#fff;border-left:5px solid var(--c,#862633);border-radius:8px;box-shadow:var(--shadow-soft);padding:.55em .8em;font-size:clamp(1.5rem,1.7vw,1.62rem);line-height:1.45;white-space:pre-wrap;animation:u1pop .3s ease}
 .gbox.kunhuo .gitem{background:#FFF8D8;border-left-color:#5C1A23}
-.gbox .empty-hint{margin:auto;font-size:1.05rem}
-.daiuda{display:flex;gap:.5em;align-items:center;margin-top:.6em;flex-wrap:wrap}
-.daiuda .tag{font-size:.78rem;color:var(--color-muted);background:rgba(0,0,0,.05);padding:.28em .8em;border-radius:999px;white-space:nowrap}
-.daiuda select,.daiuda input{font-family:var(--font-sans);font-size:1rem;padding:.45em .7em;border:2px solid var(--color-line);border-radius:8px;background:#fff;color:var(--color-text)}
-.daiuda input{flex:1;min-width:11em}
-.daiuda .btn{background:var(--color-primary);color:#fff;border:none;border-radius:999px;padding:.5em 1.3em;font-size:.95rem;font-weight:700;cursor:pointer}
+.gbox .empty-hint{margin:auto;font-size:1.5rem;text-align:center;line-height:1.5;padding:0 .8em}
 #fbStatus{font-weight:700}
 .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99980;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .modal-backdrop.show{display:flex}
@@ -874,9 +872,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <h2><span class="g-dot"></span>第1組 · 終極關懷</h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g1-lijie"></div></div>
-    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g1-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g1-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h rel">關係的疑問</div><div class="gbox rel" id="g1-guanxi"></div></div>
   </div>
-  <div class="daiuda" data-g="1" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
 <!-- S20 第2組 價值思辨 -->
@@ -884,9 +882,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <h2><span class="g-dot"></span>第2組 · 價值思辨</h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g2-lijie"></div></div>
-    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g2-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g2-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h rel">關係的疑問</div><div class="gbox rel" id="g2-guanxi"></div></div>
   </div>
-  <div class="daiuda" data-g="2" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
 <!-- S21 第3組 靈性修養 -->
@@ -894,9 +892,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <h2><span class="g-dot"></span>第3組 · 靈性修養</h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g3-lijie"></div></div>
-    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g3-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g3-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h rel">關係的疑問</div><div class="gbox rel" id="g3-guanxi"></div></div>
   </div>
-  <div class="daiuda" data-g="3" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
 <!-- S22 第4組 人學探索 -->
@@ -904,9 +902,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <h2><span class="g-dot"></span>第4組 · 人學探索</h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g4-lijie"></div></div>
-    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g4-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g4-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h rel">關係的疑問</div><div class="gbox rel" id="g4-guanxi"></div></div>
   </div>
-  <div class="daiuda" data-g="4" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
 <!-- S23 第5組 哲學思考 -->
@@ -914,9 +912,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <h2><span class="g-dot"></span>第5組 · 哲學思考</h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g5-lijie"></div></div>
-    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g5-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g5-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h rel">關係的疑問</div><div class="gbox rel" id="g5-guanxi"></div></div>
   </div>
-  <div class="daiuda" data-g="5" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
 <!-- S24 第6組 任意門（自由認領一個核心素養深入討論） -->
@@ -924,9 +922,9 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
   <h2><span class="g-dot"></span>第6組 · 任意門</h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g6-lijie"></div></div>
-    <div class="gcol"><div class="gcol-h kunhuo">還不懂／接不起來</div><div class="gbox kunhuo" id="g6-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g6-kunhuo"></div></div>
+    <div class="gcol"><div class="gcol-h rel">關係的疑問</div><div class="gbox rel" id="g6-guanxi"></div></div>
   </div>
-  <div class="daiuda" data-g="6" onclick="event.stopPropagation()"><span class="tag">無網路時·老師代打</span><select></select><input type="text" placeholder="代打一句，Enter 送出"><button class="btn" onclick="U1submitDai(this.closest('.daiuda'))">送出</button></div>
 </section>
 
 <!-- S25 空白地圖收束（合併原S24地圖＋S25收束）：自動匯入五組困惑 -->
@@ -1633,12 +1631,21 @@ window.U1=(function(){
     if(DB){DB.child('g'+g).remove();}else{DATA[g]={lijie:[],kunhuo:[],guanxi:[]};saveLocal();renderAll();}
     if(typeof showToast==='function')showToast('已清空第'+g+'組',1800);
   }
+  const NAME_OF=id=>{const g=GROUPS.filter(x=>String(x.id)===String(id))[0];return g?g.n:'';};
+  const HINT={lijie:'掃 QR 在手機寫下你們的「理解」，這裡會即時出現。',
+              kunhuo:'掃 QR 寫下「內涵的疑問」，這裡會即時出現。',
+              guanxi:'掃 QR 寫下「和哪個素養接不起來」，這裡會即時出現。'};
   function renderAll(){
-    GROUPS.forEach(g=>['lijie','kunhuo'].forEach(type=>{
+    GROUPS.forEach(g=>['lijie','kunhuo','guanxi'].forEach(type=>{
       const box=document.getElementById('g'+g.id+'-'+type); if(!box)return;
       const a=DATA[g.id][type]||[];
-      box.innerHTML=a.length?a.map(t=>`<div class="gitem" style="--c:${g.c}">${esc(t)}</div>`).join('')
-        :('<div class="empty-hint">'+(type==='lijie'?'掃 QR 在手機寫下你們的「理解」，這裡會即時出現。':'掃 QR 寫下「還不懂／接不起來」，這裡會即時出現。')+'</div>');
+      box.innerHTML=a.length?a.map(o=>{
+        if(type==='guanxi'){
+          const nm=NAME_OF(o.tgt);
+          return `<div class="gitem" style="--c:${g.c}">${nm?`<span class="rtag">↔ ${esc(nm)}</span>`:''}${esc(o.txt)}</div>`;
+        }
+        return `<div class="gitem" style="--c:${g.c}">${esc(o)}</div>`;
+      }).join('') : ('<div class="empty-hint">'+HINT[type]+'</div>');
     }));
     renderMap();
     renderWordCloud();
@@ -1748,9 +1755,7 @@ window.U1=(function(){
     const xq=document.getElementById('xwenQR');
     if(xq){xq.innerHTML='';try{new QRCode(xq,{text:ASK_BASE,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
   }
-  function setStatus(){const el=document.getElementById('fbStatus'); if(!el)return; el.textContent=DB?(online?'● 線上（手機投稿即時更新）':'● 連線中…'):'○ 單機代打模式（未連網）';}
-  function submitDai(row){const g=row.getAttribute('data-g');const type=row.querySelector('select').value;const inp=row.querySelector('input');add(g,type,inp.value);inp.value='';inp.focus();}
-  window.U1submitDai=submitDai;
+  function setStatus(){const el=document.getElementById('fbStatus'); if(!el)return; el.textContent=DB?(online?'● 線上（手機投稿即時更新）':'● 連線中…'):'○ 未連線';}
   let mx=0,my=0;
   function clearHovered(){
     const active=document.querySelector('.slide.active');
@@ -1761,12 +1766,12 @@ window.U1=(function(){
     }
     const el=document.elementFromPoint(mx,my);
     const box=el&&el.closest?el.closest('.gbox'):null;
-    const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo)$/);
-    if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（某組的「理解」或「困惑」），再按 Shift＋C',3500);return;}
+    const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo|guanxi)$/);
+    if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（理解／內涵的疑問／關係的疑問），再按 Shift＋C',3500);return;}
     const g=m[1],type=m[2],grp=GROUPS.filter(x=>x.id==g)[0],name=grp?grp.n:('第'+g+'組');
     if(DB){DB.child('g'+g+'/'+type).remove();}
     else{DATA[g][type]=[];saveLocal();renderAll();}
-    if(typeof showToast==='function')showToast('已清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':'困惑')+'」',2200);
+    if(typeof showToast==='function')showToast('已清空「第'+g+'組 '+name+'」的「'+(type==='lijie'?'理解':type==='guanxi'?'關係的疑問':'內涵的疑問')+'」',2200);
   }
   window.U1clear=clearHovered;
   function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
@@ -1796,13 +1801,11 @@ window.U1=(function(){
   }
   window.U1export=exportAndClear;
   function initAll(){
-    document.querySelectorAll('.daiuda select').forEach(s=>{if(!s.options.length)s.innerHTML='<option value="lijie">理解</option><option value="kunhuo">困惑</option>';});
-    document.querySelectorAll('.daiuda input').forEach(inp=>inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')submitDai(inp.closest('.daiuda'));}));
     document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;},{passive:true});
     document.addEventListener('keydown',e=>{if(!e.shiftKey)return;if(e.key==='C'||e.key==='c'){e.preventDefault();clearHovered();}else if(e.key==='E'||e.key==='e'){e.preventDefault();exportAndClear();}});
     if(!initFB())loadLocal();
     renderAll(); makeQRs(); setStatus();
-    try{document.querySelectorAll('.slide').forEach((s,i)=>{if((s.querySelector('.daiuda')||s.querySelector('.qr-grid'))&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
+    try{document.querySelectorAll('.slide').forEach((s,i)=>{if(s.querySelector('.qr-grid')&&!noClickZoneSlides.includes(i+1))noClickZoneSlides.push(i+1)});showSlide(current);}catch(e){}
   }
   if(document.readyState!=='loading')initAll();else document.addEventListener('DOMContentLoaded',initAll);
   return {add,clearGroup,renderAll};
