@@ -1488,7 +1488,7 @@ fitAll();updateFsIcon();
 })();
 // 含 iframe／封面 CTA 的頁停用點擊區
 const noClickZoneSlides=[];
-slides.forEach((s,i)=>{if(s.classList.contains('cover')||s.querySelector('iframe,.cover-cta,.back-home-btn'))noClickZoneSlides.push(i+1);});
+slides.forEach((s,i)=>{if(s.classList.contains('cover')||s.querySelector('iframe,.cover-cta,.back-home-btn,.peek-btn'))noClickZoneSlides.push(i+1);});
 function showSlide(n){
   if(window.__exitVideoZoom)window.__exitVideoZoom();
   if(n<1)n=1;if(n>total)n=total;
