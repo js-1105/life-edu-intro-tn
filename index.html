@@ -137,6 +137,8 @@ ul.fl li::before{content:"";position:absolute;left:0;top:1.05em;width:.7em;heigh
 .sched-n.cap{flex:0 0 9em;text-align:right;color:var(--color-accent-deep);font-size:clamp(.85rem,1.05vw,1rem);font-style:italic}
 .ref-list{display:flex;flex-direction:column;gap:.65em;width:100%}
 .ref-item{padding:.8em 1.3em;background:#fff;border-radius:10px;box-shadow:var(--shadow-soft);border-left:4px solid var(--color-accent);font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.55}
+.ref-list.spread{gap:1.1em}
+.ref-list.spread .ref-item{font-size:clamp(1.35rem,1.8vw,1.65rem);padding:1em 1.5em;line-height:1.6}
 .rubric-rows{display:flex;flex-direction:column;gap:.6em;width:100%}
 .rubric-row{position:relative;display:flex;align-items:center;gap:1.1em;padding:.75em 1.3em;background:#fff;border-radius:12px;box-shadow:var(--shadow-soft);border-left:5px solid var(--color-primary);overflow:hidden}
 .rubric-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w,0%);background:linear-gradient(90deg,rgba(212,175,55,.2),rgba(212,175,55,.02));z-index:0}
@@ -576,11 +578,21 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 <!-- 參考文獻 -->
 <section class="slide">
   <h2>參考文獻</h2>
-  <div class="ref-list">
+  <div class="ref-list spread">
     <div class="ref-item">孫效智，〈臺灣生命教育的理論基礎與發展歷程〉，北京首都師範大學，2026。</div>
     <div class="ref-item">孫效智，〈未知死，焉知生〉，《科學人》，2010。</div>
     <div class="ref-item">孫效智，〈以生命教育為核心重構主流靈性健康理論〉，載於「2025 第二十一屆生命教育學術研討會」會議手冊（頁 3–52），國立臺灣大學生命教育研發育成中心、社團法人台灣生命教育學會，臺北，2025 年 10 月。</div>
     <div class="ref-item">米洛斯拉夫．沃弗（Miroslav Volf）、馬修．克羅斯蒙（Matthew Croasmun）、萊恩．麥克安納利林茨（Ryan McAnnally-Linz）著，廖建容譯，《耶魯大學的人生思辨課》，天下雜誌，2023。</div>
+  </div>
+</section>
+
+<!-- 參考文獻（續） -->
+<section class="slide">
+  <h2>參考文獻（續）</h2>
+  <div class="ref-list">
+    <div class="ref-item">王陽明，《大學問》，中國哲學書電子化計劃，https://ctext.org/wiki.pl?if=gb&chapter=759384。</div>
+    <div class="ref-item">柯文哲，紀錄片《你還有什麼話 想對這個世界說嗎》，YouTube 頻道「柯文哲」，https://youtu.be/MwGWaZJwlpQ。</div>
+    <div class="ref-item">孫效智，〈在談「好好地死」之前，請先讓人「好好地活」〉，《風傳媒》，2026 年 6 月 30 日，https://www.storm.mg/article/11145173。</div>
   </div>
   <p class="muted" style="text-align:center;margin-top:.6em;max-width:50em;white-space:nowrap">以上為目前書面課程綱要所列參考文獻；視學員學習情況，後續可能會再補充其他文獻。</p>
 </section>
