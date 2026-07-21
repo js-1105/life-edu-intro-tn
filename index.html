@@ -850,13 +850,13 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
     <div class="card" style="border-top-color:#A23A48"><h3>③ 內涵的疑問</h3><p>關於它的內涵，你們還有哪些地方不了解？</p></div>
     <div class="card" style="border-top-color:#5C1A23"><h3>④ 關係的疑問</h3><p>它和其他素養的關係，哪些還不明白？</p></div>
   </div>
-  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四個面向逐一討論，推一位代表整理後上台報告。</p></div>
+  <div class="practice" style="margin-top:1em"><span class="label">⏱ 討論 20 分鐘</span><p>四個面向逐一討論，推一位代表整理後上台報告。討論後掃 QR 投稿：<b>③ 寫成一句 20 字內的疑問</b>，會出現在「素養地圖」你們素養的圈圈裡；<b>④ 先選定「和哪一個素養」再寫一句</b>，會點亮地圖上兩個素養之間的連線。</p></div>
 </section>
 
 <!-- S18 六組 QR：手機投稿入口 -->
 <section class="slide">
   <h2>掃你那一組的 QR，把討論打在手機上</h2>
-  <p class="lead qr-intro">請各小組派<b>一位同學</b>，掃描小組該討論的核心素養那個碼，<br>在手機上充分寫下「理解」與「還不懂／接不起來」，投影幕即時更新。</p>
+  <p class="lead qr-intro">請各小組派<b>一位同學</b>掃你們那一組的碼，依序送出三樣東西，投影幕即時更新：<br><b>① 理解</b>（不限字數）、<b>② 內涵的疑問</b>（一句 20 字內→進素養圈）、<b>③ 關係的疑問</b>（先選對象素養→點亮連線）。<br>第 6 組請先在手機上<b>選定要深入的核心素養</b>再投稿。</p>
   <div class="qr-stage">
     <div class="qr-card c-tl" style="--c:#862633"><div class="qr-box" data-g="1"></div><div class="qr-cap">第1組<small>終極關懷</small></div></div>
     <div class="qr-card c-tr" style="--c:#A8782E"><div class="qr-box" data-g="2"></div><div class="qr-cap">第2組<small>價值思辨</small></div></div>
@@ -919,7 +919,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 
 <!-- S24 第6組 任意門（自由認領一個核心素養深入討論） -->
 <section class="slide gpage" style="--c:#1A1A1A">
-  <h2><span class="g-dot"></span>第6組 · 任意門</h2>
+  <h2><span class="g-dot"></span>第6組 · 任意門<span id="g6pickName" style="font-size:.62em;color:var(--color-muted)"></span></h2>
   <div class="gcols">
     <div class="gcol"><div class="gcol-h">我們的理解</div><div class="gbox" id="g6-lijie"></div></div>
     <div class="gcol"><div class="gcol-h kunhuo">內涵的疑問</div><div class="gbox kunhuo" id="g6-kunhuo"></div></div>
@@ -1636,6 +1636,8 @@ window.U1=(function(){
               kunhuo:'掃 QR 寫下「內涵的疑問」，這裡會即時出現。',
               guanxi:'掃 QR 寫下「和哪個素養接不起來」，這裡會即時出現。'};
   function renderAll(){
+    const g6n=document.getElementById('g6pickName');
+    if(g6n)g6n.textContent=PICK6?('　→ 深入：'+NAME_OF(PICK6)):'　（先在手機上選定要深入的素養）';
     GROUPS.forEach(g=>['lijie','kunhuo','guanxi'].forEach(type=>{
       const box=document.getElementById('g'+g.id+'-'+type); if(!box)return;
       const a=DATA[g.id][type]||[];

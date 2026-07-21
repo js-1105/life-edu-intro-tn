@@ -54,9 +54,9 @@ input.one:focus{outline:none;border-color:var(--c)}
 <body>
 <div class="bar"><div class="g" id="gName">第 ? 組</div><div class="s" id="gSub">把你們的討論打上來</div></div>
 <div class="wrap">
-  <p class="intro">把你們這一組討論的結果寫下來，可分多次送出。送出後會即時出現在投影幕上。</p>
+  <p class="intro">依序送出三樣東西，都會即時出現在投影幕：<b>①理解</b>→你們那一組的頁面；<b>②內涵的疑問</b>→素養地圖上你們素養的圈圈裡；<b>③關係的疑問</b>→點亮地圖上兩個素養之間的連線。</p>
   <div class="pickbar" id="pickBar" style="display:none">
-    <label>你們這一組要討論哪一個核心素養？</label>
+    <label>任意門：你們要深入哪一個核心素養？（先選，才能投稿；投影幕會顯示你們的選擇）</label>
     <select id="pickSel"><option value="">請選擇…</option></select>
   </div>
   <section class="blk">
@@ -68,7 +68,7 @@ input.one:focus{outline:none;border-color:var(--c)}
   <section class="blk kun">
     <label>② 對這個素養的「內涵」還有什麼不懂</label>
     <input class="one" id="kunhuo" maxlength="20" placeholder="例：靈性修養與心理健康怎麼分？">
-    <div class="hint"><span>一則一句、20 字以內（投影幕上要放得下）</span><span class="cnt" id="kunCnt">0／20</span></div>
+    <div class="hint"><span>一句 20 字內——會放進素養地圖<b>你們素養的圈圈裡</b></span><span class="cnt" id="kunCnt">0／20</span></div>
     <button class="send" onclick="send('kunhuo')">送出「內涵的疑問」</button>
     <div class="list" id="kunhuoList"></div>
   </section>
@@ -76,7 +76,7 @@ input.one:focus{outline:none;border-color:var(--c)}
     <label>③ 這個素養和「哪一個素養」的關係還接不起來</label>
     <select id="relTgt"><option value="">先選一個素養…</option></select>
     <input class="one" id="guanxi" maxlength="20" placeholder="例：兩者的先後次序是什麼？">
-    <div class="hint"><span>一則一句、20 字以內</span><span class="cnt" id="relCnt">0／20</span></div>
+    <div class="hint"><span>一句 20 字內——會<b>點亮地圖上你們素養與所選素養之間的連線</b></span><span class="cnt" id="relCnt">0／20</span></div>
     <button class="send" onclick="send('guanxi')">送出「關係的疑問」</button>
     <div class="list" id="guanxiList"></div>
   </section>
