@@ -1762,7 +1762,7 @@ window.U1=(function(){
     if(typeof QRCode==='undefined')return;
     document.querySelectorAll('.qr-box[data-g]').forEach(box=>{
       const g=box.getAttribute('data-g'); box.innerHTML='';
-      try{new QRCode(box,{text:SUBMIT_BASE+'?g='+g+'&v=g6fix1',width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
+      try{new QRCode(box,{text:SUBMIT_BASE+'?g='+g+'&v=w20',width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
     });
     const xq=document.getElementById('xwenQR');
     if(xq){xq.innerHTML='';try{new QRCode(xq,{text:ASK_BASE,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
