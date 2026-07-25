@@ -68,7 +68,27 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 .section-divider .stage{font-size:clamp(1.1rem,2vw,1.5rem);color:var(--color-accent-soft);font-weight:700;letter-spacing:.3em;margin-bottom:.1em}
 .section-divider .num{font-family:var(--font-serif);font-size:clamp(4rem,13vw,10rem);font-weight:900;line-height:1;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 4px 30px rgba(212,175,55,.3)}
 .section-divider h1{margin-top:.05em;color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.25)}
-.section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:32em}
+.section-divider .when{font-size:clamp(1.75rem,2.85vw,2.7rem);line-height:1.5;color:rgba(255,255,255,.88);margin-top:.6em;letter-spacing:.05em;max-width:32em}
+
+/* 🔴 章節分隔頁主題視覺＋進場動畫（教授 2026-07-24 訂：標題頁不可單調無聊） */
+.sec-art{position:absolute;right:3vw;top:50%;transform:translateY(-50%);width:33vw;max-width:480px;aspect-ratio:1/1;opacity:.19;color:var(--color-accent);pointer-events:none;z-index:0}
+.section-divider .num,.section-divider h1,.section-divider .when,.section-divider .stage{position:relative;z-index:1}
+@keyframes secDraw{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+@keyframes secSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes secFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes secPulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:1}}
+@keyframes secTilt{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes secRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.slide.section-divider.active .sec-draw{stroke-dasharray:900;animation:secDraw 2.6s cubic-bezier(.4,0,.2,1) both}
+.slide.section-divider.active .sec-spin{transform-origin:100px 100px;animation:secSpin 3.2s cubic-bezier(.34,.03,.2,1) both}
+.slide.section-divider.active .sec-float{animation:secFloat 4.6s ease-in-out infinite}
+.slide.section-divider.active .sec-pulse{transform-origin:100px 100px;animation:secPulse 3.6s ease-in-out infinite}
+.slide.section-divider.active .sec-tilt{transform-origin:100px 60px;animation:secTilt 5s ease-in-out infinite}
+.slide.section-divider.active .sec-rise{animation:secRise .9s ease-out both}
+.slide.section-divider.active .sec-rise:nth-of-type(2){animation-delay:.15s}
+.slide.section-divider.active .sec-rise:nth-of-type(3){animation-delay:.3s}
+.slide.section-divider.active .sec-rise:nth-of-type(4){animation-delay:.45s}
+.slide.section-divider.active .sec-rise:nth-of-type(5){animation-delay:.6s}
 /* 封面 */
 .slide.cover{background:radial-gradient(120% 120% at 74% 24%,#18213d,#0B1020 62%);color:#EDE6D6;text-align:left;--ai:flex-start;overflow:hidden}
 .slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(760px 480px at 76% 30%,rgba(212,175,55,.07),transparent 68%);z-index:1}
@@ -666,6 +686,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-spin"><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="20" stroke-width="5"/><line x1="100" y1="32" x2="100" y2="48" stroke-width="10"/><line x1="100" y1="152" x2="100" y2="168" stroke-width="10"/><line x1="32" y1="100" x2="48" y2="100" stroke-width="10"/><line x1="152" y1="100" x2="168" y2="100" stroke-width="10"/><line x1="52" y1="52" x2="64" y2="64" stroke-width="10"/><line x1="136" y1="136" x2="148" y2="148" stroke-width="10"/><line x1="148" y1="52" x2="136" y2="64" stroke-width="10"/><line x1="64" y1="136" x2="52" y2="148" stroke-width="10"/></g></svg>
   <div class="num">壹</div>
   <h1>從時代挑戰看人生的重大課題</h1>
   <p class="when">在這個容易把人活成工具的時代，重新問自己：人，究竟為何而活？</p>
@@ -801,9 +822,10 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-draw"><path d="M28 168 H74 V128 H120 V88 H166 V48"/></g><circle class="sec-float" cx="166" cy="34" r="11" stroke-width="6"/></svg>
   <div class="num">貳</div>
   <h1>三學期，我學到什麼？</h1>
-  <p class="when" style="max-width:36em;white-space:nowrap">三學期的收穫，每一塊都在——只是它們，可能還沒拼成一張完整的圖。</p>
+  <p class="when" style="max-width:26em">三學期的收穫，每一塊都在——只是它們，可能還沒拼成一張完整的圖。</p>
 </section>
 
 <!-- S16 任務總覽 -->
@@ -939,6 +961,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-draw"><path d="M66 72 A34 34 0 1 1 100 112 V132" stroke-width="13"/></g><circle class="sec-pulse" cx="100" cy="160" r="8" fill="currentColor" stroke="none"/></svg>
   <div class="num">參</div>
   <h1>我的人生 X 問</h1>
 </section>
@@ -1011,6 +1034,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-float"><path d="M78 76 A26 26 0 1 1 104 106 V120" stroke-width="10"/><circle cx="104" cy="140" r="6" fill="currentColor" stroke="none"/></g><g class="sec-spin" stroke-width="5"><circle cx="100" cy="100" r="76" stroke-dasharray="5 16" opacity=".8"/></g><circle cx="30" cy="66" r="7" stroke-width="5"/><circle cx="172" cy="72" r="7" stroke-width="5"/><circle cx="44" cy="158" r="7" stroke-width="5"/><circle cx="164" cy="150" r="7" stroke-width="5"/></svg>
   <div class="num">肆</div>
   <h1>古今中外的人生 X 問</h1>
   <p class="when">你心裡的那個提問，千百年來，許多偉大的心靈也曾日夜追問。</p>
@@ -1150,6 +1174,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path class="sec-rise" d="M30 58 H170" stroke-width="9"/><line class="sec-rise" x1="58" y1="62" x2="58" y2="158" stroke-width="8"/><line class="sec-rise" x1="100" y1="62" x2="100" y2="158" stroke-width="8"/><line class="sec-rise" x1="142" y1="62" x2="142" y2="158" stroke-width="8"/><path class="sec-rise" d="M26 162 H174" stroke-width="9"/></svg>
   <div class="num">伍</div>
   <h1>生命教育的人生三問</h1>
   <p class="when">為何而活、如何生活、如何活出——三個問題，撐起完整的人生。</p>
@@ -1289,6 +1314,7 @@ ul.feature-list li::before{content:counter(li-counter);counter-increment:li-coun
 </section>
 
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-draw"><path d="M100 178 V96" stroke-width="9"/><path d="M100 124 C82 110 64 100 50 96" stroke-width="6"/><path d="M100 124 C118 110 136 100 150 96" stroke-width="6"/><path d="M100 102 C88 84 78 72 70 62" stroke-width="6"/><path d="M100 102 C112 84 122 72 130 62" stroke-width="6"/><path d="M100 96 V50" stroke-width="6"/></g><circle class="sec-pulse" cx="50" cy="92" r="10" stroke-width="6"/><circle class="sec-pulse" cx="150" cy="92" r="10" stroke-width="6"/><circle class="sec-pulse" cx="68" cy="58" r="10" stroke-width="6"/><circle class="sec-pulse" cx="132" cy="58" r="10" stroke-width="6"/><circle class="sec-pulse" cx="100" cy="44" r="10" stroke-width="6"/></svg>
   <div class="num">陸</div>
   <h1>從人生三問到五大核心素養</h1>
   <p class="when">三個問題，慢慢長成五個面向——一張屬於你的生命地圖。</p>
