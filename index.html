@@ -1802,8 +1802,14 @@ window.U1=(function(){
       if(typeof showToast==='function')showToast('已清空問題雲',1800);
       return;
     }
-    const el=document.elementFromPoint(mx,my);
-    const box=el&&el.closest?el.closest('.gbox'):null;
+    // 翻頁熱區 .click-zone 是 fixed/inset:0 覆蓋全頁，elementFromPoint 只會回它 →
+    // 必須用 elementsFromPoint 掃整個堆疊，取第一個落在 .gbox 內的元素。
+    var stack=(document.elementsFromPoint?document.elementsFromPoint(mx,my):[document.elementFromPoint(mx,my)])||[];
+    var box=null;
+    for(var si=0;si<stack.length;si++){
+      var hit=stack[si]&&stack[si].closest?stack[si].closest('.gbox'):null;
+      if(hit){box=hit;break;}
+    }
     const m=box&&box.id.match(/^g(\d)-(lijie|kunhuo|guanxi)$/);
     if(!m){if(typeof showToast==='function')showToast('把滑鼠移到要清空的那一欄（理解／內涵的疑問／關係的疑問），再按 Shift＋C',3500);return;}
     const g=m[1],type=m[2],grp=GROUPS.filter(x=>x.id==g)[0],name=grp?grp.n:('第'+g+'組');
